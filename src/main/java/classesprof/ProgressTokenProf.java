@@ -1,6 +1,6 @@
-package classes;
+package classesprof;
 
-public enum ProgressToken {
+public enum ProgressTokenProf {
 
 	Urbanism("urbanism", "urbanisme", //
 			"Lorsque vous prenez une carte grise 'bois' ou 'brique', " //
@@ -83,7 +83,7 @@ public enum ProgressToken {
 	
 	// ------------------------------------------------------------------------
 	
-	private ProgressToken(String displayName, String frenchName, String effectDescription, String imageResource) {
+	private ProgressTokenProf(String displayName, String frenchName, String effectDescription, String imageResource) {
 		this.displayName = displayName;
 		this.frenchName = frenchName;
 		this.effectDescription = effectDescription;

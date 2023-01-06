@@ -1,6 +1,6 @@
-package classes;
+package classesprof;
 
-public enum CardCategory {
+public enum CardCategoryProf {
 
 	MaterialCard,
 	ProgressCard,

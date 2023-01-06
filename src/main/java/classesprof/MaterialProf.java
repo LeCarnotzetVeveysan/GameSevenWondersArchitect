@@ -1,6 +1,6 @@
-package classes;
+package classesprof;
 
-public enum Material {
+public enum MaterialProf {
 	Wood, //
 	Paper, //
 	Brick, //
