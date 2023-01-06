@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitializeController">
+   <children>
+      <Label text="Number of players" />
+      <VBox>
+         <children>
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Label text="2" />
+                  <Label text="3" />
+                  <Label text="4" />
+                  <Label text="5" />
+                  <Label text="6" />
+                  <Label text="7" />
+               </children>
+            </HBox>
+            <Slider blockIncrement="1.0" max="7.0" min="2.0" value="2.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Player 1" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Player 2" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Player 3" />
+                  <TextField />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

@@ -6,6 +6,4 @@ module gswa.gswa {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
 
-    opens gswa.gswa to javafx.fxml;
-    exports gswa.gswa;
 }
