@@ -22,10 +22,12 @@ package classes {
     class Player {
         - String playerName
         - Wonder wonder
+
         - ArrayList<ShieldToken> shieldTokens
         - ArrayList<ProgressToken> progressTokens
         - ArrayList<LaurelToken> laurelTokens
         - ArrayList<MaterialToken> materials
+
         - boolean hasCat
     }
 
@@ -55,6 +57,7 @@ package classes {
         COM_WARRIOR
         COM_SPEARMAN
         COM_ARCHER
+
         object Cards
         - String name
         - String image
@@ -111,12 +114,16 @@ package other {
         - refreshMaterialImages()
         - refreshPlayerTokenImages()
         - refreshPlayerShieldImages()
-        - refreshPlayer
+        - refreshPlayer()
 
     }
 
     class ModelCommonMethods {
-
+        + nextTurn()
+        + drawLeftDeck()
+        + drawMiddleDeck()
+        + drawRightDeck()
+        + drawProgressToken()
     }
 
 }
