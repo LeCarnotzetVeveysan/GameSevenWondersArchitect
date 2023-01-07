@@ -94,8 +94,28 @@ package classes {
 
 package controllers {
 
+    class GameInitializeController {
+        + void initializeGame()
+    }
+
     class GameSceneController {
         + {static} void updateImages()
+    }
+
+    class LauncherController {
+        + void startGame()
+    }
+
+    class MainMenuController {
+        + void startGame()
+    }
+
+    class ResultsController {
+        + void showResults()
+    }
+
+    class RulesController {
+        + void showRules()
     }
 
 }
@@ -126,7 +146,6 @@ package other {
     }
 
 }
-
 
 GameData o-- Player
 GameData o-- Deck
