@@ -103,19 +103,18 @@ package controllers {
 package other {
 
     class UICommonMethods {
-        + refreshBoardImages()
+        + refreshBoard()
 
         - refreshCommonTokens()
         - refreshCombatTokenImages()
         - refreshProgressTokenImages()
 
+        - refreshPlayer()
         - refreshPlayerImages()
         - refreshWonderImages()
         - refreshMaterialImages()
         - refreshPlayerTokenImages()
         - refreshPlayerShieldImages()
-        - refreshPlayer()
-
     }
 
     class ModelCommonMethods {

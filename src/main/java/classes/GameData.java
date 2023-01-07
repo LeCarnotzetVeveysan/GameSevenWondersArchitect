@@ -4,7 +4,14 @@ import java.util.ArrayList;
 
 public class GameData {
 
-    private int numberOfPlayers;
-    private ArrayList<Player> players;
-    private ArrayList<Deck> decks;
+    ArrayList<Player> players = new ArrayList<Player>();
+    ArrayList<Deck> decks = new ArrayList<Deck>();
+    ArrayList<ProgressToken> progressTokens = new ArrayList<ProgressToken>();
+    int combatTokensNeeded;
+    int combatTokensFlipped;
+
+    public void initializeDecks() {
+
+    }
+
 }
