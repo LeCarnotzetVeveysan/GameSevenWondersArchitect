@@ -49,18 +49,20 @@ package classes {
         MAT_STONE
         MAT_PAPYRUS
         MAT_GOLD
-        LAU_SIMPLE
+        LAU_EMPEROR
         LAU_CAT
-        SCI_COMPASS
-        SCI_TABLET
-        SCI_WHEEL
-        COM_WARRIOR
-        COM_SPEARMAN
+        SCI_ARCHITECT
+        SCI_LAW
+        SCI_MECHANIC
+        COM_CENTURION
+        COM_BARBARIAN
         COM_ARCHER
 
         object Cards
         - String name
-        - String image
+        - String type
+        - String front
+        - String back
     }
 
     class Deck {
@@ -71,21 +73,22 @@ package classes {
     }
 
     class ShieldToken {
-        + boolean hasHorn
+        - boolean hasHorn
+        - int nbShields
     }
 
     class LaurelToken {
-        + int points
-        + int color
+        - int points
+        - int color
     }
 
     class ProgressToken {
-        + String name
+        - String name
     }
 
     class MaterialToken {
-        + String type
-        + int color
+        - String type
+        - int color
     }
 
 
