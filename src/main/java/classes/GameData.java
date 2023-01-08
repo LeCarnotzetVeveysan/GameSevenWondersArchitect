@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class GameData {
 
-    private Deck rodhosDeck = new Deck(2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2);
-    private Deck halikarnassosDeck = new Deck(3, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 1, 2);
-    private Deck gizahDeck = new Deck(3,2,1,2,2,2,1,2,1,2,3,2,0,2);
-    private Deck ephesosDeck = new Deck(3,2,2,2,2,2,1,2,2,1,2,2,1,1);
-    private Deck olympiaDeck = new Deck(3,2,2,1,2,2,1,1,2,1,3,2,1,2);
-    private Deck babylonDeck = new Deck(3,1,2,2,2,2,2,2,1,2,2,2,1,1);
-    private Deck alexandriaDeck = new Deck(4,2,2,2,1,2,2,1,1,2,2,2,1,1);
+    private final Deck rodhosDeck = new Deck(2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2);
+    private final Deck halikarnassosDeck = new Deck(3, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 1, 2);
+    private final Deck gizahDeck = new Deck(3,2,1,2,2,2,1,2,1,2,3,2,0,2);
+    private final Deck ephesosDeck = new Deck(3,2,2,2,2,2,1,2,2,1,2,2,1,1);
+    private final Deck olympiaDeck = new Deck(3,2,2,1,2,2,1,1,2,1,3,2,1,2);
+    private final Deck babylonDeck = new Deck(3,1,2,2,2,2,2,2,1,2,2,2,1,1);
+    private final Deck alexandriaDeck = new Deck(4,2,2,2,1,2,2,1,1,2,2,2,1,1);
 
     ArrayList<Player> players = new ArrayList<>();
     ArrayList<Deck> decks = new ArrayList<>();
