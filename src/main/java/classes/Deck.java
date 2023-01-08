@@ -6,7 +6,9 @@ public class Deck {
 
     ArrayList<Cards> deck = new ArrayList<>();
 
-    public Deck(int nbGold, int nbStone, int nbBrick, int nbWood, int nbPapyrus, int nbGlass, int nbMechanic, int nbArchitect, int nbLaw, int nbEmperor, int nbCat, int nbCenturion, int nbArcher, int nbBarbarian) {
+    private String backCardImg;
+
+    public Deck(int nbGold, int nbStone, int nbBrick, int nbWood, int nbPapyrus, int nbGlass, int nbMechanic, int nbArchitect, int nbLaw, int nbEmperor, int nbCat, int nbCenturion, int nbArcher, int nbBarbarian, String backCardImg) {
         for (int i = 0; i < nbWood; i++) {
             deck.add(Cards.MAT_WOOD);
         }
@@ -50,6 +52,8 @@ public class Deck {
             deck.add(Cards.COM_ARCHER);
         }
 
+        this.backCardImg = backCardImg;
+
         shuffle();
     }
 
@@ -71,4 +75,7 @@ public class Deck {
         deck.remove(index);
     }
 
+    public String getBackCardImg() {
+        return backCardImg;
+    }
 }

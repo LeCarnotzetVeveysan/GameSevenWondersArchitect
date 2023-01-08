@@ -11,7 +11,7 @@ public class ProgressTokensProf {
 	
 	// there is 1 token of each type, and 2 tokens of the same 'Culture' type
 	private static List<ProgressTokenProf> createTokenList() {
-		List<ProgressTokenProf> res = new ArrayList<ProgressTokenProf>();
+		List<ProgressTokenProf> res = new ArrayList<>();
 		res.addAll(Arrays.asList(ProgressTokenProf.values()));
 		res.add(ProgressTokenProf.Culture);
 		return res;

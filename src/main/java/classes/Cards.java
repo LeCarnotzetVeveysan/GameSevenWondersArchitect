@@ -38,4 +38,5 @@ public enum Cards {
     public String getFront() {
         return front;
     }
+
 }
