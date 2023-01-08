@@ -1,63 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LauncherController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LauncherController">
    <children>
-      <ImageView fitHeight="120.0" fitWidth="280.0" pickOnBounds="true">
+      <ImageView fx:id="LogoView" fitHeight="135.0" fitWidth="339.0" layoutX="131.0" layoutY="23.0" pickOnBounds="true">
          <image>
             <Image url="@../images/Untitled.png" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER" spacing="10.0">
-         <children>
-            <VBox alignment="CENTER" spacing="5.0">
-               <children>
-                  <Label text="Language" />
-                  <ChoiceBox prefWidth="150.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="English" />
-                           <String fx:value="French" />
-                           <String fx:value="Italiano" />
-                        </FXCollections>
-                     </items>
-                  </ChoiceBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" spacing="5.0">
-         <children>
-            <Label text="Screen resolution" />
-            <ChoiceBox prefWidth="150.0">
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="FULLSCREEN" />
-                     <String fx:value="x1y1" />
-                     <String fx:value="x2y2" />
-                     <String fx:value="x3y3" />
-                  </FXCollections>
-               </items>
-            </ChoiceBox>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" spacing="10.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Launch" />
-         </children>
-      </HBox>
-      <Label text="version" />
+      <ComboBox fx:id="ComboBoxNumPlayer" layoutX="225.0" layoutY="188.0" onAction="#NumPlayerChoosed" prefWidth="150.0" />
+      <Label layoutX="103.0" layoutY="192.0" text="Number of players :" />
+      <Button fx:id="StartButton" layoutX="131.0" layoutY="264.0" mnemonicParsing="false" onAction="#StartClicked" prefHeight="66.0" prefWidth="150.0" text="Start">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="RulesButton" layoutX="320.0" layoutY="264.0" mnemonicParsing="false" onAction="#RulesClicked" prefHeight="66.0" prefWidth="150.0" text="Rules">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
-</VBox>
+</AnchorPane>
