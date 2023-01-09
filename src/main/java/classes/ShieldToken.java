@@ -2,7 +2,7 @@ package classes;
 
 public class ShieldToken {
 
-    boolean hasHorn;
+    private boolean hasHorn;
 
     public ShieldToken(boolean hasHorn) {
         this.hasHorn = hasHorn;
