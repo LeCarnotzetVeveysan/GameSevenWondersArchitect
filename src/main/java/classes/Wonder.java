@@ -4,51 +4,51 @@ public enum Wonder {
 
     // valeur de sameMaterials et nbMaterials à changer
     Alexandrie("Alexandrie", "Prenez la premi�re carte d'une pioche au choix, n'importe o� sur la table, et posez-la devant vous",
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4}),
+            new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
+            new boolean[]{false, true, false, true, false}, new int[]{4, 3, 6, 5, 7}),
 
     // valeur de sameMaterials et nbMaterials à changer
     Halicarnasse("Halicarnasse", "Prenez les 5 premi�res cartes de la pioche � votre gauche ou � votre droite, choisissez-en 1 et posez-la devant vous" + "M�langez-les cartes restantes dans leur pioche",
-            new boolean[]{false, true, true, false, false}, new int[]{2, 2, 3, 3, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4}),
+            new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
+            new boolean[]{false, false, true, true, false}, new int[]{3, 3, 6, 5, 7}),
 
     // valeur de sameMaterials et nbMaterials à changer
     Ephese("Ephese", "Prenez la premi�re carte de la pioche centrale et posez-la devant vous",
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4}),
+            new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
+            new boolean[]{false, true, true, true, false}, new int[]{3, 3, 4, 5, 7}),
 
     // valeur de sameMaterials et nbMaterials à changer
     Olympie("Olympie", "Prenez la premi�re carte de la pioche � votre cauche et de celle � votre droite, et posez-les devant vous",
-            new boolean[]{false, true, true, false, false}, new int[]{2, 2, 3, 3, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4}),
+            new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
+            new boolean[]{false, true, false, true, false}, new int[]{3, 2, 5, 5, 7}),
 
     // valeur de sameMaterials et nbMaterials à changer
     Babylon("Babylone", "Choisissez 1 jeton Progr�s parmi les 4 disponibles, et posez-le devant vous",
-            new boolean[]{false, true, false, false, true}, new int[]{2, 2, 2, 3, 3},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4}),
+            new boolean[]{false, true, false, false, true}, new int[]{2, 2, 3, 4, 3},
+            new boolean[]{false, true, false, false, true}, new int[]{3, 0, 5, 7, 5}),
 
     // valeur de sameMaterials et nbMaterials à changer
     Rhodes("Rhodes", "Ajoutez 1 Bouclier � votre total de Boucliers",
-            new boolean[]{true, false, false, true, false}, new int[]{2, 2, 3, 3, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4}),
+            new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
+            new boolean[]{false, true, false, true, false}, new int[]{4, 4, 5, 6, 7}),
 
     // valeur de sameMaterials et nbMaterials à changer
     Gizeh("Gizeh", "Cette merveille n'a pas d'effet particulier, mais rapporte plus de points de victoire que les autres Merveilles",
-            new boolean[]{true, false, true, false, false}, new int[]{2, 3, 3, 3, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{2, 3, 3, 2, 4});
+            new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
+            new boolean[]{false, false, false, false, false}, new int[]{4, 5, 6, 7, 8});
 
     // ------------------------------------------------------------------------
 
-    final String name;
-    final String effectDescription;
+    private final String name;
+    private final String effectDescription;
 
-    int wonderLevel = 0;
+    private int wonderLevel = 0;
 
-    boolean[] sameMaterials;
-    int[] nbMaterials;
+    private boolean[] sameMaterials;
+    private int[] nbMaterials;
 
-    int[] levelPoints;
-    boolean[] levelAction;
+    private int[] levelPoints;
+    private boolean[] levelAction;
 
 
     // ------------------------------------------------------------------------

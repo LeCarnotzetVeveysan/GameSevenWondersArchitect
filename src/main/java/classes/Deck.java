@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Deck {
 
     ArrayList<Cards> deck = new ArrayList<>();
-
     private String backCardImg;
 
     public Deck(int nbGold, int nbStone, int nbBrick, int nbWood, int nbPapyrus, int nbGlass, int nbMechanic, int nbArchitect, int nbLaw, int nbEmperor, int nbCat, int nbCenturion, int nbArcher, int nbBarbarian, String backCardImg) {

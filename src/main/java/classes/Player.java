@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-    String playerName;
+    String name;
     Wonder wonder;
 
     ArrayList<ShieldToken> shieldTokens = new ArrayList<>();
@@ -15,8 +15,16 @@ public class Player {
     boolean hasCat = false;
 
     public Player(String playerName, Wonder wonder) {
-        this.playerName = playerName;
+        this.name = playerName;
         this.wonder = wonder;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Wonder getWonder() {
+        return wonder;
     }
 
     public void addShieldToken(ShieldToken shieldToken) {
