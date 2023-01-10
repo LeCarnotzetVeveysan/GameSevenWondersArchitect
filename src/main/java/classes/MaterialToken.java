@@ -1,15 +1,14 @@
 package classes;
 
-public class MaterialToken {
+public enum MaterialToken {
 
-    String type;
+    WOOD,
+    GLASS,
+    BRICK,
+    STONE,
+    PAPYRUS,
+    GOLD;
 
-    public MaterialToken(String type) {
-        this.type = type;
-    }
 
-    public String getType() {
-        return type;
-    }
 
 }

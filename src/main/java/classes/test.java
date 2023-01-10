@@ -13,6 +13,8 @@ public class test {
         playerNames.add("Player 3");
 
         game.initializeBoard(playerNames);
+
+        System.out.println();
     }
 
 }

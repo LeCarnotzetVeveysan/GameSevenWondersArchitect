@@ -8,7 +8,7 @@ public class Game {
 
     private ArrayList<Player> players = new ArrayList<>();
     private ArrayList<Deck> decks = new ArrayList<>();
-    private progressTokenStack progressTokens;
+    private ProgressTokenStack progressTokens;
 
     int combatTokensNeeded;
     int combatTokensFlipped;
@@ -27,7 +27,7 @@ public class Game {
         return decks;
     }
 
-    public progressTokenStack getProgressTokens() {
+    public ProgressTokenStack getProgressTokens() {
         return progressTokens;
     }
 
