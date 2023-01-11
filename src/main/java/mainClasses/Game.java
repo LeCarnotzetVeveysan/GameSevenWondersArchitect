@@ -15,13 +15,23 @@ public class Game {
     private ArrayList<Deck> decks = new ArrayList<>();
     private ProgressTokenStack progressTokens;
 
-    int combatTokensNeeded;
-    int combatTokensFlipped;
+    private int currentPlayerIndex = 0;
+
+    private int combatTokensNeeded;
+    private int combatTokensFlipped;
 
     public void initializeBoard(ArrayList<String> playerNames) {
         players = data.initializePlayers(playerNames);
         decks = data.initializeDecks(players);
         progressTokens = data.initiatializeProgressTokens();
+    }
+
+    public void nextTurn() {
+        if (currentPlayerIndex == players.size() - 1) {
+            currentPlayerIndex = 0;
+        } else {
+            currentPlayerIndex++;
+        }
     }
 
     public ArrayList<Player> getPlayers() {

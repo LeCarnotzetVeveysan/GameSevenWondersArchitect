@@ -2,14 +2,11 @@ package other;
 
 import data.Deck;
 import data.Player;
+import token.ProgressToken;
 
 import java.util.ArrayList;
 
 public class ModelCommonMethods {
-
-    public void nextTurn() {
-
-    }
 
     public void drawLeftDeck(ArrayList<Deck> decks, ArrayList<Player> players, int crntPlayerIndex) {
         int leftPlayerIndex;
@@ -46,12 +43,18 @@ public class ModelCommonMethods {
         removeDrawCard(decks.get(targetDeck), 0);
     }
 
-    public void drawProgressToken() {
-
-    }
-    
     public void removeDrawCard(Deck deck, int index) {
         deck.getDeck().remove(index);
+    }
+
+    // l'index 0 correspond à la pile inconnue sur les 4 tokens et les 1 2 3 correspondent aux 3 visibles
+    public void drawSelectedProgressToken(ArrayList<ProgressToken> progressTokens, ArrayList<Player> players, int crntPlayerIndex, int selectedTokenIndex) {
+        players.get(crntPlayerIndex).addProgressToken(progressTokens.get(selectedTokenIndex));
+        removeDrawPToken(progressTokens, selectedTokenIndex);
+    }
+
+    public void removeDrawPToken(ArrayList<ProgressToken> progressTokens, int index) {
+        progressTokens.remove(index);
     }
 
 }
