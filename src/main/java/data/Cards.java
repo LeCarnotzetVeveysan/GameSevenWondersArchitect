@@ -1,8 +1,13 @@
 package data;
 
+import token.Fighter;
+import token.LaurelToken;
+import token.MaterialToken;
+import token.ScienceToken;
+
 public enum Cards {
 
-    MAT_WOOD("Material", "card-material-wood-lumberjack.png", ),
+    MAT_WOOD("Material", "card-material-wood-lumberjack.png"),
     MAT_GLASS("Material", "card-material-glass-women.png"),
     MAT_BRICK("Material", "card-material-brick-women.png"),
     MAT_STONE("Material", "card-material-stone-stonecutter.png"),
@@ -35,48 +40,20 @@ public enum Cards {
 
     public void getCardToken(Player player) {
         switch (this) {
-            case MAT_GOLD -> {
-
-            }
-            case MAT_BRICK -> {
-
-            }
-            case MAT_GLASS -> {
-
-            }
-            case MAT_STONE -> {
-
-            }
-            case MAT_PAPER -> {
-
-            }
-            case MAT_WOOD -> {
-
-            }
-            case LAU_EMPEROR -> {
-
-            }
-            case LAU_CAT -> {
-
-            }
-            case SCI_ARCHITECT -> {
-
-            }
-            case SCI_LAW -> {
-
-            }
-            case SCI_MECHANIC -> {
-
-            }
-            case COM_ARCHER -> {
-
-            }
-            case COM_BARBARIAN -> {
-
-            }
-            case COM_CENTURION -> {
-
-            }
+            case MAT_GOLD -> player.addMaterialToken(MaterialToken.GOLD);
+            case MAT_BRICK -> player.addMaterialToken(MaterialToken.BRICK);
+            case MAT_GLASS -> player.addMaterialToken(MaterialToken.GLASS);
+            case MAT_STONE -> player.addMaterialToken(MaterialToken.STONE);
+            case MAT_PAPER -> player.addMaterialToken(MaterialToken.PAPER);
+            case MAT_WOOD -> player.addMaterialToken(MaterialToken.WOOD);
+            case LAU_EMPEROR -> player.addLaurelToken(LaurelToken.LAUREL3);
+            case LAU_CAT -> player.addLaurelToken(LaurelToken.LAUREL2);
+            case SCI_ARCHITECT -> player.addScienceToken(ScienceToken.ARCHITECT);
+            case SCI_LAW -> player.addScienceToken(ScienceToken.LAW);
+            case SCI_MECHANIC -> player.addScienceToken(ScienceToken.MECHANIC);
+            case COM_ARCHER -> player.addFighter(Fighter.ARCHER);
+            case COM_BARBARIAN -> player.addFighter(Fighter.BARBARIAN);
+            case COM_CENTURION -> player.addFighter(Fighter.CENTURION);
         }
     }
 

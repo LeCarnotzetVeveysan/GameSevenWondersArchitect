@@ -3,8 +3,8 @@ package data;
 import token.LaurelToken;
 import token.MaterialToken;
 import token.ProgressToken;
-import token.ShieldToken;
 import token.ScienceToken;
+import token.Fighter;
 
 import java.util.ArrayList;
 
@@ -15,11 +15,11 @@ public class Player {
 
     private String nameDeck;
 
-    private ArrayList<ShieldToken> shieldTokens = new ArrayList<>();
     private ArrayList<ProgressToken> progressTokens = new ArrayList<>();
     private ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
     private ArrayList<MaterialToken> materialTokens = new ArrayList<>();
     private ArrayList<ScienceToken> scienceTokens = new ArrayList<>();
+    private ArrayList<Fighter> fighters = new ArrayList<>();
 
     private boolean hasCat = false;
 
@@ -36,8 +36,16 @@ public class Player {
         return wonder;
     }
 
-    public void addShieldToken(ShieldToken shieldToken) {
-        shieldTokens.add(shieldToken);
+    public void addFighter(Fighter fighter) {
+        fighters.add(fighter);
+    }
+
+    public void removeFighter(Fighter fighter) {
+        fighters.remove(fighter);
+    }
+
+    public ArrayList<Fighter> getFighters() {
+        return fighters;
     }
 
     public void addProgressToken(ProgressToken progressToken) {
@@ -48,6 +56,10 @@ public class Player {
         laurelTokens.add(laurelToken);
     }
 
+    public void removeLaurelToken(LaurelToken laurelToken) {
+        laurelTokens.remove(laurelToken);
+    }
+
     public ArrayList<MaterialToken> getMaterialTokens() {
         return materialTokens;
     }
@@ -56,19 +68,19 @@ public class Player {
         return scienceTokens;
     }
 
-    public void addMaterial(MaterialToken materialToken) {
+    public void addMaterialToken(MaterialToken materialToken) {
         materialTokens.add(materialToken);
     }
 
-    public void addScience(ScienceToken scienceToken) {
+    public void addScienceToken(ScienceToken scienceToken) {
         scienceTokens.add(scienceToken);
     }
 
-    public void removeMaterial(MaterialToken materialToken) {
+    public void removeMaterialToken(MaterialToken materialToken) {
         materialTokens.remove(materialToken);
     }
 
-    public void removeScience(ScienceToken scienceToken) {
+    public void removeScienceToken(ScienceToken scienceToken) {
         scienceTokens.remove(scienceToken);
     }
 

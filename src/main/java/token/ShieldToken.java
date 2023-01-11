@@ -15,4 +15,5 @@ public enum ShieldToken {
     public String getImage() {
         return image;
     }
+
 }
