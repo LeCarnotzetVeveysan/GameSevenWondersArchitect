@@ -48,7 +48,6 @@ public class Data {
     public ArrayList<Deck> initializeDecks(ArrayList<Player> players) {
         ArrayList<Deck> decks = new ArrayList<>();
         // Add decks to the list of decks
-        decks.add(middleDeck);
         for (Player player : players) {
             switch (player.getWonder()) {
                 case Alexandrie -> decks.add(alexandriaDeck);
@@ -60,6 +59,7 @@ public class Data {
                 case Gizeh -> decks.add(gizahDeck);
             }
         }
+        decks.add(middleDeck);
         return decks;
     }
 

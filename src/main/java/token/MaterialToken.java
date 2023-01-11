@@ -6,7 +6,7 @@ public enum MaterialToken {
     GLASS("glassToken.png"),
     BRICK("brickToken.png"),
     STONE("stoneToken.png"),
-    PAPYRUS("paperToken.png"),
+    PAPER("paperToken.png"),
     GOLD("goldToken.png");
 
     private String image;

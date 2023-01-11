@@ -4,6 +4,7 @@ import token.LaurelToken;
 import token.MaterialToken;
 import token.ProgressToken;
 import token.ShieldToken;
+import token.ScienceToken;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,8 @@ public class Player {
     private ArrayList<ShieldToken> shieldTokens = new ArrayList<>();
     private ArrayList<ProgressToken> progressTokens = new ArrayList<>();
     private ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
-    private ArrayList<MaterialToken> materials = new ArrayList<>();
+    private ArrayList<MaterialToken> materialTokens = new ArrayList<>();
+    private ArrayList<ScienceToken> scienceTokens = new ArrayList<>();
 
     private boolean hasCat = false;
 
@@ -46,12 +48,28 @@ public class Player {
         laurelTokens.add(laurelToken);
     }
 
-    public void addMaterial(MaterialToken material) {
-        materials.add(material);
+    public ArrayList<MaterialToken> getMaterialTokens() {
+        return materialTokens;
     }
 
-    public void removeMaterial(MaterialToken material) {
-        materials.remove(material);
+    public ArrayList<ScienceToken> getScienceTokens() {
+        return scienceTokens;
+    }
+
+    public void addMaterial(MaterialToken materialToken) {
+        materialTokens.add(materialToken);
+    }
+
+    public void addScience(ScienceToken scienceToken) {
+        scienceTokens.add(scienceToken);
+    }
+
+    public void removeMaterial(MaterialToken materialToken) {
+        materialTokens.remove(materialToken);
+    }
+
+    public void removeScience(ScienceToken scienceToken) {
+        scienceTokens.remove(scienceToken);
     }
 
     public void setHasCat(boolean hasCat) {

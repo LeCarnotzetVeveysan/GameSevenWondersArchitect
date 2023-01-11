@@ -24,7 +24,7 @@ public class Deck {
             deck.add(Cards.MAT_STONE);
         }
         for (int i = 0; i < nbPapyrus; i++) {
-            deck.add(Cards.MAT_PAPYRUS);
+            deck.add(Cards.MAT_PAPER);
         }
         for (int i = 0; i < nbGold; i++) {
             deck.add(Cards.MAT_GOLD);
@@ -66,16 +66,12 @@ public class Deck {
         }
     }
 
-    public void draw(int index) {
-        // ajouter la carte à la main du joueur et agir en fonction
-        remove(index);
-    }
-
-    public void remove(int index) {
-        deck.remove(index);
+    public ArrayList<Cards> getDeck() {
+        return deck;
     }
 
     public String getBackCardImg() {
         return backCardImg;
     }
+
 }
