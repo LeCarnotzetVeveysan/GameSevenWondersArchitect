@@ -6,8 +6,6 @@ public class AppData {
     private static int prefHeight;
     private static String language;
 
-
-
     public AppData() {
         prefWidth = 600;
         prefHeight = 400;
