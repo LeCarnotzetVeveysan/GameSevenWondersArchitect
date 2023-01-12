@@ -2,9 +2,12 @@ package other;
 
 import data.Deck;
 import data.Player;
+import token.MaterialToken;
 import token.ProgressToken;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ModelCommonMethods {
 
@@ -55,6 +58,40 @@ public class ModelCommonMethods {
 
     public void removeDrawPToken(ArrayList<ProgressToken> progressTokens, int index) {
         progressTokens.remove(index);
+    }
+
+    public void levelUpWonder(Player player) {
+        ArrayList<Long> elementTab = elementSimDiffGenerator(player);
+
+        
+    }
+
+    public ArrayList<Long> elementSimDiffGenerator(Player player) {
+        MaterialToken[] similarMaterials = MaterialToken.values();
+
+        // dans l'odre : wood, glass, brick, stone, paper et nombre de diff
+        // pour vérif si contient des éléments similaires : boucle entre 0 et 4
+        // pour vérif le nombre d'éléments différents : index 5
+        ArrayList<Long> elementTab = new ArrayList<>();
+
+        for (MaterialToken mat: similarMaterials) {
+            long countSimilar = player.getMaterialTokens().stream()
+                    .filter(s-> s.equals(MaterialToken.GOLD) || s.equals(mat))
+                    .count();
+            elementTab.add(countSimilar);
+        }
+
+        long countGold = player.getMaterialTokens().stream()
+                .filter(s-> s.equals(MaterialToken.GOLD))
+                .count();
+        long countDifferent = player.getMaterialTokens().stream()
+                .filter(s-> !s.equals(MaterialToken.GOLD))
+                .distinct()
+                .count()
+                + countGold;
+        elementTab.add(countDifferent);
+
+        return elementTab;
     }
 
 }
