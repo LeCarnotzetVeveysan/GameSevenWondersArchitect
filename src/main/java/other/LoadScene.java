@@ -21,11 +21,10 @@ public class LoadScene {
 
     }
 
-    public static void initLauncher() throws IOException {
+    public static void changeLauncherScene(String fxmlToShow) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource("/fxmls/launcher.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource("/fxmls/" + fxmlToShow + ".fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-
         launcherStage.setTitle("7WA Launcher");
         launcherStage.setScene(scene);
         launcherStage.show();

@@ -12,7 +12,7 @@ public class AppLaunch extends Application {
         Stage mainStage = new Stage();
         Stage selectionStage = new Stage();
         LoadScene ls = new LoadScene(launcherStage, mainStage, selectionStage);
-        ls.initLauncher();
+        ls.changeLauncherScene("launcher");
     }
 
     public static void main(String[] args) {
