@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsController">
+   <children>
+      <Label text="Results" />
+      <TableView>
+        <columns>
+          <TableColumn prefWidth="75.0" resizable="false" text="P1" />
+            <TableColumn prefWidth="75.0" text="P2" />
+            <TableColumn prefWidth="75.0" text="P3" />
+            <TableColumn prefWidth="75.0" text="P4" />
+          <TableColumn prefWidth="75.0" text="Total" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>

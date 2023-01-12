@@ -1,0 +1,163 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package application {
+
+    class AppLaunch {
+        + void start()
+    }
+
+}
+
+package classes {
+    class GameData {
+        - ArrayList<Player> players
+        - ArrayList<Deck> decks
+        - ArrayList<ProgressToken> progressTokens
+        - int combatTokensNeeded
+        - int combatTokensFlipped
+        + initializeDecks()
+    }
+
+    class Player {
+        - String playerName
+        - Wonder wonder
+
+        - ArrayList<ShieldToken> shieldTokens
+        - ArrayList<ProgressToken> progressTokens
+        - ArrayList<LaurelToken> laurelTokens
+        - ArrayList<MaterialToken> materials
+
+        - boolean hasCat
+    }
+
+    class Wonder {
+        - String wonderName
+        - int wonderLevel
+
+        - boolean[] sameMaterials
+        - int[] nbMaterials
+
+        - int[] levelPoints
+        - boolean[] levelAction
+    }
+
+    enum Cards {
+        MAT_WOOD
+        MAT_GLASS
+        MAT_BRICK
+        MAT_STONE
+        MAT_PAPYRUS
+        MAT_GOLD
+        LAU_EMPEROR
+        LAU_CAT
+        SCI_ARCHITECT
+        SCI_LAW
+        SCI_MECHANIC
+        COM_CENTURION
+        COM_BARBARIAN
+        COM_ARCHER
+
+        object Cards
+        - String name
+        - String type
+        - String front
+        - String back
+    }
+
+    class Deck {
+        - ArrayList<Cards> cards
+        + shuffle()
+        + draw()
+        + removeCard(int index)
+    }
+
+    class ShieldToken {
+        - boolean hasHorn
+        - int nbShields
+    }
+
+    class LaurelToken {
+        - int points
+        - int color
+    }
+
+    class ProgressToken {
+        - String name
+    }
+
+    class MaterialToken {
+        - String type
+        - int color
+    }
+
+
+
+}
+
+package controllers {
+
+    class GameInitializeController {
+        + void initializeGame()
+    }
+
+    class GameSceneController {
+        + {static} void updateImages()
+    }
+
+    class LauncherController {
+        + void startGame()
+    }
+
+    class MainMenuController {
+        + void startGame()
+    }
+
+    class ResultsController {
+        + void showResults()
+    }
+
+    class RulesController {
+        + void showRules()
+    }
+
+}
+
+package other {
+
+    class UICommonMethods {
+        + refreshBoard()
+
+        - refreshCommonTokens()
+        - refreshCombatTokenImages()
+        - refreshProgressTokenImages()
+
+        - refreshPlayer()
+        - refreshPlayerImages()
+        - refreshWonderImages()
+        - refreshMaterialImages()
+        - refreshPlayerTokenImages()
+        - refreshPlayerShieldImages()
+    }
+
+    class ModelCommonMethods {
+        + nextTurn()
+        + drawLeftDeck()
+        + drawMiddleDeck()
+        + drawRightDeck()
+        + drawProgressToken()
+    }
+
+}
+
+GameData o-- Player
+GameData o-- Deck
+Deck o-- Cards
+Player *-- Wonder
+Player o-- MaterialToken
+Player o-- ShieldToken
+Player o-- LaurelToken
+Player o-- ProgressToken
+
+
+@enduml
