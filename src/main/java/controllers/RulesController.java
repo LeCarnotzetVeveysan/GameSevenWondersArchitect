@@ -22,6 +22,7 @@ public class RulesController {
 
     int currentPageNumber;
     int maxPageNumber;
+
     public void initialize() throws FileNotFoundException {
         currentPageNumber = 1;
         maxPageNumber = 5;
