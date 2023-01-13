@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,7 +33,7 @@
             <Image url="@../images-prof/tokens-progress/token-tactic.png" />
          </image></ImageView>
       <Button fx:id="PiocheCentraleButton" layoutX="251.0" layoutY="70.0" mnemonicParsing="false" onAction="#PiocheCentraleClicked" text="Pioche Centrale" />
-      <ImageView fx:id="ImageViewJetonsSciences31" fitHeight="49.0" fitWidth="49.0" layoutX="386.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImageViewJetonsSciencesRand" fitHeight="49.0" fitWidth="49.0" layoutX="386.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images-prof/tokens-progress/back/token-back.png" />
          </image>
@@ -42,20 +44,62 @@
       <Button fx:id="ButtonScienceRand" layoutX="386.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#ScienceRandClicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
       <VBox layoutX="588.0" prefHeight="400.0" prefWidth="149.0">
          <children>
-            <Label text="Player 1 Name" />
-            <Label fx:id="InfoPlayer1" text="InfoPlayer1" />
-            <Label text="Player 2 Name" />
-            <Label fx:id="InfoPlayer2" text="InfoPlayer2" />
-            <Label text="Player 3 Name" />
-            <Label fx:id="InfoPlayer3" text="InfoPlayer3" />
-            <Label text="Player 4 Name" />
-            <Label fx:id="InfoPlayer4" text="InfoPlayer4" />
-            <Label text="Player 5 Name" />
-            <Label fx:id="InfoPlayer5" text="InfoPlayer5" />
-            <Label text="Player 6 Name" />
-            <Label fx:id="InfoPlayer6" text="InfoPlayer6" />
-            <Label text="Player 7 Name" />
-            <Label fx:id="InfoPlayer7" text="InfoPlayer7" />
+            <Label fx:id="Player1Name" text="Player 1 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredOne" onShown="#HoveredOne" />
+               </tooltip></Label>
+            <Label fx:id="Player2Name" text="Player 2 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredTwo" onShown="#HoveredTwo" />
+               </tooltip></Label>
+            <Label fx:id="Player3Name" text="Player 3 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredThree" onShown="#HoveredThree" />
+               </tooltip></Label>
+            <Label fx:id="Player4Name" text="Player 4 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredFour" onShown="#HoveredFour" />
+               </tooltip></Label>
+            <Label fx:id="Player5Name" text="Player 5 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredFive" onShown="#HoveredFive" />
+               </tooltip></Label>
+            <Label fx:id="Player6Name" text="Player 6 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredSix" onShown="#HoveredSix" />
+               </tooltip></Label>
+            <Label fx:id="Player7Name" text="Player 7 Name" />
+            <Label text="Hover For Info">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip onHiding="#UnHoveredSeven" onShown="#HoveredSeven" />
+               </tooltip></Label>
          </children>
       </VBox>
       <ImageView fx:id="ImageViewJetonsPaix2" fitHeight="49.0" fitWidth="49.0" layoutX="75.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -78,5 +122,44 @@
             <Image url="@../images-prof/wonders/wonder-rhodes.png" />
          </image>
       </ImageView>
+      <TitledPane fx:id="HoverPane1" collapsible="false" layoutX="385.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer1" text="Info Player 1" wrapText="true" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="HoverPane2" collapsible="false" layoutX="385.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer2" text="Info Player 2" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="HoverPane3" collapsible="false" layoutX="385.0" layoutY="101.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer3" text="Info Player 3" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="HoverPane4" collapsible="false" layoutX="382.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer4" text="Info Player 4" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="HoverPane5" collapsible="false" layoutX="385.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer5" text="Info Player 5" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="HoverPane6" collapsible="false" layoutX="382.0" layoutY="201.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer6" text="Info Player 6" />
+         </content>
+      </TitledPane>
+      <TitledPane fx:id="HoverPane7" collapsible="false" layoutX="384.0" layoutY="201.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <content>
+            <Label fx:id="InfoPlayer7" text="Info Player 7" />
+         </content>
+      </TitledPane>
+      <Label fx:id="Materials" layoutX="276.0" layoutY="261.0" text="Materials" />
+      <Label fx:id="JetonsSciencesJoueur" layoutX="159.0" layoutY="261.0" text="Jetons Sciences" />
+      <Label fx:id="WarPoints" layoutX="368.0" layoutY="262.0" text="Points Guerres" />
+      <Label fx:id="WinPoints" layoutX="368.0" layoutY="293.0" text="Win Points" />
    </children>
 </AnchorPane>
