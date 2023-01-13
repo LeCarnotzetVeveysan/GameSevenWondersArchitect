@@ -19,12 +19,17 @@ public class LoadScene {
         mainStage = inputMain;
         selectionStage = inputSelection;
 
+        launcherStage.setResizable(false);
+        mainStage.setResizable(false);
+        selectionStage.setResizable(false);
+
     }
 
     public static void changeLauncherScene(String fxmlToShow) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource("/fxmls/" + fxmlToShow + ".fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 400);
+        //Set proper window name
         launcherStage.setTitle("7WA Launcher");
         launcherStage.setScene(scene);
         launcherStage.show();
