@@ -2,8 +2,10 @@ package other;
 
 import data.Deck;
 import data.Player;
+import token.Fighter;
 import token.MaterialToken;
 import token.ProgressToken;
+import token.ShieldToken;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -161,6 +163,29 @@ public class ModelCommonMethods {
         elementTab.add(countDifferent);
 
         return elementTab;
+    }
+
+    public void chkPlayerWar(ArrayList<Player> players) {
+        ArrayList<Integer> playersShield = new ArrayList<>();
+
+        for (Player player : players) {
+            playersShield.add(player.getShield());
+        }
+
+        // comparer chaque avec ses voisins pour savoir s'il gagne ou non
+        for (int i = 0; i < playersShield.size(); i++) {
+            int crntPlayer = playersShield.get(i);
+            int leftPlayer = playersShield.get((i - 1 + playersShield.size()) % playersShield.size());
+            int rightPlayer = playersShield.get((i + 1) % playersShield.size());
+
+            if (crntPlayer > leftPlayer) {
+                players.get(i).addMilitaryPoints(1);
+            }
+            if (crntPlayer > rightPlayer) {
+                players.get(i).addMilitaryPoints(1);
+            }
+        }
+
     }
 
 }

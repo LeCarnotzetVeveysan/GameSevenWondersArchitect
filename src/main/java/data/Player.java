@@ -10,16 +10,19 @@ import java.util.ArrayList;
 
 public class Player {
 
-    private String name;
-    private Wonder wonder;
+    private final String name;
+    private final Wonder wonder;
 
     private String nameDeck;
 
-    private ArrayList<ProgressToken> progressTokens = new ArrayList<>();
-    private ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
-    private ArrayList<MaterialToken> materialTokens = new ArrayList<>();
-    private ArrayList<ScienceToken> scienceTokens = new ArrayList<>();
-    private ArrayList<Fighter> fighters = new ArrayList<>();
+    private final ArrayList<ProgressToken> progressTokens = new ArrayList<>();
+    private final ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
+    private final ArrayList<MaterialToken> materialTokens = new ArrayList<>();
+    private final ArrayList<ScienceToken> scienceTokens = new ArrayList<>();
+    private final ArrayList<Fighter> fighters = new ArrayList<>();
+
+    private int militaryPoints = 0;
+    private int shield = 0;
 
     private boolean hasCat = false;
 
@@ -90,6 +93,30 @@ public class Player {
 
     public boolean getHasCat() {
         return hasCat;
+    }
+
+    public void setNameDeck(String nameDeck) {
+        this.nameDeck = nameDeck;
+    }
+
+    public int getShield() {
+        return shield;
+    }
+
+    public void setShield(int shield) {
+        this.shield = shield;
+    }
+
+    public void setMilitaryPoints(int militaryPoints) {
+        this.militaryPoints = militaryPoints;
+    }
+
+    public int getMilitaryPoints() {
+        return militaryPoints;
+    }
+
+    public void addMilitaryPoints(int militaryPoints) {
+        this.militaryPoints += militaryPoints;
     }
 
 }
