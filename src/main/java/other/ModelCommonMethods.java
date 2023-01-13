@@ -111,11 +111,6 @@ public class ModelCommonMethods {
                 }
             }
         }
-
-        if (player.getWonder().getStage() == player.getWonder().getIsStageBuilt().length) {
-            System.out.println("win de " + player);
-        }
-
     }
 
     private static void chkActionWonder(Player player, int i) {

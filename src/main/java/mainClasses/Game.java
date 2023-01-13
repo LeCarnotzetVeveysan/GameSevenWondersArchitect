@@ -1,6 +1,6 @@
 package mainClasses;
 
-import data.Data;
+import data.Initializers;
 import data.Deck;
 import data.Player;
 import data.ProgressTokenStack;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private Data data = new Data();
+    private Initializers initializers = new Initializers();
 
     private ArrayList<Player> players = new ArrayList<>();
     private ArrayList<Deck> decks = new ArrayList<>();
@@ -21,9 +21,9 @@ public class Game {
     private int combatTokensFlipped;
 
     public void initializeBoard(ArrayList<String> playerNames) {
-        players = data.initializePlayers(playerNames);
-        decks = data.initializeDecks(players);
-        progressTokens = data.initiatializeProgressTokens();
+        players = initializers.initializePlayers(playerNames);
+        decks = initializers.initializeDecks(players);
+        progressTokens = initializers.initiatializeProgressTokens();
     }
 
     public void nextTurn() {

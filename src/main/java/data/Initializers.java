@@ -3,7 +3,7 @@ package data;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Data {
+public class Initializers {
 
     // decks
     private Deck rodhosDeck = new Deck(2,2,2,2,2,2,2,1,1,2,2,2,1,2,"card-back-rhodes.png");

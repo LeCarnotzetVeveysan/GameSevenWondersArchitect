@@ -1,5 +1,9 @@
 package other;
 
+import data.Player;
+import data.Deck;
+import data.ProgressTokenStack;
+
 public class UICommonMethods {
 
     public void refreshBoard() {
@@ -17,7 +21,6 @@ public class UICommonMethods {
     private void refreshProgressTokenImages() {
 
     }
-
 
     private void refreshPlayer() {
 
