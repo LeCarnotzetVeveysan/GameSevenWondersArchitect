@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsController">
    <children>
       <Label text="Results" />
       <TableView>
         <columns>
-          <TableColumn prefWidth="75.0" resizable="false" text="P1" />
-            <TableColumn prefWidth="75.0" text="P2" />
-            <TableColumn prefWidth="75.0" text="P3" />
-            <TableColumn prefWidth="75.0" text="P4" />
-          <TableColumn prefWidth="75.0" text="Total" />
+          <TableColumn fx:id="PlayerCollumn" editable="false" prefWidth="75.0" resizable="false" sortable="false" text="Player" />
+            <TableColumn fx:id="P1Collumn" editable="false" prefWidth="75.0" sortable="false" text="P1" />
+            <TableColumn fx:id="P2Collumn" editable="false" prefWidth="75.0" sortable="false" text="P2" />
+            <TableColumn fx:id="P3Collumn" editable="false" prefWidth="75.0" sortable="false" text="P3" />
+          <TableColumn fx:id="P4Collumn" editable="false" prefWidth="75.0" sortable="false" text="P4" />
+            <TableColumn fx:id="TotalCollumn" editable="false" prefWidth="75.0" sortable="false" text="Total" />
         </columns>
       </TableView>
+      <Button fx:id="EndButton" mnemonicParsing="false" onAction="#EndClicked" text="End">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </VBox>
