@@ -1,6 +1,5 @@
 package controllers;
 
-import application.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,9 +11,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static other.LoadScene.changeLauncherScene;
-import static other.LoadScene.changeScene;
 
-public class LauncherController implements Initializable {//implements initializable obligatoire pour méthode initialize
+public class GameInitController implements Initializable {//implements initializable obligatoire pour méthode initialize
 
     @FXML
     private ComboBox<Integer> ComboBoxNumPlayer;
@@ -82,14 +80,6 @@ public class LauncherController implements Initializable {//implements initializ
         TitledPaneNames.setDisable(false);
         //Afficher les text fields names et labels names en fonction du nombre de joueurs
     }
-    @FXML
-    void RulesClicked(ActionEvent event) {//Ouvre fenêtre rules
-
-    }
-    @FXML
-    void StartClicked(ActionEvent event) {//Passe a la fenêtre game initialize
-        NombreJoueurs = ComboBoxNumPlayer.getValue();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {//méthode initialize se lance directement à l'ouverture d'une fenêtre
@@ -98,7 +88,7 @@ public class LauncherController implements Initializable {//implements initializ
     }
 
     public void onRuleButtonClicked() throws IOException {
-        changeLauncherScene("rule");
+        changeLauncherScene("rules");
     }
 
     public void onStartButtonClicked() throws IOException {
@@ -113,15 +103,11 @@ public class LauncherController implements Initializable {//implements initializ
     private boolean validInputs(){
 
         boolean numPlayersSelected = false;
-        boolean languageSelected = false;
-        boolean screenSizeSelected = false;
+
         if (!(ComboBoxNumPlayer.getValue() == null)){
             numPlayersSelected = true;
         }
-        //Faire de même pour les combobox de la langue et du screensize
 
-        //Normalement combinaison mais pour le moment on dit que c'est juste;
-        //return numPlayersSelected && languageSelected && screenSizeSelected;
         return  numPlayersSelected;
 
     }
@@ -132,3 +118,4 @@ public class LauncherController implements Initializable {//implements initializ
 
 
 }
+
