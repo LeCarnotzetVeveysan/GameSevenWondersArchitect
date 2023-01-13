@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import mainClasses.Game;
 
 public class GameSceneController {
 
@@ -74,6 +75,10 @@ public class GameSceneController {
 
     @FXML
     private Button PiocheGaucheButton;
+
+    public void initialize(){
+        Game mainGame= new Game();
+    }
 
     @FXML
     void PiocheCentraleClicked(ActionEvent event) {

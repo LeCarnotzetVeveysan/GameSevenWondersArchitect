@@ -1,6 +1,5 @@
 package controllers;
 
-import application.AppData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,44 +14,60 @@ import static other.UICommonMethods.setImage;
 public class RulesController {
 
     @FXML
-    Button backButton, previousPageButton, nextPageButton;
+    Button previousPageButton, nextPageButton;
     @FXML
-    ImageView contentImageView;
+    ImageView rulesImageView;
     @FXML
     Label pageNumberLabel;
 
-    int pageNumber;
+    int currentPageNumber;
+    int maxPageNumber;
     public void initialize() throws FileNotFoundException {
+        currentPageNumber = 1;
+        maxPageNumber = 5;
+        refreshScene();
+    }
 
-        pageNumber = 1;
-
+    public void refreshScene() throws FileNotFoundException {
         setPageImage();
         setPageLabel();
         setButtonStates();
-
     }
 
     private void setPageImage() throws FileNotFoundException {
-        String imageUrl = "rules_page_" + pageNumber;
-        setImage(contentImageView, imageUrl);
+        String imageUrl = "rules/rules_page" + currentPageNumber;
+        setImage(rulesImageView, imageUrl);
     }
 
     private void setPageLabel() {
-        String text = pageNumber + " / maxPages";
+        String text = currentPageNumber + " / " + maxPageNumber;
         pageNumberLabel.setText(text);
     }
 
     private void setButtonStates() {
-        if(pageNumber == 1){
+        previousPageButton.setDisable(false);
+        nextPageButton.setDisable(false);
+        if(currentPageNumber == 1){
             previousPageButton.setDisable(true);
         }
-        if(pageNumber == 9){ //En fonction du vrai nombre de pages de règles
-            nextPageButton.setDisable(false);
+        if(currentPageNumber == maxPageNumber){
+            nextPageButton.setDisable(true);
         }
     }
 
-    private void onBackButtonClicked() throws IOException {
+    @FXML
+    private void onBackButtonClick() throws IOException {
         changeLauncherScene("launcher");
+    }
+
+    public void onPreviousButtonClick() throws FileNotFoundException {
+        currentPageNumber -= 1;
+        refreshScene();
+    }
+
+    public void onNextButtonClick() throws FileNotFoundException {
+        currentPageNumber +=1;
+        refreshScene();
     }
 
 }
