@@ -7,9 +7,9 @@ public class AppData {
     private static String language;
 
     public AppData() {
-        prefWidth = 600;
+        prefWidth = 500;
         prefHeight = 400;
-        language = "english";
+        language = "";
     }
 
     public static void setPrefWidth(int input){
@@ -29,4 +29,7 @@ public class AppData {
         language = inputLanguage;
     }
 
+    public static String getLanguage() {
+        return language;
+    }
 }

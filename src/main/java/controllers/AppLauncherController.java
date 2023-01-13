@@ -26,14 +26,14 @@ public class AppLauncherController {
         return screenSizeChoiceBox.getSelectionModel().getSelectedIndex() != 0;
     }
 
-    public void onPreviewButtonClick(){
+    public void onPreviewButtonClick() throws IOException {
         if(validScreenSizeInput()){
             setPrefScreenSize();
-            //launch blank main scene
+            LoadScene.changeScene("main", "main-preview");
         }
     }
 
-    public void setPrefScreenSize(){
+    public void setPrefScreenSize() {
         String input = screenSizeChoiceBox.getValue().toString();
         String[] arr1 = input.split("x");
         int[] sizes = new int[]{Integer.parseInt(arr1[0]),Integer.parseInt(arr1[1])};
@@ -49,10 +49,10 @@ public class AppLauncherController {
 
     public void onLaunchButtonClick() throws IOException {
         if(validLanguageInput() && validScreenSizeInput()){
+            setLanguage();
             setPrefScreenSize();
+            System.out.println();
             LoadScene.changeLauncherScene("game-init");
-        } else {
-            System.out.println("Invalid inputs");
         }
 
     }

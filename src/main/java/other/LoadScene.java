@@ -1,5 +1,6 @@
 package other;
 
+import application.AppData;
 import application.AppLaunch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,8 +40,12 @@ public class LoadScene {
     public static void changeScene(String type, String fxmlToShow) throws IOException {
 
         Stage stage = type.equals("main") ? mainStage : selectionStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource(fxmlToShow + ".fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        FXMLLoader fxmlLoader = new FXMLLoader(AppLaunch.class.getResource("/fxmls/" + fxmlToShow + ".fxml"));
+
+        int screenWidth = type.equals("main") ? AppData.getPrefWidth() : 500;
+        int screenHeight = type.equals("main") ? AppData.getPrefHeight() : 400;
+
+        Scene scene = new Scene(fxmlLoader.load(), screenWidth, screenHeight);
         stage.setTitle("7W Main window");
         stage.setScene(scene);
         stage.show();

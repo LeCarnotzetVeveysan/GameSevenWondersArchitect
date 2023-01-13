@@ -49,13 +49,13 @@
                   </FXCollections>
                </items>
             </ChoiceBox>
-            <Button fx:id="previewButton" onMouseClicked="#onPreviewButtonClick" mnemonicParsing="false" text="Preview" />
+            <Button onMouseClicked="#onPreviewButtonClick" mnemonicParsing="false" text="Preview" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <Button fx:id="launchButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Launch" />
+      <Button onMouseClicked="#onLaunchButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Launch" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
