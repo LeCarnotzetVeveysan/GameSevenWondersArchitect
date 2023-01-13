@@ -6,15 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 
 public class ResultsController {
-
     @FXML
-    private Button FinishButton;
+    private Button EndButton;
 
     @FXML
     private TableColumn<?, ?> P1Collumn;
 
     @FXML
-    private TableColumn<?, ?> P2Colllumn;
+    private TableColumn<?, ?> P2Collumn;
 
     @FXML
     private TableColumn<?, ?> P3Collumn;
@@ -29,7 +28,7 @@ public class ResultsController {
     private TableColumn<?, ?> TotalCollumn;
 
     @FXML
-    void FinishClicked(ActionEvent event) {
+    void EndClicked(ActionEvent event) {
 
     }
 }

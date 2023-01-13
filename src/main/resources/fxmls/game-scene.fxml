@@ -16,26 +16,26 @@
       <Button fx:id="PiocheDroiteButton" layoutX="441.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheDroiteClicked" text="Pioche de droite" />
       <ImageView fx:id="ImageViewJetonsPaix1" fitHeight="49.0" fitWidth="49.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens/token-conflict-war.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-war.png" />
          </image></ImageView>
       <ImageView fx:id="ImageViewJetonsSciences3" fitHeight="49.0" fitWidth="49.0" layoutX="533.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens-progress/token-artsAndCrafts.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/token-artsAndCrafts.png" />
          </image></ImageView>
       <Label layoutX="75.0" layoutY="74.0" text="Jetons paix" />
       <Label layoutX="452.0" layoutY="74.0" text="Jetons sciences" />
       <ImageView fx:id="ImageViewJetonsSciences2" fitHeight="49.0" fitWidth="49.0" layoutX="484.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens-progress/token-science.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/token-science.png" />
          </image></ImageView>
       <ImageView fx:id="ImageViewJetonsSciences1" fitHeight="49.0" fitWidth="49.0" layoutX="435.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens-progress/token-tactic.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/token-tactic.png" />
          </image></ImageView>
       <Button fx:id="PiocheCentraleButton" layoutX="251.0" layoutY="70.0" mnemonicParsing="false" onAction="#PiocheCentraleClicked" text="Pioche Centrale" />
       <ImageView fx:id="ImageViewJetonsSciencesRand" fitHeight="49.0" fitWidth="49.0" layoutX="386.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens-progress/back/token-back.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/back/token-back.png" />
          </image>
       </ImageView>
       <Button fx:id="ButtonScience3" layoutX="533.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#Science3Clicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
@@ -104,12 +104,12 @@
       </VBox>
       <ImageView fx:id="ImageViewJetonsPaix2" fitHeight="49.0" fitWidth="49.0" layoutX="75.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens/token-conflict-peace.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-peace.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ImageViewJetonsPaix3" fitHeight="49.0" fitWidth="49.0" layoutX="124.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/tokens/token-conflict-peace.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-peace.png" />
          </image>
       </ImageView>
       <Button fx:id="NextTurnButton" layoutX="482.0" layoutY="327.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="103.0" text="Next Turn">
@@ -119,7 +119,7 @@
       </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="246.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images-prof/wonders/wonder-rhodes.png" />
+            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/wonders/wonder-rhodes.png" />
          </image>
       </ImageView>
       <TitledPane fx:id="HoverPane1" collapsible="false" layoutX="385.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" visible="false">
