@@ -63,6 +63,22 @@ public class ModelCommonMethods {
         ArrayList<Long> elementTab = elementSimDiffGenerator(player);
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
 
+        Map<Integer, Long> levelsInStages = getNbLevelsInEachStages(player);
+
+        for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
+            if (!player.getWonder().getIsStageBuilt()[i]) {
+                int stage = player.getWonder().getNbLevelsInStages()[i];
+                long levelsInCurrentStage = levelsInStages.get(stage);
+                if (player.getWonder().getSameMaterials()[i]) {
+                    updateSameMat(player, elementTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
+                } else {
+                    updateDiffMat(player, elementTab, levelsInStages, i, stage, levelsInCurrentStage);
+                }
+            }
+        }
+    }
+
+    private static Map<Integer, Long> getNbLevelsInEachStages(Player player) {
         Map<Integer, Long> levelsInStages = new HashMap<>();
         for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
             int stage = player.getWonder().getNbLevelsInStages()[i];
@@ -72,45 +88,45 @@ public class ModelCommonMethods {
                 levelsInStages.put(stage, 1L);
             }
         }
+        return levelsInStages;
+    }
 
-        for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
-            if (!player.getWonder().getIsStageBuilt()[i]) {
-                int stage = player.getWonder().getNbLevelsInStages()[i];
-                long levelsInCurrentStage = levelsInStages.get(stage);
-                if (player.getWonder().getSameMaterials()[i]) {
-                    for (int j = 0; j <= 4; j++) {
-                        if (elementTab.get(j) == player.getWonder().getNbMaterials()[i]) {
-                            for (int n = 0; n <= player.getWonder().getNbMaterials()[i]; n++) {
-                                player.removeMaterialToken(elementTabToToken[j]);
-                            }
-                            player.getWonder().setIsStageBuilt(i, true);
-                            chkActionWonder(player, i);
-                            levelsInStages.put(stage, levelsInCurrentStage - 1);
-                            break;
-                        }
-                    }
-                } else {
-                    if (elementTab.get(5) == player.getWonder().getNbMaterials()[i]) {
-                        int uniqueCount = 0;
-                        HashSet<MaterialToken> setToRemove = new HashSet<>();
-                        for (int m = 0; m < player.getWonder().getNbMaterials()[i]; i++) {
-                            if (!setToRemove.contains(player.getMaterialTokens().get(i))) {
-                                setToRemove.add(player.getMaterialTokens().get(i));
-                                uniqueCount++;
-                            }
-                            if (uniqueCount == player.getWonder().getNbMaterials()[i]) {
-                                break;
-                            }
-                        }
-                        // remove elements from list
-                        player.getMaterialTokens().removeAll(setToRemove);
-                        player.getWonder().setIsStageBuilt(i, true);
-                        chkActionWonder(player, i);
-                        levelsInStages.put(stage, levelsInCurrentStage - 1);
-                    }
+    private static void updateDiffMat(Player player, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+        if (elementTab.get(5) == player.getWonder().getNbMaterials()[i]) {
+            int uniqueCount = 0;
+            HashSet<MaterialToken> setToRemove = new HashSet<>();
+            for (int m = 0; m < player.getWonder().getNbMaterials()[i]; i++) {
+                if (!setToRemove.contains(player.getMaterialTokens().get(i))) {
+                    setToRemove.add(player.getMaterialTokens().get(i));
+                    uniqueCount++;
+                }
+                if (uniqueCount == player.getWonder().getNbMaterials()[i]) {
+                    break;
                 }
             }
+            // remove elements from list
+            player.getMaterialTokens().removeAll(setToRemove);
+            levelUpWonder(player, i);
+            levelsInStages.put(stage, levelsInCurrentStage - 1);
         }
+    }
+
+    private static void updateSameMat(Player player, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+        for (int j = 0; j <= 4; j++) {
+            if (elementTab.get(j) == player.getWonder().getNbMaterials()[i]) {
+                for (int n = 0; n <= player.getWonder().getNbMaterials()[i]; n++) {
+                    player.removeMaterialToken(elementTabToToken[j]);
+                }
+                levelUpWonder(player, i);
+                levelsInStages.put(stage, levelsInCurrentStage - 1);
+                break;
+            }
+        }
+    }
+
+    private static void levelUpWonder(Player player, int i) {
+        player.getWonder().setIsStageBuilt(i, true);
+        chkActionWonder(player, i);
     }
 
     private static void chkActionWonder(Player player, int i) {
