@@ -53,7 +53,8 @@ public enum Wonder {
     private final boolean[] sameMaterials;
     private final int[] nbMaterials;
 
-    private final int[] levelOfStage;
+    private final int[] nbLevelsInStages;
+    private int stage = 0;
     private boolean[] isStageBuilt;
 
     private final int[] levelPoints;
@@ -62,12 +63,12 @@ public enum Wonder {
 
     // ------------------------------------------------------------------------
 
-    Wonder(String name, String effectDescription, boolean[] sameMaterials, int[] nbMaterials, boolean[] levelAction, int[] levelPoints, int[] levelOfStage, String wonderDeck) {
+    Wonder(String name, String effectDescription, boolean[] sameMaterials, int[] nbMaterials, boolean[] levelAction, int[] levelPoints, int[] nbLevelsInStages, String wonderDeck) {
         this.name = name;
         this.effectDescription = effectDescription;
         this.sameMaterials = sameMaterials;
         this.nbMaterials = nbMaterials;
-        this.levelOfStage = levelOfStage;
+        this.nbLevelsInStages = nbLevelsInStages;
         this.isStageBuilt = new boolean[]{false, false, false, false, false};
         this.levelAction = levelAction;
         this.levelPoints = levelPoints;
@@ -100,12 +101,20 @@ public enum Wonder {
         return isStageBuilt;
     }
 
-    public void setIsStageBuilt(boolean[] isStageBuilt) {
-        this.isStageBuilt = isStageBuilt;
+    public void setIsStageBuilt(int index, boolean isStageBuilt) {
+        this.isStageBuilt[index] = isStageBuilt;
     }
 
-    public int[] getLevelOfStage() {
-        return levelOfStage;
+    public int getStage() {
+        return stage;
+    }
+
+    public void addStage() {
+        this.stage++;
+    }
+
+    public int[] getNbLevelsInStages() {
+        return nbLevelsInStages;
     }
 
     public int[] getLevelPoints() {

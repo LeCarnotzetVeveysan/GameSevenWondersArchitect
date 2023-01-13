@@ -5,9 +5,8 @@ import data.Player;
 import token.MaterialToken;
 import token.ProgressToken;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class ModelCommonMethods {
 
@@ -60,10 +59,69 @@ public class ModelCommonMethods {
         progressTokens.remove(index);
     }
 
-    public void levelUpWonder(Player player) {
+    public void chkLevelUpWonder(Player player) {
         ArrayList<Long> elementTab = elementSimDiffGenerator(player);
+        MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
 
-        
+        Map<Integer, Long> levelsInStages = new HashMap<>();
+        for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
+            int stage = player.getWonder().getNbLevelsInStages()[i];
+            if (levelsInStages.containsKey(stage)) {
+                levelsInStages.put(stage, levelsInStages.get(stage) + 1);
+            } else {
+                levelsInStages.put(stage, 1L);
+            }
+        }
+
+        for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
+            if (!player.getWonder().getIsStageBuilt()[i]) {
+                int stage = player.getWonder().getNbLevelsInStages()[i];
+                long levelsInCurrentStage = levelsInStages.get(stage);
+                if (player.getWonder().getSameMaterials()[i]) {
+                    for (int j = 0; j <= 4; j++) {
+                        if (elementTab.get(j) == player.getWonder().getNbMaterials()[i]) {
+                            for (int n = 0; n <= player.getWonder().getNbMaterials()[i]; n++) {
+                                player.removeMaterialToken(elementTabToToken[j]);
+                            }
+                            player.getWonder().setIsStageBuilt(i, true);
+                            chkActionWonder(player, i);
+                            levelsInStages.put(stage, levelsInCurrentStage - 1);
+                            break;
+                        }
+                    }
+                } else {
+                    if (elementTab.get(5) == player.getWonder().getNbMaterials()[i]) {
+                        int uniqueCount = 0;
+                        HashSet<MaterialToken> setToRemove = new HashSet<>();
+                        for (int m = 0; m < player.getWonder().getNbMaterials()[i]; i++) {
+                            if (!setToRemove.contains(player.getMaterialTokens().get(i))) {
+                                setToRemove.add(player.getMaterialTokens().get(i));
+                                uniqueCount++;
+                            }
+                            if (uniqueCount == player.getWonder().getNbMaterials()[i]) {
+                                break;
+                            }
+                        }
+                        // remove elements from list
+                        player.getMaterialTokens().removeAll(setToRemove);
+                        player.getWonder().setIsStageBuilt(i, true);
+                        chkActionWonder(player, i);
+                        levelsInStages.put(stage, levelsInCurrentStage - 1);
+                    }
+                }
+            }
+        }
+
+        if (player.getWonder().getStage() == player.getWonder().getIsStageBuilt().length) {
+            System.out.println("win de " + player);
+        }
+
+    }
+
+    private static void chkActionWonder(Player player, int i) {
+        if (player.getWonder().getLevelAction()[i]) {
+            player.getWonder().eventAction();
+        }
     }
 
     public ArrayList<Long> elementSimDiffGenerator(Player player) {
