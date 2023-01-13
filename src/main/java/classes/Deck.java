@@ -1,16 +1,12 @@
-package data;
+package classes;
 
 import java.util.ArrayList;
 
 public class Deck {
 
     ArrayList<Cards> deck = new ArrayList<>();
-    private String backCardImg;
 
-    public Deck(int nbGold, int nbStone, int nbBrick, int nbWood, int nbPapyrus, int nbGlass, int nbMechanic, int nbArchitect, int nbLaw, int nbEmperor, int nbCat, int nbCenturion, int nbArcher, int nbBarbarian, String backCardImg) {
-
-        this.backCardImg = "src/main/resources/images/cards/card-back/" + backCardImg;
-
+    public Deck(int nbGold, int nbStone, int nbBrick, int nbWood, int nbPapyrus, int nbGlass, int nbMechanic, int nbArchitect, int nbLaw, int nbEmperor, int nbCat, int nbCenturion, int nbArcher, int nbBarbarian) {
         for (int i = 0; i < nbWood; i++) {
             deck.add(Cards.MAT_WOOD);
         }
@@ -24,7 +20,7 @@ public class Deck {
             deck.add(Cards.MAT_STONE);
         }
         for (int i = 0; i < nbPapyrus; i++) {
-            deck.add(Cards.MAT_PAPER);
+            deck.add(Cards.MAT_PAPYRUS);
         }
         for (int i = 0; i < nbGold; i++) {
             deck.add(Cards.MAT_GOLD);
@@ -66,12 +62,13 @@ public class Deck {
         }
     }
 
-    public ArrayList<Cards> getDeck() {
-        return deck;
+    public void draw(int index) {
+        // ajouter la carte à la main du joueur et agir en fonction
+        remove(index);
     }
 
-    public String getBackCardImg() {
-        return backCardImg;
+    public void remove(int index) {
+        deck.remove(index);
     }
 
 }
