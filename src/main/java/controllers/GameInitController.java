@@ -28,6 +28,7 @@ public class GameInitController implements Initializable {//implements initializ
         nameInputs = new TextField[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
         ComboBoxNumPlayer.getItems().addAll(NumPlayer);
         numberOfPlayers = 0;
+        refreshNameFields();
     }
 
     public void onRuleButtonClicked() throws IOException {
