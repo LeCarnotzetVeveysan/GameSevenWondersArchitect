@@ -9,11 +9,9 @@ import token.Fighter;
 import java.util.ArrayList;
 
 public class Player {
-
     private final String name;
     private final Wonder wonder;
-
-    private String nameDeck;
+    private boolean hasBuiltWonder = false;
 
     private final ArrayList<ProgressToken> progressTokens = new ArrayList<>();
     private final ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
@@ -41,6 +39,11 @@ public class Player {
 
     public void addFighter(Fighter fighter) {
         fighters.add(fighter);
+    }
+
+    public void removeFightersWithHorn() {
+        this.removeFighter(Fighter.BARBARIAN);
+        this.removeFighter(Fighter.ARCHER);
     }
 
     public void removeFighter(Fighter fighter) {
@@ -95,10 +98,6 @@ public class Player {
         return hasCat;
     }
 
-    public void setNameDeck(String nameDeck) {
-        this.nameDeck = nameDeck;
-    }
-
     public int getShield() {
         return shield;
     }
@@ -119,4 +118,11 @@ public class Player {
         this.militaryPoints += militaryPoints;
     }
 
+    public void setHasBuiltWonder(boolean hasBuiltWonder) {
+        this.hasBuiltWonder = hasBuiltWonder;
+    }
+
+    public boolean isHasBuiltWonder() {
+        return hasBuiltWonder;
+    }
 }

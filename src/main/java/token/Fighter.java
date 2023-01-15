@@ -6,7 +6,7 @@ public enum Fighter {
     BARBARIAN(1),
     CENTURION(0);
 
-    private int nbHorn;
+    private final int nbHorn;
 
     Fighter(int nbHorn) {
         this.nbHorn = nbHorn;

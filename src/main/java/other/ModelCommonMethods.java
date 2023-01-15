@@ -1,82 +1,83 @@
 package other;
 
+import mainClasses.Game;
 import data.Deck;
 import data.Player;
-import token.Fighter;
+import data.Cards;
 import token.MaterialToken;
 import token.ProgressToken;
-import token.ShieldToken;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class ModelCommonMethods {
 
-    public void drawLeftDeck(ArrayList<Deck> decks, ArrayList<Player> players, int crntPlayerIndex) {
-        int leftPlayerIndex;
+    Game game = new Game();
 
-        if (crntPlayerIndex == 0) {
-            leftPlayerIndex = players.size() - 1;
-        } else {
-            leftPlayerIndex = crntPlayerIndex - 1;
-        }
-
-        drawDeck(decks, players, crntPlayerIndex, leftPlayerIndex);
+    private void drawCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int targetDeckIndex, int cardIndex) {
+        // Récupère la carte à l'index spécifié dans le deck cible
+        Cards drawnCard = decks.get(targetDeckIndex).getDeck().get(cardIndex);
+        // Attribue la carte au joueur qui la pioche
+        drawnCard.getCardToken(players.get(currentPlayerIndex));
+        // Retire la carte du deck cible
+        decks.get(targetDeckIndex).getDeck().remove(cardIndex);
+        // Vérifie si le joueur a atteint un niveau de merveille
+        chkLevelUpWonder(players.get(currentPlayerIndex));
     }
 
-    public void drawMiddleDeck(ArrayList<Deck> decks, ArrayList<Player> players, int crntPlayerIndex) {
-        int middleDeckIndex = players.size(); // middle deck is always the last deck in the array
-
-        drawDeck(decks, players, crntPlayerIndex, middleDeckIndex);
+    public void drawLeftDeckCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int selectedCardIndex) {
+        // Trouve l'index du joueur à gauche
+        int leftPlayerIndex = (currentPlayerIndex == 0) ? players.size() - 1 : currentPlayerIndex - 1;
+        // Pioche une carte depuis le deck du joueur à gauche
+        drawCard(decks, players, currentPlayerIndex, leftPlayerIndex, selectedCardIndex);
     }
 
-    public void drawRightDeck(ArrayList<Deck> decks, ArrayList<Player> players, int crntPlayerIndex) {
-        int rightPlayerIndex;
-
-        if (crntPlayerIndex == players.size() - 1) {
-            rightPlayerIndex = 0;
-        } else {
-            rightPlayerIndex = crntPlayerIndex + 1;
-        }
-
-        drawDeck(decks, players, crntPlayerIndex, rightPlayerIndex);
+    public void drawMiddleDeckCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int selectedCardIndex) {
+        // Le deck du milieu est toujours le dernier élément de la liste de decks
+        int middleDeckIndex = players.size();
+        // Pioche une carte depuis le deck du milieu
+        drawCard(decks, players, currentPlayerIndex, middleDeckIndex, selectedCardIndex);
     }
 
-    private void drawDeck(ArrayList<Deck> decks, ArrayList<Player> players, int picker, int targetDeck) {
-        decks.get(targetDeck).getDeck().get(0).getCardToken(players.get(picker));
-        removeDrawCard(decks.get(targetDeck), 0);
+    public void drawRightDeckCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int selectedCardIndex) {
+        // Trouve l'index du joueur à droite
+        int rightPlayerIndex = (currentPlayerIndex == players.size() - 1) ? 0 : currentPlayerIndex + 1;
+        // Pioche une carte depuis le deck du joueur à droite
+        drawCard(decks, players, currentPlayerIndex, rightPlayerIndex, selectedCardIndex);
     }
 
-    public void removeDrawCard(Deck deck, int index) {
-        deck.getDeck().remove(index);
-    }
-
-    // l'index 0 correspond à la pile inconnue sur les 4 tokens et les 1 2 3 correspondent aux 3 visibles
-    public void drawSelectedProgressToken(ArrayList<ProgressToken> progressTokens, ArrayList<Player> players, int crntPlayerIndex, int selectedTokenIndex) {
-        players.get(crntPlayerIndex).addProgressToken(progressTokens.get(selectedTokenIndex));
-        removeDrawPToken(progressTokens, selectedTokenIndex);
-    }
-
-    public void removeDrawPToken(ArrayList<ProgressToken> progressTokens, int index) {
-        progressTokens.remove(index);
+    public void drawSelectedProgressToken(ArrayList<ProgressToken> progressTokens, ArrayList<Player> players, int currentPlayerIndex, int selectedTokenIndex) {
+        // Ajoute le jeton de progrès sélectionné au joueur actuel
+        players.get(currentPlayerIndex).addProgressToken(progressTokens.get(selectedTokenIndex));
+        // Retire le jeton de progrès de la liste de jetons de progrès
+        progressTokens.remove(selectedTokenIndex);
     }
 
     public void chkLevelUpWonder(Player player) {
+        // Génère une liste de jetons de matériaux pour le joueur
         ArrayList<Long> elementTab = elementSimDiffGenerator(player);
+        // Tableau de jetons de matériaux
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
-
+        // Crée une map pour stocker le nombre de niveaux dans chaque étape
         Map<Integer, Long> levelsInStages = getNbLevelsInEachStages(player);
 
         for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
-            if (!player.getWonder().getIsStageBuilt()[i]) {
+            // Vérifie si les étages précédents ont été construits
+            boolean previousStagesBuilt = player.getWonder().getIsStageBuilt()[i];
+
+            if (!player.getWonder().getIsStageBuilt()[i] && previousStagesBuilt) {
+                // Récupère le numéro de l'étape en cours de construction
                 int stage = player.getWonder().getNbLevelsInStages()[i];
+                // Récupère le nombre de niveaux dans l'étape en cours de construction
                 long levelsInCurrentStage = levelsInStages.get(stage);
                 if (player.getWonder().getSameMaterials()[i]) {
+                    // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux identiques
                     updateSameMat(player, elementTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
                 } else {
+                    // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux différents
                     updateDiffMat(player, elementTab, levelsInStages, i, stage, levelsInCurrentStage);
                 }
             }
+
         }
     }
 
@@ -129,6 +130,11 @@ public class ModelCommonMethods {
     private static void levelUpWonder(Player player, int i) {
         player.getWonder().setIsStageBuilt(i, true);
         chkActionWonder(player, i);
+        // vérifie si le joueur a construit toutes les étapes de la merveille
+        if (player.getWonder().getIsStageBuilt()[player.getWonder().getIsStageBuilt().length - 1]) {
+            player.setHasBuiltWonder(true);
+            // afficher le tableau de score
+        }
     }
 
     private static void chkActionWonder(Player player, int i) {
@@ -165,27 +171,25 @@ public class ModelCommonMethods {
         return elementTab;
     }
 
-    public void chkPlayerWar(ArrayList<Player> players) {
-        ArrayList<Integer> playersShield = new ArrayList<>();
+    public void checkPlayerWar(ArrayList<Player> players) {
+        final int NUM_PLAYERS = players.size();
 
-        for (Player player : players) {
-            playersShield.add(player.getShield());
+        for (int currentPlayerIndex = 0; currentPlayerIndex < NUM_PLAYERS; currentPlayerIndex++) {
+            int currentPlayerShield = players.get(currentPlayerIndex).getShield();
+            int leftNeighborShield = players.get((currentPlayerIndex - 1 + NUM_PLAYERS) % NUM_PLAYERS).getShield();
+            int rightNeighborShield = players.get((currentPlayerIndex + 1) % NUM_PLAYERS).getShield();
+
+            if (currentPlayerShield > leftNeighborShield) {
+                players.get(currentPlayerIndex).addMilitaryPoints(1);
+            }
+            if (currentPlayerShield > rightNeighborShield) {
+                players.get(currentPlayerIndex).addMilitaryPoints(1);
+            }
+            // retire les fighters qui n'ont pas de horn
+            players.get(currentPlayerIndex).removeFightersWithHorn();
         }
 
-        // comparer chaque avec ses voisins pour savoir s'il gagne ou non
-        for (int i = 0; i < playersShield.size(); i++) {
-            int crntPlayer = playersShield.get(i);
-            int leftPlayer = playersShield.get((i - 1 + playersShield.size()) % playersShield.size());
-            int rightPlayer = playersShield.get((i + 1) % playersShield.size());
-
-            if (crntPlayer > leftPlayer) {
-                players.get(i).addMilitaryPoints(1);
-            }
-            if (crntPlayer > rightPlayer) {
-                players.get(i).addMilitaryPoints(1);
-            }
-        }
-
+        game.setCombatTokensFlipped(0);
     }
 
 }

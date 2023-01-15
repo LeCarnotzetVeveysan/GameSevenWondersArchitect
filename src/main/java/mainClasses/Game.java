@@ -17,13 +17,14 @@ public class Game {
 
     private int currentPlayerIndex = 0;
 
-    private int combatTokensNeeded;
-    private int combatTokensFlipped;
+    int combatTokensNeeded;
+    int combatTokensFlipped;
 
     public void initializeBoard(ArrayList<String> playerNames) {
-        players = initializers.initializePlayers(playerNames);
-        decks = initializers.initializeDecks(players);
-        progressTokens = initializers.initiatializeProgressTokens();
+        players = initializers.players(playerNames);
+        decks = initializers.decks(players);
+        progressTokens = initializers.progressTokens();
+        combatTokensNeeded = initializers.nbCombatTokensNeeded(players.size());
     }
 
     public void nextTurn() {
@@ -44,6 +45,22 @@ public class Game {
 
     public ProgressTokenStack getProgressTokens() {
         return progressTokens;
+    }
+
+    public void addCombatTokensFlipped(int combatTokensFlipped) {
+        this.combatTokensFlipped += combatTokensFlipped;
+    }
+
+    public void setCombatTokensFlipped(int combatTokensFlipped) {
+        this.combatTokensFlipped = combatTokensFlipped;
+    }
+
+    public int getCombatTokensFlipped() {
+        return combatTokensFlipped;
+    }
+
+    public int getCombatTokensNeeded() {
+        return combatTokensNeeded;
     }
 
 }
