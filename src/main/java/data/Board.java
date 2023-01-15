@@ -1,30 +1,25 @@
-package mainClasses;
-
-import data.Initializers;
-import data.Deck;
-import data.Player;
-import data.ProgressTokenStack;
+package data;
 
 import java.util.ArrayList;
 
-public class Game {
+public class Board {
 
-    private Initializers initializers = new Initializers();
+    private final Initializers initializers = new Initializers();
 
-    private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<Deck> decks = new ArrayList<>();
-    private ProgressTokenStack progressTokens;
+    private final ArrayList<Player> players;
+    private final ArrayList<Deck> decks;
+    private final ProgressTokenStack progressTokens;
 
     private int currentPlayerIndex = 0;
 
     int combatTokensNeeded;
     int combatTokensFlipped;
 
-    public void initializeBoard(ArrayList<String> playerNames) {
-        players = initializers.players(playerNames);
-        decks = initializers.decks(players);
-        progressTokens = initializers.progressTokens();
-        combatTokensNeeded = initializers.nbCombatTokensNeeded(players.size());
+    public Board(ArrayList<String> playerNames) {
+        players = initializers.initPlayers(playerNames);
+        decks = initializers.initDecks(players);
+        progressTokens = initializers.initProgressTokens();
+        combatTokensNeeded = initializers.initNbCombatTokensNeeded(this.players.size());
     }
 
     public void nextTurn() {

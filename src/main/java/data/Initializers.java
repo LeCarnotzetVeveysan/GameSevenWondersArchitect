@@ -22,7 +22,7 @@ public class Initializers {
     private ArrayList<Wonder> usedWonders = new ArrayList<>();
 
     // ajoute à la liste des joueurs un nouveau joueur avec le nom passé en paramètre ainsi qu'un des wonders du jeu au hasard (chaque joueur aura un wonder différent)
-    public ArrayList<Player> players(ArrayList<String> playerNames) {
+    public ArrayList<Player> initPlayers(ArrayList<String> playerNames) {
         ArrayList<Player> players = new ArrayList<>();
         // Ajoutez chacun des joueurs demandés
         for (String playerName : playerNames) {
@@ -45,7 +45,7 @@ public class Initializers {
         return players;
     }
 
-    public ArrayList<Deck> decks(ArrayList<Player> players) {
+    public ArrayList<Deck> initDecks(ArrayList<Player> players) {
         ArrayList<Deck> decks = new ArrayList<>();
         // Add decks to the list of decks
         for (Player player : players) {
@@ -63,11 +63,11 @@ public class Initializers {
         return decks;
     }
 
-    public ProgressTokenStack progressTokens() {
+    public ProgressTokenStack initProgressTokens() {
         return progressTokens;
     }
 
-    public int nbCombatTokensNeeded(int nbPlayers) {
+    public int initNbCombatTokensNeeded(int nbPlayers) {
         return switch (nbPlayers) {
             case 2, 3 -> 3;
             case 4 -> 4;

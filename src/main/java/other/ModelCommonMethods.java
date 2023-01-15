@@ -1,17 +1,11 @@
 package other;
 
-import mainClasses.Game;
-import data.Deck;
-import data.Player;
-import data.Cards;
+import data.*;
 import token.MaterialToken;
-import token.ProgressToken;
 
 import java.util.*;
 
 public class ModelCommonMethods {
-
-    Game game = new Game();
 
     private void drawCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int targetDeckIndex, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
@@ -45,11 +39,11 @@ public class ModelCommonMethods {
         drawCard(decks, players, currentPlayerIndex, rightPlayerIndex, selectedCardIndex);
     }
 
-    public void drawSelectedProgressToken(ArrayList<ProgressToken> progressTokens, ArrayList<Player> players, int currentPlayerIndex, int selectedTokenIndex) {
+    public void drawSelectedProgressToken(ProgressTokenStack progressTokenStack, ArrayList<Player> players, int currentPlayerIndex, int selectedTokenIndex) {
         // Ajoute le jeton de progrès sélectionné au joueur actuel
-        players.get(currentPlayerIndex).addProgressToken(progressTokens.get(selectedTokenIndex));
+        players.get(currentPlayerIndex).addProgressToken(progressTokenStack.getProgressTokens().get(selectedTokenIndex));
         // Retire le jeton de progrès de la liste de jetons de progrès
-        progressTokens.remove(selectedTokenIndex);
+        progressTokenStack.getProgressTokens().remove(selectedTokenIndex);
     }
 
     public void chkLevelUpWonder(Player player) {
@@ -171,7 +165,7 @@ public class ModelCommonMethods {
         return elementTab;
     }
 
-    public void checkPlayerWar(ArrayList<Player> players) {
+    public void checkPlayerWar(Board board, ArrayList<Player> players) {
         final int NUM_PLAYERS = players.size();
 
         for (int currentPlayerIndex = 0; currentPlayerIndex < NUM_PLAYERS; currentPlayerIndex++) {
@@ -189,7 +183,7 @@ public class ModelCommonMethods {
             players.get(currentPlayerIndex).removeFightersWithHorn();
         }
 
-        game.setCombatTokensFlipped(0);
+        board.setCombatTokensFlipped(0);
     }
 
 }
