@@ -42,6 +42,10 @@ public class Board {
         return progressTokens;
     }
 
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
+
     public void addCombatTokensFlipped(int combatTokensFlipped) {
         this.combatTokensFlipped += combatTokensFlipped;
     }

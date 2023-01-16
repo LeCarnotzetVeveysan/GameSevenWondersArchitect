@@ -1,5 +1,7 @@
 package data;
 
+import other.ModelCommonMethods;
+
 public enum Wonder {
 
     Alexandrie("Alexandrie", "Prenez la premi�re carte d'une pioche au choix, n'importe où sur la table, et posez-la devant vous",
@@ -45,6 +47,8 @@ public enum Wonder {
             "wonder-gizeh.png");
 
     // ------------------------------------------------------------------------
+
+    private ModelCommonMethods comMeth = new ModelCommonMethods();
 
     private final String name;
     private final String effectDescription;
@@ -125,14 +129,14 @@ public enum Wonder {
         return levelAction;
     }
 
-    public void eventAction() {
+    public void eventAction(Board board) {
         switch (this) {
             case Alexandrie -> alexandrieAction();
             case Halicarnasse -> halicarnasseAction();
-            case Ephese -> epheseAction();
-            case Olympie -> olympieAction();
+            case Ephese -> epheseAction(board);
+            case Olympie -> olympieAction(board);
             case Babylon -> babylonAction();
-            case Rhodes -> rhodesAction();
+            case Rhodes -> rhodesAction(board);
             case Gizeh -> gizehAction();
         }
     }
@@ -145,24 +149,28 @@ public enum Wonder {
         // parmi les 5 premières carte de la pioche à gauche et à droite, choisissez-en une
     }
 
-    public void epheseAction() {
+    public void epheseAction(Board board) {
         // prendre la première carte de la pioche centrale
+        comMeth.drawMiddleDeckCard(board, 0);
     }
 
-    public void olympieAction() {
+    public void olympieAction(Board board) {
         // prendre les cartes de la pioche de droite et de gauche
+        comMeth.drawLeftDeckCard(board, 0);
+        comMeth.drawRightDeckCard(board, 0);
     }
 
     public void babylonAction() {
         // choisir un jeton progrès parmi les 4 disponibles
     }
 
-    public void rhodesAction() {
+    public void rhodesAction(Board board) {
         // incrémenter le total de bouclier de 1 de manière permanente
+        board.getPlayers().get(board.getCurrentPlayerIndex()).addShield(1);
     }
 
+    // wonder that does actually nothing so do a method that does nothing
     public void gizehAction() {
-        // does nothing
     }
 
     // ------------------------------------------------------------------------

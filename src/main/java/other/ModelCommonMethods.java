@@ -7,68 +7,85 @@ import java.util.*;
 
 public class ModelCommonMethods {
 
-    private void drawCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int targetDeckIndex, int cardIndex) {
+    private void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
-        Cards drawnCard = decks.get(targetDeckIndex).getDeck().get(cardIndex);
+        Cards drawnCard = targetdeck.getDeck().get(cardIndex);
         // Attribue la carte au joueur qui la pioche
-        drawnCard.getCardToken(players.get(currentPlayerIndex));
+        drawnCard.getCardToken(player);
         // Retire la carte du deck cible
-        decks.get(targetDeckIndex).getDeck().remove(cardIndex);
+        targetdeck.getDeck().remove(cardIndex);
         // Vérifie si le joueur a atteint un niveau de merveille
-        chkLevelUpWonder(players.get(currentPlayerIndex));
+        chkLevelUpWonder(board);
     }
 
-    public void drawLeftDeckCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int selectedCardIndex) {
+    public void drawLeftDeckCard(Board board, int selectedCardIndex) {
+        int currentPlayerIndex = board.getCurrentPlayerIndex();
+        Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
         // Trouve l'index du joueur à gauche
-        int leftPlayerIndex = (currentPlayerIndex == 0) ? players.size() - 1 : currentPlayerIndex - 1;
+        int nbPlayers = board.getPlayers().size();
+        int leftPlayerIndex = (currentPlayerIndex == 0) ? nbPlayers - 1 : currentPlayerIndex - 1;
+        Deck targetdeck = board.getDecks().get(leftPlayerIndex);
         // Pioche une carte depuis le deck du joueur à gauche
-        drawCard(decks, players, currentPlayerIndex, leftPlayerIndex, selectedCardIndex);
+        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawMiddleDeckCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int selectedCardIndex) {
+    public void drawMiddleDeckCard(Board board, int selectedCardIndex) {
+        int currentPlayerIndex = board.getCurrentPlayerIndex();
+        Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
         // Le deck du milieu est toujours le dernier élément de la liste de decks
-        int middleDeckIndex = players.size();
+        int middleDeckIndex = board.getPlayers().size();
+        Deck targetdeck = board.getDecks().get(middleDeckIndex);
         // Pioche une carte depuis le deck du milieu
-        drawCard(decks, players, currentPlayerIndex, middleDeckIndex, selectedCardIndex);
+        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawRightDeckCard(ArrayList<Deck> decks, ArrayList<Player> players, int currentPlayerIndex, int selectedCardIndex) {
+    public void drawRightDeckCard(Board board, int selectedCardIndex) {
+        int currentPlayerIndex = board.getCurrentPlayerIndex();
+        Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
         // Trouve l'index du joueur à droite
-        int rightPlayerIndex = (currentPlayerIndex == players.size() - 1) ? 0 : currentPlayerIndex + 1;
+        int nbPlayers = board.getPlayers().size();
+        int rightPlayerIndex = (currentPlayerIndex == nbPlayers - 1) ? 0 : currentPlayerIndex + 1;
+        Deck targetdeck = board.getDecks().get(rightPlayerIndex);
         // Pioche une carte depuis le deck du joueur à droite
-        drawCard(decks, players, currentPlayerIndex, rightPlayerIndex, selectedCardIndex);
+        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawSelectedProgressToken(ProgressTokenStack progressTokenStack, ArrayList<Player> players, int currentPlayerIndex, int selectedTokenIndex) {
+    public void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
+        int currentPlayerIndex = board.getCurrentPlayerIndex();
+        ArrayList<Player> players = board.getPlayers();
+        ProgressTokenStack progressTokens = board.getProgressTokens();
         // Ajoute le jeton de progrès sélectionné au joueur actuel
-        players.get(currentPlayerIndex).addProgressToken(progressTokenStack.getProgressTokens().get(selectedTokenIndex));
+        players.get(currentPlayerIndex).addProgressToken(progressTokens.getProgressTokens().get(selectedTokenIndex));
         // Retire le jeton de progrès de la liste de jetons de progrès
-        progressTokenStack.getProgressTokens().remove(selectedTokenIndex);
+        progressTokens.getProgressTokens().remove(selectedTokenIndex);
     }
 
-    public void chkLevelUpWonder(Player player) {
+    public void chkLevelUpWonder(Board board) {
+        Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
+        Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
+
         // Génère une liste de jetons de matériaux pour le joueur
-        ArrayList<Long> elementTab = elementSimDiffGenerator(player);
+        ArrayList<Long> elementTab = elementSimDiffGenerator(board);
         // Tableau de jetons de matériaux
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
         // Crée une map pour stocker le nombre de niveaux dans chaque étape
-        Map<Integer, Long> levelsInStages = getNbLevelsInEachStages(player);
+        Map<Integer, Long> levelsInStages = getNbLevelsInEachStages(currentPlayer);
 
-        for (int i = 0; i < player.getWonder().getNbLevelsInStages().length; i++) {
+        for (int i = 0; i < wonder.getNbLevelsInStages().length; i++) {
             // Vérifie si les étages précédents ont été construits
-            boolean previousStagesBuilt = player.getWonder().getIsStageBuilt()[i];
+            boolean previousStagesBuilt = wonder.getIsStageBuilt()[i];
 
-            if (!player.getWonder().getIsStageBuilt()[i] && previousStagesBuilt) {
+            if (!wonder.getIsStageBuilt()[i] && previousStagesBuilt) {
                 // Récupère le numéro de l'étape en cours de construction
-                int stage = player.getWonder().getNbLevelsInStages()[i];
+                int stage = wonder.getNbLevelsInStages()[i];
                 // Récupère le nombre de niveaux dans l'étape en cours de construction
                 long levelsInCurrentStage = levelsInStages.get(stage);
-                if (player.getWonder().getSameMaterials()[i]) {
+                if (wonder.getSameMaterials()[i]) {
                     // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux identiques
-                    updateSameMat(player, elementTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
+                    updateSameMat(board, elementTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
                 } else {
                     // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux différents
-                    updateDiffMat(player, elementTab, levelsInStages, i, stage, levelsInCurrentStage);
+                    updateDiffMat(board, elementTab, levelsInStages, i, stage, levelsInCurrentStage);
                 }
             }
 
@@ -88,57 +105,69 @@ public class ModelCommonMethods {
         return levelsInStages;
     }
 
-    private static void updateDiffMat(Player player, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
-        if (elementTab.get(5) == player.getWonder().getNbMaterials()[i]) {
+    private static void updateDiffMat(Board board, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+        Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
+
+        if (elementTab.get(5) == wonder.getNbMaterials()[i]) {
             int uniqueCount = 0;
             HashSet<MaterialToken> setToRemove = new HashSet<>();
-            for (int m = 0; m < player.getWonder().getNbMaterials()[i]; i++) {
+            for (int m = 0; m < wonder.getNbMaterials()[i]; i++) {
                 if (!setToRemove.contains(player.getMaterialTokens().get(i))) {
                     setToRemove.add(player.getMaterialTokens().get(i));
                     uniqueCount++;
                 }
-                if (uniqueCount == player.getWonder().getNbMaterials()[i]) {
+                if (uniqueCount == wonder.getNbMaterials()[i]) {
                     break;
                 }
             }
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
-            levelUpWonder(player, i);
+            levelUpWonder(board, i);
             levelsInStages.put(stage, levelsInCurrentStage - 1);
         }
     }
 
-    private static void updateSameMat(Player player, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+    private static void updateSameMat(Board board, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+        Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
+
         for (int j = 0; j <= 4; j++) {
-            if (elementTab.get(j) == player.getWonder().getNbMaterials()[i]) {
-                for (int n = 0; n <= player.getWonder().getNbMaterials()[i]; n++) {
+            if (elementTab.get(j) == wonder.getNbMaterials()[i]) {
+                for (int n = 0; n <= wonder.getNbMaterials()[i]; n++) {
                     player.removeMaterialToken(elementTabToToken[j]);
                 }
-                levelUpWonder(player, i);
+                levelUpWonder(board, i);
                 levelsInStages.put(stage, levelsInCurrentStage - 1);
                 break;
             }
         }
     }
 
-    private static void levelUpWonder(Player player, int i) {
-        player.getWonder().setIsStageBuilt(i, true);
-        chkActionWonder(player, i);
+    private static void levelUpWonder(Board board, int i) {
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
+        Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
+
+        wonder.setIsStageBuilt(i, true);
+        chkActionWonder(board, i);
         // vérifie si le joueur a construit toutes les étapes de la merveille
-        if (player.getWonder().getIsStageBuilt()[player.getWonder().getIsStageBuilt().length - 1]) {
+        if (wonder.getIsStageBuilt()[wonder.getIsStageBuilt().length - 1]) {
             player.setHasBuiltWonder(true);
             // afficher le tableau de score
         }
     }
 
-    private static void chkActionWonder(Player player, int i) {
-        if (player.getWonder().getLevelAction()[i]) {
-            player.getWonder().eventAction();
+    private static void chkActionWonder(Board board, int i) {
+        Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
+
+        if (wonder.getLevelAction()[i]) {
+            wonder.eventAction(board);
         }
     }
 
-    public ArrayList<Long> elementSimDiffGenerator(Player player) {
+    public ArrayList<Long> elementSimDiffGenerator(Board board) {
         MaterialToken[] similarMaterials = MaterialToken.values();
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         // dans l'odre : wood, glass, brick, stone, paper et nombre de diff
         // pour vérif si contient des éléments similaires : boucle entre 0 et 4

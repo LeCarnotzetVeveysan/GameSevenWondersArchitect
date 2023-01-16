@@ -98,6 +98,10 @@ public class Player {
         return hasCat;
     }
 
+    public void addShield(int shield) {
+        this.shield += shield;
+    }
+
     public int getShield() {
         return shield;
     }
