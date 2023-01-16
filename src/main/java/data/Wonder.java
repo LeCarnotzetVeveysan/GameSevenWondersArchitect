@@ -165,8 +165,9 @@ public enum Wonder {
     }
 
     public void rhodesAction(Board board) {
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         // incrémenter le total de bouclier de 1 de manière permanente
-        board.getPlayers().get(board.getCurrentPlayerIndex()).addShield(1);
+        player.addShield(1);
     }
 
     // wonder that does actually nothing so do a method that does nothing
