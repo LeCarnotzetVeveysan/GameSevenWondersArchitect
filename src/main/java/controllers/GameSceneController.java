@@ -1,7 +1,7 @@
 package controllers;
 
 import application.AppData;
-import classes.Wonder;
+import data.Wonder;
 import data.GameData;
 import data.Player;
 import javafx.event.ActionEvent;
@@ -50,6 +50,9 @@ public class GameSceneController {
         System.out.println(Arrays.toString(GameData.getPlayerNames()));
         playerList = new ArrayList<>();
         currentPlayerIndex = 0;
+
+        initializePlayers();
+
         onNextTurnButtonClicked();
     }
 
