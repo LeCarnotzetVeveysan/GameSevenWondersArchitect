@@ -50,6 +50,9 @@ public class GameSceneController {
         System.out.println(Arrays.toString(GameData.getPlayerNames()));
         playerList = new ArrayList<>();
         currentPlayerIndex = 0;
+
+        initializePlayers();
+
         onNextTurnButtonClicked();
     }
 
