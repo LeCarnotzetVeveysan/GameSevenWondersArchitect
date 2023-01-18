@@ -17,4 +17,7 @@ public enum ShieldToken {
     }
 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> bruce
