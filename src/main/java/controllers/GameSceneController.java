@@ -1,6 +1,7 @@
 package controllers;
 
 import application.AppData;
+import data.Wonder;
 import data.GameData;
 import data.Player;
 import javafx.event.ActionEvent;
