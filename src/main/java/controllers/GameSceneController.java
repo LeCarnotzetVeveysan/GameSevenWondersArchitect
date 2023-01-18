@@ -1,7 +1,9 @@
 package controllers;
 
 import application.AppData;
+import classes.Wonder;
 import data.GameData;
+import data.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameSceneController {
@@ -37,8 +40,31 @@ public class GameSceneController {
     @FXML
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
 
+    //Game variables
+    private int numPlayers = GameData.getNumberOfPlayers();
+    private int currentPlayerIndex;
+    private Player currentPlayer;
+    private ArrayList<Player> playerList;
+
     public void initialize(){
         System.out.println(Arrays.toString(GameData.getPlayerNames()));
+        playerList = new ArrayList<>();
+        currentPlayerIndex = 0;
+        onNextTurnButtonClicked();
+    }
+
+    public void initializePlayers(){
+        String[] names = GameData.getPlayerNames();
+        for(int i = 0; i < numPlayers; i++){
+            //add player to playerlist
+        }
+    }
+
+    @FXML
+    void onNextTurnButtonClicked(){
+        currentPlayerIndex += 1;
+        currentPlayerIndex %= numPlayers;
+        currentPlayer = playerList.get(currentPlayerIndex);
     }
 
     @FXML
