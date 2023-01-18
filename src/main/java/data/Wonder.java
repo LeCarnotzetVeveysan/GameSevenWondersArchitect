@@ -137,7 +137,6 @@ public enum Wonder {
             case Olympie -> olympieAction(board);
             case Babylon -> babylonAction();
             case Rhodes -> rhodesAction(board);
-            case Gizeh -> gizehAction();
         }
     }
 
@@ -168,10 +167,6 @@ public enum Wonder {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         // incrémenter le total de bouclier de 1 de manière permanente
         player.addShield(1);
-    }
-
-    // wonder that does actually nothing so do a method that does nothing
-    public void gizehAction() {
     }
 
     // ------------------------------------------------------------------------
