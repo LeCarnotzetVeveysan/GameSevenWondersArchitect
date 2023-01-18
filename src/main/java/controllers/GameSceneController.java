@@ -1,12 +1,14 @@
 package controllers;
 
+import application.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+
+import java.util.Arrays;
 
 public class GameSceneController {
 
@@ -33,6 +35,10 @@ public class GameSceneController {
 
     @FXML
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
+
+    public void initialize(){
+        System.out.println(Arrays.toString(AppData.getPlayerNames()));
+    }
 
     @FXML
     void PiocheCentraleClicked(ActionEvent event) {
