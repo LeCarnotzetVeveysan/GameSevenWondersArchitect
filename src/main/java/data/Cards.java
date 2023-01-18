@@ -1,5 +1,6 @@
 package data;
 
+import other.ModelCommonMethods;
 import token.Fighter;
 import token.LaurelToken;
 import token.MaterialToken;
@@ -58,3 +59,4 @@ public enum Cards {
     }
 
 }
+

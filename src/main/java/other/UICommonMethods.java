@@ -1,19 +1,10 @@
 package other;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import data.Player;
+import data.Deck;
+import data.ProgressTokenStack;
 
 public class UICommonMethods {
-
-    public static void setImage(ImageView iv, String url) throws FileNotFoundException {
-        String resPath = "src/main/resources/images/";
-        Image image = new Image(new FileInputStream(resPath + url + ".png"));
-        iv.setImage(image);
-    }
 
     public void refreshBoard() {
 
@@ -30,7 +21,6 @@ public class UICommonMethods {
     private void refreshProgressTokenImages() {
 
     }
-
 
     private void refreshPlayer() {
 
