@@ -58,7 +58,7 @@ public class RulesController {
 
     @FXML
     private void onBackButtonClick() throws IOException {
-        changeLauncherScene("launcher");
+        changeLauncherScene("game-init");
     }
 
     public void onPreviousButtonClick() throws FileNotFoundException {
