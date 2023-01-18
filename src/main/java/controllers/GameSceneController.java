@@ -1,6 +1,7 @@
 package controllers;
 
 import application.AppData;
+import data.GameData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,7 +38,7 @@ public class GameSceneController {
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
 
     public void initialize(){
-        System.out.println(Arrays.toString(AppData.getPlayerNames()));
+        System.out.println(Arrays.toString(GameData.getPlayerNames()));
     }
 
     @FXML
