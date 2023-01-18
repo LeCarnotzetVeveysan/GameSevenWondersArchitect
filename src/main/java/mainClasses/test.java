@@ -13,7 +13,7 @@ public class test {
         playerNames.add("Player 2");
         playerNames.add("Player 3");
 
-        Board board = new Board(playerNames);
+        Board board = new Board();
 
         // boucle indiquant la merveille de chaque joueurs
         for (int i = 0; i < board.getPlayers().size(); i++) {

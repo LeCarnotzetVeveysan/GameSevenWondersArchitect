@@ -22,8 +22,9 @@ public class Initializers {
     private ArrayList<Wonder> usedWonders = new ArrayList<>();
 
     // ajoute à la liste des joueurs un nouveau joueur avec le nom passé en paramètre ainsi qu'un des wonders du jeu au hasard (chaque joueur aura un wonder différent)
-    public ArrayList<Player> initPlayers(ArrayList<String> playerNames) {
+    public ArrayList<Player> initPlayers() {
         ArrayList<Player> players = new ArrayList<>();
+        String[] playerNames = GameData.getPlayerNames();
         // Ajoutez chacun des joueurs demandés
         for (String playerName : playerNames) {
             // Sélectionnez au hasard un des wonders non utilisés
