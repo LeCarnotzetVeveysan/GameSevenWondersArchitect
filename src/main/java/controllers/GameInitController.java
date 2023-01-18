@@ -1,6 +1,7 @@
 package controllers;
 
 import application.AppData;
+import data.GameData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -87,13 +88,13 @@ public class GameInitController implements Initializable {//implements initializ
     }
 
     private void registerAppData() {
-        AppData.setNumberOfPlayers(numberOfPlayers);
+        GameData.setNumberOfPlayers(numberOfPlayers);
         String[] names = new String[numberOfPlayers];
         for(int i = 0; i < numberOfPlayers; i++)
         {
             names[i] = nameInputs[i].getText();
         }
-        AppData.setPlayerNames(names);
+        GameData.setPlayerNames(names);
     }
 
 
