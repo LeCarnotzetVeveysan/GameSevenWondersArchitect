@@ -54,8 +54,29 @@ public class Player {
         return fighters;
     }
 
+    public ArrayList<ProgressToken> getProgressTokens() {
+        return progressTokens;
+    }
+
     public void addProgressToken(ProgressToken progressToken) {
         progressTokens.add(progressToken);
+        switch (progressToken) {
+            case Tactic -> {
+                this.addFighter(Fighter.CENTURION);
+                this.addFighter(Fighter.CENTURION);
+            }
+            case Economy -> {
+                for (int i = 0; i < materialTokens.size(); i++) {
+                    if (materialTokens.get(i) == MaterialToken.GOLD) {
+                        materialTokens.add(MaterialToken.GOLD);
+                    }
+                }
+            }
+        }
+    }
+
+    public ArrayList<LaurelToken> getLaurelTokens() {
+        return laurelTokens;
     }
 
     public void addLaurelToken(LaurelToken laurelToken) {

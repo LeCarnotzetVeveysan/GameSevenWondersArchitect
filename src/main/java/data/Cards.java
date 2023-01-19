@@ -1,6 +1,5 @@
 package data;
 
-import other.ModelCommonMethods;
 import token.Fighter;
 import token.LaurelToken;
 import token.MaterialToken;
@@ -39,7 +38,20 @@ public enum Cards {
         return frontImg;
     }
 
-    public void getCardToken(Player player) {
+    public Fighter getMilitaryCardToken() {
+        switch (this) {
+            case COM_CENTURION:
+                return Fighter.CENTURION;
+            case COM_BARBARIAN:
+                return Fighter.BARBARIAN;
+            case COM_ARCHER:
+                return Fighter.ARCHER;
+            default:
+                return null;
+        }
+    }
+
+    public void getCardTokenToPlayer(Player player) {
         switch (this) {
             case MAT_GOLD -> player.addMaterialToken(MaterialToken.GOLD);
             case MAT_BRICK -> player.addMaterialToken(MaterialToken.BRICK);
