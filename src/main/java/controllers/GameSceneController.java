@@ -53,7 +53,6 @@ public class GameSceneController {
         currentPlayerIndex = -1;
         switchToNextPlayer();
 
-
     }
 
     void switchToNextPlayer(){
