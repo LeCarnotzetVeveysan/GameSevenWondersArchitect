@@ -37,7 +37,7 @@
       </ImageView>
       <ComboBox fx:id="ComboBoxNumPlayer" layoutX="117.0" layoutY="208.0" onAction="#onNumPlayersChanged" prefHeight="26.0" prefWidth="70.0" />
       <Label layoutX="117.0" layoutY="182.0" text="N° of players :" />
-      <HBox layoutX="74.0" layoutY="316.0" spacing="50.0">
+      <HBox fx:id="peaceTokenIVHB" layoutX="74.0" layoutY="316.0" spacing="50.0">
          <children>
             <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Start">
                <font>

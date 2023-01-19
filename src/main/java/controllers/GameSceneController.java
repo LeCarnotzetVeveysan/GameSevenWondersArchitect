@@ -24,12 +24,13 @@ public class GameSceneController {
 
     @FXML
     private ImageView startCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
-
     @FXML
-    private HBox progressTokenIVHB;
+    private HBox progressTokenIVHB, peaceTokenIVHB;
     @FXML
     private ImageView progressToken1IV, progressToken2IV, progressToken3IV, progressToken4IV;
-    private ArrayList<ImageView> progressTokenIVs;
+    @FXML
+    private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
+    private ArrayList<ImageView> progressTokenIVs, peaceTokenIVs;
 
     @FXML
     private Button ButtonScience1, ButtonScience2, ButtonScience3, ButtonScienceRand;
@@ -83,6 +84,17 @@ public class GameSceneController {
 
     private void initIVs() {
         initProgressTokenIVs();
+        initPeaceTokenIVs();
+    }
+
+    private void initPeaceTokenIVs() {
+        peaceTokenIVs = new ArrayList<>();
+        peaceTokenIVs.add(peaceToken1IV);
+        peaceTokenIVs.add(peaceToken2IV);
+        peaceTokenIVs.add(peaceToken3IV);
+        peaceTokenIVs.add(peaceToken4IV);
+        peaceTokenIVs.add(peaceToken5IV);
+        peaceTokenIVs.add(peaceToken6IV);
     }
 
     private void initProgressTokenIVs() {
@@ -99,7 +111,26 @@ public class GameSceneController {
         updatePeaceTokenImages();
     }
 
-    private void updatePeaceTokenImages() {
+    private void updatePeaceTokenImages() throws FileNotFoundException {
+        for(ImageView iv : peaceTokenIVs){ setImage(iv,"tokens-conflict/conflictPeaceToken");}
+
+        int tokensNeeded = gameBoard.getCombatTokensNeeded();
+        int tokensFlipped = gameBoard.getCombatTokensFlipped();
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+
+        for(int i = 0; i < tokensFlipped; i++){
+            setImage(peaceTokenIVs.get(i), "tokens-conflict/conflictWarToken");
+        }
+
+        for(int i = 0; i < tokensNeeded; i++){
+            imageViews.add(peaceTokenIVs.get(i));
+        }
+
+        peaceTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            peaceTokenIVHB.getChildren().add(iv);
+        }
+
     }
 
     private void updateProgressTokenImages() throws FileNotFoundException {
@@ -154,10 +185,16 @@ public class GameSceneController {
 
     @FXML
     void onNextTurnButtonClick() throws FileNotFoundException {
-        if(gameBoard.getProgressTokens().getProgressTokens().size() >= 1) {
-            gameBoard.getProgressTokens().drawToken(gameBoard.getProgressTokens().getProgressTokens().size() - 1);
-        }
+        checkForWar();
         switchToNextPlayer();
+    }
+
+    private void checkForWar() {
+        if(gameBoard.getCombatTokensFlipped() >= gameBoard.getCombatTokensNeeded()){
+            System.out.println("AOUH ! AOUH ! AOUH !");
+            gameBoard.setCombatTokensFlipped(0);
+        }
+
     }
 
     public void onMainDeckButtonClick() throws FileNotFoundException {
