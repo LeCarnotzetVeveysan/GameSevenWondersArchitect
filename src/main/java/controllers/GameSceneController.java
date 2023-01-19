@@ -23,7 +23,7 @@ import static other.UICommonMethods.setImage;
 public class GameSceneController {
 
     @FXML
-    private ImageView startCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
+    private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
     @FXML
     private HBox progressTokenIVHB, peaceTokenIVHB;
     @FXML
@@ -109,6 +109,16 @@ public class GameSceneController {
         updateDeckImages();
         updateProgressTokenImages();
         updatePeaceTokenImages();
+        updateCatImages();
+    }
+
+    private void updateCatImages() {
+        if(!gameBoard.isCatTaken()){startCatIV.setVisible(false);}
+        if(currentPlayer.getHasCat()){
+            playerCatIV.setVisible(true);
+        } else {
+            playerCatIV.setVisible(false);
+        }
     }
 
     private void updatePeaceTokenImages() throws FileNotFoundException {

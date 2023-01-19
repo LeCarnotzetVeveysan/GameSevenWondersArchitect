@@ -214,7 +214,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <ImageView fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="playerCatIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-laurel/token-cat.png" />
                            </image>
