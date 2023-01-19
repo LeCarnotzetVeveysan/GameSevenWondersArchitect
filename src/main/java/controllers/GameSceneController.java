@@ -113,7 +113,11 @@ public class GameSceneController {
     }
 
     private void updateCatImages() {
-        if(!gameBoard.isCatTaken()){startCatIV.setVisible(false);}
+        if(gameBoard.isCatTaken()){
+            startCatIV.setVisible(false);
+        } else {
+            startCatIV.setVisible(true);
+        }
         if(currentPlayer.getHasCat()){
             playerCatIV.setVisible(true);
         } else {
