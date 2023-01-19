@@ -78,4 +78,5 @@ public class ProgressTokenStack {
     public String getBackTokenImg() {
         return backTokenImg;
     }
+
 }

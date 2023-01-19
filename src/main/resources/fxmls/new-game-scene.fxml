@@ -64,7 +64,7 @@
                   </ImageView>
                   <VBox alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox fx:id="progressTokenIVHB" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <ImageView fx:id="progressToken1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
