@@ -9,7 +9,7 @@ public class ModelCommonMethods {
 
     public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
-        Cards drawnCard = targetdeck.getDeck().get(cardIndex);
+        Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
         drawCardWithChkProgress(player, drawnCard);
         // Vérifie si la carte contenait un chat Bastet
@@ -20,7 +20,7 @@ public class ModelCommonMethods {
         chkLevelUpWonder(board);
     }
 
-    public void drawLeftDeckCard(Board board, int selectedCardIndex) {
+    public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -33,16 +33,16 @@ public class ModelCommonMethods {
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawMiddleDeckCard(Board board, int selectedCardIndex) {
-        int middleDeckIndex = board.getDecks().size() - 1;
-        Player currentPlayer = board.getPlayers().get(middleDeckIndex);
+    public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
+        int middleDeckIndex = board.getPlayers().size();
+        Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         Deck targetdeck = board.getDecks().get(middleDeckIndex);
         // Pioche une carte depuis le deck du milieu
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawRightDeckCard(Board board, int selectedCardIndex) {
+    public static void drawRightDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -97,7 +97,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
+    public static void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         ArrayList<Player> players = board.getPlayers();
         ProgressTokenStack progressTokens = board.getProgressTokens();
@@ -249,7 +249,7 @@ public class ModelCommonMethods {
         return elementTab;
     }
 
-    public void checkPlayerWar(Board board, ArrayList<Player> players) {
+    public static void checkPlayerWar(Board board, ArrayList<Player> players) {
         final int NUM_PLAYERS = players.size();
 
         for (int currentPlayerIndex = 0; currentPlayerIndex < NUM_PLAYERS; currentPlayerIndex++) {

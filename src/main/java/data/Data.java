@@ -6,17 +6,17 @@ import java.util.Random;
 public class Data {
 
     // decks
-    private Deck rodhosDeck = new Deck(2,2,2,2,2,2,2,1,1,2,2,2,1,2,"card-back-rhodes.png");
-    private Deck halikarnassosDeck = new Deck(3,2,2,2,2,1,1,1,2,2,2,2,1,2,"card-back-halicarnasse.png");
-    private Deck gizahDeck = new Deck(3,2,1,2,2,2,1,2,1,2,3,2,0,2,"card-back-gizeh.png");
-    private Deck ephesosDeck = new Deck(3,2,2,2,2,2,1,2,2,1,2,2,1,1,"card-back-ephese.png");
-    private Deck olympiaDeck = new Deck(3,2,2,1,2,2,1,1,2,1,3,2,1,2,"card-back-olympie.png");
-    private Deck babylonDeck = new Deck(3,1,2,2,2,2,2,2,1,2,2,2,1,1,"card-back-babylon.png");
-    private Deck alexandriaDeck = new Deck(4,2,2,2,1,2,2,1,1,2,2,2,1,1,"card-back-alexandrie.png");
-    private Deck middleDeck = new Deck(6,4,4,4,4,4,4,4,4,4,8,4,2,4,"card-back-question.png");
+    private Deck rodhosDeck = new Deck(2,2,2,2,2,2,2,1,1,2,2,2,1,2,"card-back-rhodes");
+    private Deck halikarnassosDeck = new Deck(3,2,2,2,2,1,1,1,2,2,2,2,1,2,"card-back-halicarnasse");
+    private Deck gizahDeck = new Deck(3,2,1,2,2,2,1,2,1,2,3,2,0,2,"card-back-gizeh");
+    private Deck ephesosDeck = new Deck(3,2,2,2,2,2,1,2,2,1,2,2,1,1,"card-back-ephese");
+    private Deck olympiaDeck = new Deck(3,2,2,1,2,2,1,1,2,1,3,2,1,2,"card-back-olympie");
+    private Deck babylonDeck = new Deck(3,1,2,2,2,2,2,2,1,2,2,2,1,1,"card-back-babylon");
+    private Deck alexandriaDeck = new Deck(4,2,2,2,1,2,2,1,1,2,2,2,1,1,"card-back-alexandrie");
+    private Deck middleDeck = new Deck(6,4,4,4,4,4,4,4,4,4,8,4,2,4,"card-back-question");
 
     // progress tokens
-    private ProgressTokenStack progressTokens = new ProgressTokenStack(1,1,1,1,1,1,1,1,1,1,1,1,1,2,"token-back.png");
+    private ProgressTokenStack progressTokens = new ProgressTokenStack(1,1,1,1,1,1,1,1,1,1,1,1,1,2,"token-back");
 
     private Wonder[] wonders = {Wonder.Rhodes, Wonder.Halicarnasse, Wonder.Gizeh, Wonder.Ephese, Wonder.Olympie, Wonder.Babylon, Wonder.Alexandrie};
     private ArrayList<Wonder> usedWonders = new ArrayList<>();
