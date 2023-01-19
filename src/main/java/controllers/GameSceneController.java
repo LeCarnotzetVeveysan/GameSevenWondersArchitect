@@ -85,6 +85,30 @@ public class GameSceneController {
     private void initIVs() {
         initProgressTokenIVs();
         initPeaceTokenIVs();
+        initMaterialTokenIVs();
+        initScienceTokenIVs();
+        initWarTokenIVs();
+        initLaurelTokenIVs();
+        initPlayerProgressTokensIVs();
+    }
+
+    private void initPlayerProgressTokensIVs() {
+    }
+
+    private void initLaurelTokenIVs() {
+        
+    }
+
+    private void initWarTokenIVs() {
+        
+    }
+
+    private void initScienceTokenIVs() {
+        
+    }
+
+    private void initMaterialTokenIVs() {
+        
     }
 
     private void initPeaceTokenIVs() {
@@ -110,6 +134,10 @@ public class GameSceneController {
         updateProgressTokenImages();
         updatePeaceTokenImages();
         updateCatImages();
+        updatePlayerTokenIVsAndLabels();
+    }
+
+    private void updatePlayerTokenIVsAndLabels() {
     }
 
     private void updateCatImages() {
