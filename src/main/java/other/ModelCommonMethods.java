@@ -9,7 +9,7 @@ import java.util.*;
 
 public class ModelCommonMethods {
 
-    private void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
+    public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getDeck().get(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
@@ -98,7 +98,7 @@ public class ModelCommonMethods {
         progressTokens.getProgressTokens().remove(selectedTokenIndex);
     }
 
-    public void chkLevelUpWonder(Board board) {
+    public static void chkLevelUpWonder(Board board) {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -211,7 +211,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public ArrayList<Long> elementSimDiffGenerator(Board board) {
+    public static ArrayList<Long> elementSimDiffGenerator(Board board) {
         MaterialToken[] similarMaterials = MaterialToken.values();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 

@@ -8,12 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import token.ProgressToken;
+import other.ModelCommonMethods;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static other.ModelCommonMethods.drawCard;
 import static other.UICommonMethods.setImage;
 
 public class GameSceneController {
@@ -22,7 +25,10 @@ public class GameSceneController {
     private ImageView startCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
 
     @FXML
+    private HBox progressTokenIVHB;
+    @FXML
     private ImageView progressToken1IV, progressToken2IV, progressToken3IV, progressToken4IV;
+    private ArrayList<ImageView> progressTokenIVs;
 
     @FXML
     private Button ButtonScience1, ButtonScience2, ButtonScience3, ButtonScienceRand;
@@ -59,6 +65,8 @@ public class GameSceneController {
 
     public void initialize() throws FileNotFoundException {
 
+        initIVs();
+
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
         playerList = gameBoard.getPlayers();
@@ -72,6 +80,18 @@ public class GameSceneController {
 
     }
 
+    private void initIVs() {
+        initProgressTokenIVs();
+    }
+
+    private void initProgressTokenIVs() {
+        progressTokenIVs = new ArrayList<>();
+        progressTokenIVs.add(progressToken1IV);
+        progressTokenIVs.add(progressToken2IV);
+        progressTokenIVs.add(progressToken3IV);
+        progressTokenIVs.add(progressToken4IV);
+    }
+
     public void updateImages() throws FileNotFoundException {
         updateDeckImages();
         updateProgressTokenImages();
@@ -81,9 +101,28 @@ public class GameSceneController {
     private void updatePeaceTokenImages() {
     }
 
-    private void updateProgressTokenImages() {
-        ProgressTokenStack stack = gameBoard.getProgressTokens();
-
+    private void updateProgressTokenImages() throws FileNotFoundException {
+        ArrayList<ProgressToken> stack = gameBoard.getProgressTokens().getProgressTokens();
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        if(stack.size() >= 4){
+            setImage(progressToken1IV, "tokens-progress/back/token-back");
+            setImage(progressToken2IV, stack.get(stack.size()-3).getImageResource());
+            setImage(progressToken3IV, stack.get(stack.size()-2).getImageResource());
+            setImage(progressToken4IV, stack.get(stack.size()-1).getImageResource());
+        } else if (stack.size() == 3){
+            for(int i = 0; i < 3; i++){ imageViews.add(progressTokenIVs.get(i)); }
+            setImage(progressToken1IV, stack.get(0).getImageResource());
+            setImage(progressToken2IV, stack.get(1).getImageResource());
+            setImage(progressToken3IV, stack.get(2).getImageResource());
+        } else if (stack.size() == 2){
+            for(int i = 0; i < 2; i++){ imageViews.add(progressTokenIVs.get(i)); }
+            setImage(progressToken1IV, stack.get(0).getImageResource());
+            setImage(progressToken2IV, stack.get(1).getImageResource());
+        } else if (stack.size() == 1){
+            imageViews.add(progressToken1IV);
+            setImage(progressToken1IV, stack.get(0).getImageResource());
+        }
+        progressTokenIVHB.getChildren().addAll(imageViews);
     }
 
     private void updateDeckImages() throws FileNotFoundException {
@@ -114,23 +153,19 @@ public class GameSceneController {
     }
 
     public void onMainDeckButtonClick() throws FileNotFoundException {
-        Cards drawnCard = centralDeck.drawTopCard();
-        drawnCard.getCardTokenToPlayer(currentPlayer);
+        drawCard(gameBoard,centralDeck,currentPlayer,0);
 
         updateImages();
     }
 
     public void onLeftDeckButtonClick() throws FileNotFoundException {
-        Cards drawnCard = leftDeck.drawTopCard();
-        drawnCard.getCardTokenToPlayer(currentPlayer);
+        drawCard(gameBoard,leftDeck,currentPlayer,0);
 
         updateImages();
     }
 
     public void onRightDeckButtonClick() throws FileNotFoundException {
-        Cards drawnCard = rightDeck.drawTopCard();
-        drawnCard.getCardTokenToPlayer(currentPlayer);
-
+        drawCard(gameBoard,rightDeck,currentPlayer,0);
         updateImages();
     }
     @FXML
