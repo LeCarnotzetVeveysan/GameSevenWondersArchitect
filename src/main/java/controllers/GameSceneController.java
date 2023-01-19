@@ -3,6 +3,7 @@ package controllers;
 import data.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
@@ -22,13 +23,14 @@ import static other.UICommonMethods.setImage;
 public class GameSceneController {
 
     @FXML
-    private ImageView startCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
-
+    private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
     @FXML
-    private HBox progressTokenIVHB;
+    private HBox progressTokenIVHB, peaceTokenIVHB;
     @FXML
     private ImageView progressToken1IV, progressToken2IV, progressToken3IV, progressToken4IV;
-    private ArrayList<ImageView> progressTokenIVs;
+    @FXML
+    private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
+    private ArrayList<ImageView> progressTokenIVs, peaceTokenIVs;
 
     @FXML
     private Button ButtonScience1, ButtonScience2, ButtonScience3, ButtonScienceRand;
@@ -82,6 +84,41 @@ public class GameSceneController {
 
     private void initIVs() {
         initProgressTokenIVs();
+        initPeaceTokenIVs();
+        initMaterialTokenIVs();
+        initScienceTokenIVs();
+        initWarTokenIVs();
+        initLaurelTokenIVs();
+        initPlayerProgressTokensIVs();
+    }
+
+    private void initPlayerProgressTokensIVs() {
+    }
+
+    private void initLaurelTokenIVs() {
+        
+    }
+
+    private void initWarTokenIVs() {
+        
+    }
+
+    private void initScienceTokenIVs() {
+        
+    }
+
+    private void initMaterialTokenIVs() {
+        
+    }
+
+    private void initPeaceTokenIVs() {
+        peaceTokenIVs = new ArrayList<>();
+        peaceTokenIVs.add(peaceToken1IV);
+        peaceTokenIVs.add(peaceToken2IV);
+        peaceTokenIVs.add(peaceToken3IV);
+        peaceTokenIVs.add(peaceToken4IV);
+        peaceTokenIVs.add(peaceToken5IV);
+        peaceTokenIVs.add(peaceToken6IV);
     }
 
     private void initProgressTokenIVs() {
@@ -96,15 +133,53 @@ public class GameSceneController {
         updateDeckImages();
         updateProgressTokenImages();
         updatePeaceTokenImages();
+        updateCatImages();
+        updatePlayerTokenIVsAndLabels();
     }
 
-    private void updatePeaceTokenImages() {
+    private void updatePlayerTokenIVsAndLabels() {
+    }
+
+    private void updateCatImages() {
+        if(gameBoard.isCatTaken()){
+            startCatIV.setVisible(false);
+        } else {
+            startCatIV.setVisible(true);
+        }
+        if(currentPlayer.getHasCat()){
+            playerCatIV.setVisible(true);
+        } else {
+            playerCatIV.setVisible(false);
+        }
+    }
+
+    private void updatePeaceTokenImages() throws FileNotFoundException {
+        for(ImageView iv : peaceTokenIVs){ setImage(iv,"tokens-conflict/conflictPeaceToken");}
+
+        int tokensNeeded = gameBoard.getCombatTokensNeeded();
+        int tokensFlipped = gameBoard.getCombatTokensFlipped();
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+
+        for(int i = 0; i < tokensFlipped; i++){
+            setImage(peaceTokenIVs.get(i), "tokens-conflict/conflictWarToken");
+        }
+
+        for(int i = 0; i < tokensNeeded; i++){
+            imageViews.add(peaceTokenIVs.get(i));
+        }
+
+        peaceTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            peaceTokenIVHB.getChildren().add(iv);
+        }
+
     }
 
     private void updateProgressTokenImages() throws FileNotFoundException {
         ArrayList<ProgressToken> stack = gameBoard.getProgressTokens().getProgressTokens();
         ArrayList<ImageView> imageViews = new ArrayList<>();
         if(stack.size() >= 4){
+            imageViews.addAll(progressTokenIVs);
             setImage(progressToken1IV, "tokens-progress/back/token-back");
             setImage(progressToken2IV, stack.get(stack.size()-3).getImageResource());
             setImage(progressToken3IV, stack.get(stack.size()-2).getImageResource());
@@ -122,7 +197,10 @@ public class GameSceneController {
             imageViews.add(progressToken1IV);
             setImage(progressToken1IV, stack.get(0).getImageResource());
         }
-        progressTokenIVHB.getChildren().addAll(imageViews);
+        progressTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            progressTokenIVHB.getChildren().add(iv);
+        }
     }
 
     private void updateDeckImages() throws FileNotFoundException {
@@ -149,7 +227,16 @@ public class GameSceneController {
 
     @FXML
     void onNextTurnButtonClick() throws FileNotFoundException {
+        checkForWar();
         switchToNextPlayer();
+    }
+
+    private void checkForWar() {
+        if(gameBoard.getCombatTokensFlipped() >= gameBoard.getCombatTokensNeeded()){
+            System.out.println("AOUH ! AOUH ! AOUH !");
+            gameBoard.setCombatTokensFlipped(0);
+        }
+
     }
 
     public void onMainDeckButtonClick() throws FileNotFoundException {
