@@ -248,7 +248,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <TitledPane fx:id="HoverPane" collapsible="false" prefHeight="240.0" prefWidth="130.0" visible="false">
+                  <TitledPane fx:id="HoverPane" collapsible="false" prefHeight="238.0" prefWidth="186.0" visible="false">
                      <content>
                         <Label fx:id="InfoPlayer" text="Info Player" wrapText="true" />
                      </content>
