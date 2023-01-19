@@ -1,7 +1,9 @@
 package other;
 
 import data.*;
+import token.Fighter;
 import token.MaterialToken;
+import token.ProgressToken;
 
 import java.util.*;
 
@@ -10,8 +12,13 @@ public class ModelCommonMethods {
     private void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getDeck().get(cardIndex);
-        // Attribue la carte au joueur qui la pioche
-        drawnCard.getCardToken(player);
+        // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
+        if (player.getProgressTokens().contains(ProgressToken.Economy) && drawnCard == Cards.MAT_GOLD) {
+            drawnCard.getCardTokenToPlayer(player);
+            drawnCard.getCardTokenToPlayer(player);
+        } else {
+            drawnCard.getCardTokenToPlayer(player);
+        }
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
         // Vérifie si le joueur a atteint un niveau de merveille
@@ -34,8 +41,8 @@ public class ModelCommonMethods {
     public void drawMiddleDeckCard(Board board, int selectedCardIndex) {
         int middleDeckIndex = board.getDecks().size() - 1;
         Player currentPlayer = board.getPlayers().get(middleDeckIndex);
-        Deck targetdeck = board.getDecks().get(middleDeckIndex);
 
+        Deck targetdeck = board.getDecks().get(middleDeckIndex);
         // Pioche une carte depuis le deck du milieu
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
@@ -47,6 +54,38 @@ public class ModelCommonMethods {
         Deck targetdeck = board.getDecks().get(currentPlayerIndex);
         // Pioche une carte depuis le deck du joueur à droite
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+    }
+
+    public void drawCardWithChkProgress(Player player, Cards drawnCard) {
+        if (player.getProgressTokens().contains(ProgressToken.Urbanism) && (verifDrawnCard(drawnCard, Cards.MAT_WOOD) || verifDrawnCard(drawnCard, Cards.MAT_BRICK))) {
+            // pioche parmi les 3
+        }
+        if (player.getProgressTokens().contains(ProgressToken.ArtsAndCrafts) && (verifDrawnCard(drawnCard, Cards.MAT_PAPER) || verifDrawnCard(drawnCard, Cards.MAT_GLASS))) {
+            // pioche parmi les 3
+        }
+        if (player.getProgressTokens().contains(ProgressToken.Jewelry) && (verifDrawnCard(drawnCard, Cards.MAT_STONE) || verifDrawnCard(drawnCard, Cards.MAT_GOLD))) {
+            // pioche parmi les 3
+        }
+        if (player.getProgressTokens().contains(ProgressToken.Science) && drawnCard.getType().equals("Science")) {
+            // pioche parmi les 3
+        }
+        if (player.getProgressTokens().contains(ProgressToken.Propaganda) && drawnCard.getType().equals("Military") && (drawnCard.getMilitaryCardToken() == Fighter.ARCHER || drawnCard.getMilitaryCardToken() == Fighter.BARBARIAN)) {
+            // pioche parmi les 3
+        }
+        if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
+            drawnCard.getCardTokenToPlayer(player);
+            drawnCard.getCardTokenToPlayer(player);
+        } else {
+            drawnCard.getCardTokenToPlayer(player);
+        }
+    }
+
+    public boolean verifPlayerProgressToken(Player player, ProgressToken progressToken) {
+        return player.getProgressTokens().contains(progressToken);
+    }
+
+    public boolean verifDrawnCard(Cards drawnCard, Cards cardToCheck) {
+        return drawnCard == cardToCheck;
     }
 
     public void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
@@ -120,6 +159,7 @@ public class ModelCommonMethods {
                     break;
                 }
             }
+            chkArchitecture(player);
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
             levelUpWonder(board, i);
@@ -136,10 +176,17 @@ public class ModelCommonMethods {
                 for (int n = 0; n <= wonder.getNbMaterials()[i]; n++) {
                     player.removeMaterialToken(elementTabToToken[j]);
                 }
+                chkArchitecture(player);
                 levelUpWonder(board, i);
                 levelsInStages.put(stage, levelsInCurrentStage - 1);
                 break;
             }
+        }
+    }
+
+    public static void chkArchitecture(Player player) {
+        if (player.getProgressTokens().contains(ProgressToken.Architecture)) {
+            // pioche parmi les 3
         }
     }
 

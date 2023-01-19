@@ -18,4 +18,5 @@ public enum MaterialToken {
     public String getImage() {
         return image;
     }
+
 }
