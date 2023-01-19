@@ -69,6 +69,7 @@ public class Initializers {
     }
 
     public int initNbCombatTokensNeeded(int nbPlayers) {
+        // nombre de combat tokens nécessaire pour lancer une guerre
         return switch (nbPlayers) {
             case 2, 3 -> 3;
             case 4 -> 4;

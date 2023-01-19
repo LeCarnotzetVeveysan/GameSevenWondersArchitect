@@ -39,16 +39,20 @@ public enum Cards {
     }
 
     public Fighter getMilitaryCardToken() {
-        switch (this) {
-            case COM_CENTURION:
-                return Fighter.CENTURION;
-            case COM_BARBARIAN:
-                return Fighter.BARBARIAN;
-            case COM_ARCHER:
-                return Fighter.ARCHER;
-            default:
-                return null;
-        }
+        return switch (this) {
+            case COM_CENTURION -> Fighter.CENTURION;
+            case COM_BARBARIAN -> Fighter.BARBARIAN;
+            case COM_ARCHER -> Fighter.ARCHER;
+            default -> null;
+        };
+    }
+
+    public LaurelToken getLaurelCardToken() {
+        return switch (this) {
+            case LAU_EMPEROR -> LaurelToken.LAUREL3;
+            case LAU_CAT -> LaurelToken.LAUREL2;
+            default -> null;
+        };
     }
 
     public void getCardTokenToPlayer(Player player) {

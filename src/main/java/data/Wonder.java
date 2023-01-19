@@ -1,6 +1,7 @@
 package data;
 
 import other.ModelCommonMethods;
+import token.Fighter;
 
 public enum Wonder {
 
@@ -164,9 +165,9 @@ public enum Wonder {
     }
 
     public void rhodesAction(Board board) {
-        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
-        // incrémenter le total de bouclier de 1 de manière permanente
-        player.addShield(1);
+        int currentPlayer = board.getCurrentPlayerIndex();
+        Player player = board.getPlayers().get(currentPlayer);
+        player.addFighter(Fighter.CENTURION);
     }
 
     // ------------------------------------------------------------------------

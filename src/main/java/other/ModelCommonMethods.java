@@ -1,9 +1,7 @@
 package other;
 
 import data.*;
-import token.Fighter;
-import token.MaterialToken;
-import token.ProgressToken;
+import token.*;
 
 import java.util.*;
 
@@ -13,12 +11,9 @@ public class ModelCommonMethods {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getDeck().get(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
-        if (player.getProgressTokens().contains(ProgressToken.Economy) && drawnCard == Cards.MAT_GOLD) {
-            drawnCard.getCardTokenToPlayer(player);
-            drawnCard.getCardTokenToPlayer(player);
-        } else {
-            drawnCard.getCardTokenToPlayer(player);
-        }
+        drawCardWithChkProgress(player, drawnCard);
+        // Vérifie si la carte contenait un chat Bastet
+        verifCardHasCat(board, drawnCard);
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
         // Vérifie si le joueur a atteint un niveau de merveille
@@ -57,6 +52,12 @@ public class ModelCommonMethods {
     }
 
     public void drawCardWithChkProgress(Player player, Cards drawnCard) {
+        if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
+            drawnCard.getCardTokenToPlayer(player);
+            drawnCard.getCardTokenToPlayer(player);
+        } else {
+            drawnCard.getCardTokenToPlayer(player);
+        }
         if (player.getProgressTokens().contains(ProgressToken.Urbanism) && (verifDrawnCard(drawnCard, Cards.MAT_WOOD) || verifDrawnCard(drawnCard, Cards.MAT_BRICK))) {
             // pioche parmi les 3
         }
@@ -72,12 +73,6 @@ public class ModelCommonMethods {
         if (player.getProgressTokens().contains(ProgressToken.Propaganda) && drawnCard.getType().equals("Military") && (drawnCard.getMilitaryCardToken() == Fighter.ARCHER || drawnCard.getMilitaryCardToken() == Fighter.BARBARIAN)) {
             // pioche parmi les 3
         }
-        if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
-            drawnCard.getCardTokenToPlayer(player);
-            drawnCard.getCardTokenToPlayer(player);
-        } else {
-            drawnCard.getCardTokenToPlayer(player);
-        }
     }
 
     public boolean verifPlayerProgressToken(Player player, ProgressToken progressToken) {
@@ -86,6 +81,20 @@ public class ModelCommonMethods {
 
     public boolean verifDrawnCard(Cards drawnCard, Cards cardToCheck) {
         return drawnCard == cardToCheck;
+    }
+
+    public void verifCardHasCat(Board board, Cards drawnCard) {
+        ArrayList<Player> players = board.getPlayers();
+        Player player = players.get(board.getCurrentPlayerIndex());
+
+        if (drawnCard.getLaurelCardToken() == LaurelToken.LAUREL2) {
+            for (Player p : players) {
+                if (p != player) {
+                    p.setHasCat(false);
+                }
+            }
+            player.setHasCat(true);
+        }
     }
 
     public void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
