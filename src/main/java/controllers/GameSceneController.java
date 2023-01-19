@@ -3,6 +3,7 @@ package controllers;
 import data.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
@@ -105,6 +106,7 @@ public class GameSceneController {
         ArrayList<ProgressToken> stack = gameBoard.getProgressTokens().getProgressTokens();
         ArrayList<ImageView> imageViews = new ArrayList<>();
         if(stack.size() >= 4){
+            imageViews.addAll(progressTokenIVs);
             setImage(progressToken1IV, "tokens-progress/back/token-back");
             setImage(progressToken2IV, stack.get(stack.size()-3).getImageResource());
             setImage(progressToken3IV, stack.get(stack.size()-2).getImageResource());
@@ -122,7 +124,10 @@ public class GameSceneController {
             imageViews.add(progressToken1IV);
             setImage(progressToken1IV, stack.get(0).getImageResource());
         }
-        progressTokenIVHB.getChildren().addAll(imageViews);
+        progressTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            progressTokenIVHB.getChildren().add(iv);
+        }
     }
 
     private void updateDeckImages() throws FileNotFoundException {
@@ -149,6 +154,9 @@ public class GameSceneController {
 
     @FXML
     void onNextTurnButtonClick() throws FileNotFoundException {
+        if(gameBoard.getProgressTokens().getProgressTokens().size() >= 1) {
+            gameBoard.getProgressTokens().drawToken(gameBoard.getProgressTokens().getProgressTokens().size() - 1);
+        }
         switchToNextPlayer();
     }
 
