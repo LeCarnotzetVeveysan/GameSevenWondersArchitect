@@ -55,7 +55,7 @@ public class GameInitController implements Initializable {//implements initializ
     public void onStartButtonClicked() throws IOException {
         if(validInputs()){
             registerAppData();
-            LoadScene.changeScene("main","game-scene");
+            LoadScene.changeScene("main","new-game-scene");
         } else {
             //Display that not enough names are selected
         }
