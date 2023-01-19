@@ -1,15 +1,13 @@
 package controllers;
 
-import application.AppData;
-import data.Wonder;
-import data.GameData;
-import data.Player;
+import data.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,35 +39,60 @@ public class GameSceneController {
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
 
     //Game variables
+    private Board gameBoard;
     private int numPlayers = GameData.getNumberOfPlayers();
     private int currentPlayerIndex;
     private Player currentPlayer;
     private ArrayList<Player> playerList;
+    private ArrayList<Deck> deckList = gameBoard.getDecks();
+    private Deck centralDeck, rightDeck, leftDeck;
 
     public void initialize(){
-        System.out.println(Arrays.toString(GameData.getPlayerNames()));
-        playerList = new ArrayList<>();
-        currentPlayerIndex = 0;
 
-        initializePlayers();
+        gameBoard = new Board();
+        playerList = gameBoard.getPlayers();
+        currentPlayerIndex = -1;
+        switchToNextPlayer();
 
-        onNextTurnButtonClicked();
+        updateDecks();
+
     }
 
-    public void initializePlayers(){
-        String[] names = GameData.getPlayerNames();
-        for(int i = 0; i < numPlayers; i++){
-            //add player to playerlist
-        }
+    private void updateDecks() {
+        centralDeck = deckList.get(numPlayers - 1);
+        rightDeck = deckList.get(currentPlayerIndex);
+        leftDeck = currentPlayerIndex == 0 ? deckList.get(numPlayers - 2) : deckList.get(currentPlayerIndex - 1);
+    }
+
+    void switchToNextPlayer(){
+        currentPlayerIndex += 1;
+        currentPlayerIndex %= numPlayers;
+        currentPlayer = playerList.get(currentPlayerIndex);
+
+        updateDecks();
+
     }
 
     @FXML
     void onNextTurnButtonClicked(){
-        currentPlayerIndex += 1;
-        currentPlayerIndex %= numPlayers;
-        currentPlayer = playerList.get(currentPlayerIndex);
+        switchToNextPlayer();
     }
 
+    public void onMainDeckButtonClick() {
+        Cards drawnCard = centralDeck.drawTopCard();
+        drawnCard.getCardToken(currentPlayer);
+    }
+
+    public void onLeftDeckButtonClick() {
+        Cards drawnCard = leftDeck.drawTopCard();
+        drawnCard.getCardToken(currentPlayer);
+    }
+
+    public void onRightDeckButtonClick() {
+        Cards drawnCard = rightDeck.drawTopCard();
+        drawnCard.getCardToken(currentPlayer);
+
+    }
     @FXML
     void PiocheCentraleClicked(ActionEvent event) {
 
@@ -174,5 +197,6 @@ public class GameSceneController {
     void UnHoveredSeven(ActionEvent event) {
         HoverPane7.setVisible(false);
     }
+
 
 }

@@ -8,27 +8,27 @@ import token.ScienceToken;
 
 public enum Cards {
 
-    MAT_WOOD("Material", "card-material-wood-lumberjack.png"),
-    MAT_GLASS("Material", "card-material-glass-women.png"),
-    MAT_BRICK("Material", "card-material-brick-women.png"),
-    MAT_STONE("Material", "card-material-stone-stonecutter.png"),
-    MAT_PAPER("Material", "card-material-papyrus-women.png"),
-    MAT_GOLD("Material", "card-material-gold-vizir.png"),
-    LAU_EMPEROR("Laurel", "card-politic-emperor-3laurel.png"),
-    LAU_CAT("Laurel", "card-politic-women-2laurel-cat.png"),
-    SCI_ARCHITECT("Science", "card-progress-architect.png"),
-    SCI_LAW("Science", "card-progress-law.png"),
-    SCI_MECHANIC("Science", "card-progress-mechanic.png"),
-    COM_CENTURION("War", "card-war-centurion.png"),
-    COM_BARBARIAN("War", "card-war-barbarian-1horn.png"),
-    COM_ARCHER("War", "card-war-archer-2horn.png");
+    MAT_WOOD("Material", "card-material-wood-lumberjack"),
+    MAT_GLASS("Material", "card-material-glass-women"),
+    MAT_BRICK("Material", "card-material-brick-women"),
+    MAT_STONE("Material", "card-material-stone-stonecutter"),
+    MAT_PAPER("Material", "card-material-papyrus-women"),
+    MAT_GOLD("Material", "card-material-gold-vizir"),
+    LAU_EMPEROR("Laurel", "card-politic-emperor-3laurel"),
+    LAU_CAT("Laurel", "card-politic-women-2laurel-cat"),
+    SCI_ARCHITECT("Science", "card-progress-architect"),
+    SCI_LAW("Science", "card-progress-law"),
+    SCI_MECHANIC("Science", "card-progress-mechanic"),
+    COM_CENTURION("War", "card-war-centurion"),
+    COM_BARBARIAN("War", "card-war-barbarian-1horn"),
+    COM_ARCHER("War", "card-war-archer-2horn");
 
     private final String type;
     private final String frontImg;
 
     Cards(String type, String frontImg) {
         this.type = type;
-        this.frontImg = "src/main/resources/images/cards/" + frontImg;
+        this.frontImg = "cards/" + frontImg;
     }
 
     public String getType() {
