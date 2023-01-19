@@ -150,4 +150,10 @@ public class Player {
     public boolean isHasBuiltWonder() {
         return hasBuiltWonder;
     }
+
+    public int[] getNumberOfTokens(){
+        int[] tokens = new int[15];
+
+        return tokens;
+    }
 }

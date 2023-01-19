@@ -4,7 +4,10 @@ import application.AppData;
 import data.GameData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.InputEvent;
+import javafx.stage.Stage;
 import other.LoadScene;
 
 import java.io.IOException;
@@ -15,6 +18,8 @@ import static other.LoadScene.changeLauncherScene;
 
 public class GameInitController implements Initializable {//implements initializable obligatoire pour méthode initialize
 
+    @FXML
+    private Button startButton;
     @FXML
     private ComboBox ComboBoxNumPlayer;
     private Integer[] NumPlayer = {2,3,4,5,6,7};
@@ -56,6 +61,8 @@ public class GameInitController implements Initializable {//implements initializ
         if(validInputs()){
             registerAppData();
             LoadScene.changeScene("main","new-game-scene");
+            Stage stage = (Stage) startButton.getScene().getWindow();
+            stage.close();
 
         } else {
             //Display that not enough names are selected
@@ -63,6 +70,7 @@ public class GameInitController implements Initializable {//implements initializ
     }
 
     private boolean validInputs(){
+        if(numberOfPlayers == 0){ return false; }
         for (int i = 0; i < numberOfPlayers;i++){
             String name = nameInputs[i].getText();
             if(!isValidName(name)){
