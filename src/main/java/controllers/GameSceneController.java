@@ -1,7 +1,6 @@
 package controllers;
 
-import application.AppData;
-import data.Wonder;
+import data.Board;
 import data.GameData;
 import data.Player;
 import javafx.event.ActionEvent;
@@ -41,33 +40,31 @@ public class GameSceneController {
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
 
     //Game variables
+    private Board gameBoard;
     private int numPlayers = GameData.getNumberOfPlayers();
     private int currentPlayerIndex;
     private Player currentPlayer;
     private ArrayList<Player> playerList;
 
     public void initialize(){
-        System.out.println(Arrays.toString(GameData.getPlayerNames()));
-        playerList = new ArrayList<>();
-        currentPlayerIndex = 0;
 
-        initializePlayers();
+        gameBoard = new Board();
+        playerList = gameBoard.getPlayers();
+        currentPlayerIndex = -1;
+        switchToNextPlayer();
 
-        onNextTurnButtonClicked();
+
     }
 
-    public void initializePlayers(){
-        String[] names = GameData.getPlayerNames();
-        for(int i = 0; i < numPlayers; i++){
-            //add player to playerlist
-        }
+    void switchToNextPlayer(){
+        currentPlayerIndex += 1;
+        currentPlayerIndex %= numPlayers;
+        currentPlayer = playerList.get(currentPlayerIndex);
     }
 
     @FXML
     void onNextTurnButtonClicked(){
-        currentPlayerIndex += 1;
-        currentPlayerIndex %= numPlayers;
-        currentPlayer = playerList.get(currentPlayerIndex);
+        switchToNextPlayer();
     }
 
     @FXML

@@ -15,8 +15,8 @@ public class Board {
     int combatTokensNeeded;
     int combatTokensFlipped;
 
-    public Board(ArrayList<String> playerNames) {
-        players = initializers.initPlayers(playerNames);
+    public Board() {
+        players = initializers.initPlayers();
         decks = initializers.initDecks(players);
         progressTokens = initializers.initProgressTokens();
         combatTokensNeeded = initializers.initNbCombatTokensNeeded(this.players.size());

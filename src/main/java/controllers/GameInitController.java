@@ -97,6 +97,5 @@ public class GameInitController implements Initializable {//implements initializ
         GameData.setPlayerNames(names);
     }
 
-
 }
 
