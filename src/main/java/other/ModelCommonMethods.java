@@ -21,20 +21,21 @@ public class ModelCommonMethods {
     public void drawLeftDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
+
         // Trouve l'index du joueur à gauche
         int nbPlayers = board.getPlayers().size();
         int leftPlayerIndex = (currentPlayerIndex == 0) ? nbPlayers - 1 : currentPlayerIndex - 1;
+
         Deck targetdeck = board.getDecks().get(leftPlayerIndex);
         // Pioche une carte depuis le deck du joueur à gauche
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
     public void drawMiddleDeckCard(Board board, int selectedCardIndex) {
-        int currentPlayerIndex = board.getCurrentPlayerIndex();
-        Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
-        // Le deck du milieu est toujours le dernier élément de la liste de decks
-        int middleDeckIndex = board.getPlayers().size();
+        int middleDeckIndex = board.getDecks().size() - 1;
+        Player currentPlayer = board.getPlayers().get(middleDeckIndex);
         Deck targetdeck = board.getDecks().get(middleDeckIndex);
+
         // Pioche une carte depuis le deck du milieu
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
@@ -42,10 +43,8 @@ public class ModelCommonMethods {
     public void drawRightDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
-        // Trouve l'index du joueur à droite
-        int nbPlayers = board.getPlayers().size();
-        int rightPlayerIndex = (currentPlayerIndex == nbPlayers - 1) ? 0 : currentPlayerIndex + 1;
-        Deck targetdeck = board.getDecks().get(rightPlayerIndex);
+
+        Deck targetdeck = board.getDecks().get(currentPlayerIndex);
         // Pioche une carte depuis le deck du joueur à droite
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
