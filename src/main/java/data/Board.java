@@ -25,14 +25,6 @@ public class Board {
         isCatTaken = false;
     }
 
-    public void nextTurn() {
-        if (currentPlayerIndex == players.size() - 1) {
-            currentPlayerIndex = 0;
-        } else {
-            currentPlayerIndex++;
-        }
-    }
-
     public ArrayList<Player> getPlayers() {
         return players;
     }

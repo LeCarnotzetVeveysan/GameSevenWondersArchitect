@@ -65,7 +65,11 @@ public enum ProgressToken {
 
     ProgressToken(String effectDescription, String imageResource) {
         this.effectDescription = effectDescription;
-        this.imageResource = "images/tokens-progress/" + imageResource;
+        this.imageResource = "tokens-progress/" + imageResource;
+    }
+
+    public String getImageResource(){
+        return imageResource;
     }
 
 }
