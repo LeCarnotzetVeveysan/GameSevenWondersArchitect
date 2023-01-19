@@ -32,8 +32,6 @@ public class GameSceneController {
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
     private ArrayList<ImageView> progressTokenIVs, peaceTokenIVs;
 
-    @FXML
-    private ImageView JetonsPaix1, JetonsPaix2, JetonsPaix3, JetonsPaix4, JetonsPaix5, JetonsPaix6;
 
 
     @FXML
