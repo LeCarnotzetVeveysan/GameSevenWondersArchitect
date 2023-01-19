@@ -12,6 +12,8 @@ public class Board {
 
     private int currentPlayerIndex = 0;
 
+    private boolean isCatTaken;
+
     int combatTokensNeeded;
     int combatTokensFlipped;
 
@@ -20,6 +22,7 @@ public class Board {
         decks = initializers.initDecks(players);
         progressTokens = initializers.initProgressTokens();
         combatTokensNeeded = initializers.initNbCombatTokensNeeded(this.players.size());
+        isCatTaken = false;
     }
 
     public void nextTurn() {
@@ -60,6 +63,14 @@ public class Board {
 
     public int getCombatTokensNeeded() {
         return combatTokensNeeded;
+    }
+
+    public boolean isCatTaken() {
+        return isCatTaken;
+    }
+
+    public void catIsNowTaken(){
+        isCatTaken = true;
     }
 
 }
