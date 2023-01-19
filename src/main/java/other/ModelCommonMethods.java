@@ -51,7 +51,7 @@ public class ModelCommonMethods {
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawCardWithChkProgress(Player player, Cards drawnCard) {
+    public static void drawCardWithChkProgress(Player player, Cards drawnCard) {
         if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
             drawnCard.getCardTokenToPlayer(player);
             drawnCard.getCardTokenToPlayer(player);
@@ -75,15 +75,15 @@ public class ModelCommonMethods {
         }
     }
 
-    public boolean verifPlayerProgressToken(Player player, ProgressToken progressToken) {
+    public static boolean verifPlayerProgressToken(Player player, ProgressToken progressToken) {
         return player.getProgressTokens().contains(progressToken);
     }
 
-    public boolean verifDrawnCard(Cards drawnCard, Cards cardToCheck) {
+    public static boolean verifDrawnCard(Cards drawnCard, Cards cardToCheck) {
         return drawnCard == cardToCheck;
     }
 
-    public void verifCardHasCat(Board board, Cards drawnCard) {
+    public static void verifCardHasCat(Board board, Cards drawnCard) {
         ArrayList<Player> players = board.getPlayers();
         Player player = players.get(board.getCurrentPlayerIndex());
 
