@@ -70,6 +70,7 @@ public class GameInitController implements Initializable {//implements initializ
     }
 
     private boolean validInputs(){
+        if(numberOfPlayers == 0){ return false; }
         for (int i = 0; i < numberOfPlayers;i++){
             String name = nameInputs[i].getText();
             if(!isValidName(name)){
