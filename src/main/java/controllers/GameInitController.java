@@ -56,6 +56,7 @@ public class GameInitController implements Initializable {//implements initializ
         if(validInputs()){
             registerAppData();
             LoadScene.changeScene("main","new-game-scene");
+
         } else {
             //Display that not enough names are selected
         }

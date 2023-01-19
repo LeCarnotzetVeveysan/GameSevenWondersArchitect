@@ -8,11 +8,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import token.ProgressToken;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static other.UICommonMethods.setImage;
+
 public class GameSceneController {
+
+    @FXML
+    private ImageView startCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
+
+    @FXML
+    private ImageView progressToken1IV, progressToken2IV, progressToken3IV, progressToken4IV;
 
     @FXML
     private Button ButtonScience1, ButtonScience2, ButtonScience3, ButtonScienceRand;
@@ -44,54 +54,84 @@ public class GameSceneController {
     private int currentPlayerIndex;
     private Player currentPlayer;
     private ArrayList<Player> playerList;
-    private ArrayList<Deck> deckList = gameBoard.getDecks();
+    private ArrayList<Deck> deckList;
     private Deck centralDeck, rightDeck, leftDeck;
 
-    public void initialize(){
+    public void initialize() throws FileNotFoundException {
 
         gameBoard = new Board();
+        deckList = gameBoard.getDecks();
         playerList = gameBoard.getPlayers();
         currentPlayerIndex = -1;
+
         switchToNextPlayer();
 
         updateDecks();
 
+        updateImages();
+
+    }
+
+    public void updateImages() throws FileNotFoundException {
+        updateDeckImages();
+        updateProgressTokenImages();
+        updatePeaceTokenImages();
+    }
+
+    private void updatePeaceTokenImages() {
+    }
+
+    private void updateProgressTokenImages() {
+        ProgressTokenStack stack = gameBoard.getProgressTokens();
+
+    }
+
+    private void updateDeckImages() throws FileNotFoundException {
+        setImage(leftDeckIV, leftDeck.getCardAtIndex(0).getFront());
+        setImage(rightDeckIV, rightDeck.getCardAtIndex(0).getFront());
     }
 
     private void updateDecks() {
-        centralDeck = deckList.get(numPlayers - 1);
+        centralDeck = deckList.get(numPlayers);
         rightDeck = deckList.get(currentPlayerIndex);
-        leftDeck = currentPlayerIndex == 0 ? deckList.get(numPlayers - 2) : deckList.get(currentPlayerIndex - 1);
+        leftDeck = currentPlayerIndex == 0 ? deckList.get(numPlayers - 1) : deckList.get(currentPlayerIndex - 1);
     }
 
-    void switchToNextPlayer(){
-        currentPlayerIndex += 1;
-        currentPlayerIndex %= numPlayers;
+    void switchToNextPlayer() throws FileNotFoundException {
+        if (currentPlayerIndex == playerList.size() - 1) {
+            currentPlayerIndex = 0;
+        } else {
+            currentPlayerIndex++;
+        }
         currentPlayer = playerList.get(currentPlayerIndex);
-
         updateDecks();
-
+        updateImages();
     }
 
     @FXML
-    void onNextTurnButtonClicked(){
+    void onNextTurnButtonClick() throws FileNotFoundException {
         switchToNextPlayer();
     }
 
-    public void onMainDeckButtonClick() {
+    public void onMainDeckButtonClick() throws FileNotFoundException {
         Cards drawnCard = centralDeck.drawTopCard();
-        drawnCard.getCardToken(currentPlayer);
+        drawnCard.getCardTokenToPlayer(currentPlayer);
+
+        updateImages();
     }
 
-    public void onLeftDeckButtonClick() {
+    public void onLeftDeckButtonClick() throws FileNotFoundException {
         Cards drawnCard = leftDeck.drawTopCard();
-        drawnCard.getCardToken(currentPlayer);
+        drawnCard.getCardTokenToPlayer(currentPlayer);
+
+        updateImages();
     }
 
-    public void onRightDeckButtonClick() {
+    public void onRightDeckButtonClick() throws FileNotFoundException {
         Cards drawnCard = rightDeck.drawTopCard();
-        drawnCard.getCardToken(currentPlayer);
+        drawnCard.getCardTokenToPlayer(currentPlayer);
 
+        updateImages();
     }
     @FXML
     void PiocheCentraleClicked(ActionEvent event) {

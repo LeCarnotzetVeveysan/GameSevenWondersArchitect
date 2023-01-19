@@ -7,20 +7,20 @@ import token.ScienceToken;
 
 public enum Cards {
 
-    MAT_WOOD("Material", "card-material-wood-lumberjack"),
-    MAT_GLASS("Material", "card-material-glass-women"),
-    MAT_BRICK("Material", "card-material-brick-women"),
-    MAT_STONE("Material", "card-material-stone-stonecutter"),
-    MAT_PAPER("Material", "card-material-papyrus-women"),
-    MAT_GOLD("Material", "card-material-gold-vizir"),
-    LAU_EMPEROR("Laurel", "card-politic-emperor-3laurel"),
-    LAU_CAT("Laurel", "card-politic-women-2laurel-cat"),
-    SCI_ARCHITECT("Science", "card-progress-architect"),
-    SCI_LAW("Science", "card-progress-law"),
-    SCI_MECHANIC("Science", "card-progress-mechanic"),
-    COM_CENTURION("War", "card-war-centurion"),
-    COM_BARBARIAN("War", "card-war-barbarian-1horn"),
-    COM_ARCHER("War", "card-war-archer-2horn");
+    MAT_WOOD("Material", "material-wood-lumberjack"),
+    MAT_GLASS("Material", "material-glass-woman"),
+    MAT_BRICK("Material", "material-brick-woman"),
+    MAT_STONE("Material", "material-stone-stonecutter"),
+    MAT_PAPER("Material", "material-papyrus-woman"),
+    MAT_GOLD("Material", "material-gold-vizir"),
+    LAU_EMPEROR("Laurel", "politic-emperor"),
+    LAU_CAT("Laurel", "politic-woman-cat"),
+    SCI_ARCHITECT("Science", "progress-architect"),
+    SCI_LAW("Science", "progress-law"),
+    SCI_MECHANIC("Science", "progress-mechanic"),
+    COM_CENTURION("War", "war-centurion"),
+    COM_BARBARIAN("War", "war-barbarian"),
+    COM_ARCHER("War", "war-archer");
 
     private final String type;
     private final String frontImg;

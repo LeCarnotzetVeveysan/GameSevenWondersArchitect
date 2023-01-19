@@ -66,22 +66,22 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="progressTokenIV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="progressToken1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/tokens-progress/back/token-back.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="progressToken2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/tokens-progress/back/token-back.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="progressToken3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/tokens-progress/back/token-back.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="progressToken4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/tokens-progress/back/token-back.png" />
                                  </image>
@@ -238,7 +238,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" spacing="10.0">
          <children>
-            <Button fx:id="onNextTurnButtonClick" mnemonicParsing="false" text="Next turn" />
+            <Button onMouseClicked="#onNextTurnButtonClick" mnemonicParsing="false" text="Next turn" />
             <Label text="Player 1 Recap" />
             <Label text="Player 2 Recap" />
             <Label text="Player 3 Recap" />
