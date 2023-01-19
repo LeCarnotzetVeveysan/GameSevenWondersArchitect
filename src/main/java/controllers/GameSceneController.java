@@ -31,25 +31,17 @@ public class GameSceneController {
     private ArrayList<ImageView> progressTokenIVs;
 
     @FXML
-    private Button ButtonScience1, ButtonScience2, ButtonScience3, ButtonScienceRand;
+    private ImageView JetonsPaix1, JetonsPaix2, JetonsPaix3, JetonsPaix4, JetonsPaix5, JetonsPaix6;
 
-    @FXML
-    private ImageView ImageViewJetonsPaix1, ImageViewJetonsPaix2, ImageViewJetonsPaix3;
-
-    @FXML
-    private ImageView ImageViewJetonsSciences1, ImageViewJetonsSciences2, ImageViewJetonsSciences3, ImageViewJetonsSciencesRand;
-
-    @FXML
-    private Button NextTurnButton, PiocheCentraleButton, PiocheDroiteButton, PiocheGaucheButton;
 
     @FXML
     private Label Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name;
 
     @FXML
-    private TitledPane HoverPane1, HoverPane2, HoverPane3, HoverPane4, HoverPane5, HoverPane6, HoverPane7;
+    private TitledPane HoverPane;
 
     @FXML
-    private Label InfoPlayer1, InfoPlayer2, InfoPlayer3, InfoPlayer4, InfoPlayer5, InfoPlayer6, InfoPlayer7;
+    private Label InfoPlayer;
 
     @FXML
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
@@ -62,6 +54,7 @@ public class GameSceneController {
     private ArrayList<Player> playerList;
     private ArrayList<Deck> deckList;
     private Deck centralDeck, rightDeck, leftDeck;
+    private int hoveredPlayer;
 
     public void initialize() throws FileNotFoundException {
 
@@ -169,6 +162,11 @@ public class GameSceneController {
         updateImages();
     }
 
+    public void Hovered() throws FileNotFoundException {
+        HoverPane.setVisible(true);
+        //Set Label InfoPlayer en fonction du joueur qui a été hover ( donc valeur de hoveredPlayer )
+    }
+
     @FXML
     void Science1Clicked(ActionEvent event) {
 
@@ -185,68 +183,75 @@ public class GameSceneController {
     }
 
     @FXML
-    void ScienceRandClicked(ActionEvent event) {
+    void Science4Clicked(ActionEvent event) {
 
     }
 
     @FXML
-    void HoveredOne(ActionEvent event) {
-        HoverPane1.setVisible(true);
+    void HoveredOne(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =1;
+        Hovered();
     }
 
     @FXML
-    void HoveredTwo(ActionEvent event) {
-        HoverPane2.setVisible(true);
+    void HoveredTwo(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =2;
+        Hovered();
     }
 
     @FXML
-    void HoveredThree(ActionEvent event) {
-        HoverPane3.setVisible(true);
+    void HoveredThree(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =3;
+        Hovered();
     }
 
     @FXML
-    void HoveredFour(ActionEvent event) {
-        HoverPane4.setVisible(true);
+    void HoveredFour(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =4;
+        Hovered();
     }
 
     @FXML
-    void HoveredFive(ActionEvent event) {
-        HoverPane5.setVisible(true);
+    void HoveredFive(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =5;
+        Hovered();
     }
 
     @FXML
-    void HoveredSix(ActionEvent event) {
-        HoverPane6.setVisible(true);
+    void HoveredSix(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =6;
+        Hovered();
     }
 
     @FXML
-    void HoveredSeven(ActionEvent event) {
-        HoverPane7.setVisible(true);
+    void HoveredSeven(ActionEvent event) throws FileNotFoundException {
+        hoveredPlayer =7;
+        Hovered();
     }
 
     @FXML
     void UnHoveredOne(ActionEvent event) {
-        HoverPane1.setVisible(false);
+        HoverPane.setVisible(false);
     }
 
     @FXML
     void UnHoveredTwo(ActionEvent event) {
-        HoverPane2.setVisible(false);
+        HoverPane.setVisible(false);
     }
 
     @FXML
     void UnHoveredThree(ActionEvent event) {
-        HoverPane3.setVisible(false);
+        HoverPane.setVisible(false);
     }
 
     @FXML
     void UnHoveredFour(ActionEvent event) {
-        HoverPane4.setVisible(false);
+        HoverPane.setVisible(false);
     }
 
     @FXML
     void UnHoveredFive(ActionEvent event) {
-        HoverPane5.setVisible(false);
+        HoverPane.setVisible(false);
     }
 
     @FXML

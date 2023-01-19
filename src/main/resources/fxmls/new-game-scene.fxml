@@ -19,32 +19,32 @@
                <children>
                   <HBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefWidth="384.0">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="JetonsPaix6" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="JetonsPaix5" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="JetonsPaix4" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="JetonsPaix3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="JetonsPaix2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="JetonsPaix1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
                            </image>
@@ -69,26 +69,42 @@
                      <children>
                         <HBox fx:id="progressTokenIVHB" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="progressToken1IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#ScienceRandClicked" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/tokens-progress/back/token-back.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="progressToken2IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#Science1Clicked" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/tokens-progress/back/token-back.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="progressToken3IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#Science2Clicked" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/tokens-progress/back/token-back.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="progressToken4IV" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#Science3Clicked" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/tokens-progress/back/token-back.png" />
-                                 </image>
-                              </ImageView>
+                              <Button mnemonicParsing="false" onMouseClicked="#Science1Clicked">
+                                 <graphic>
+                                    <ImageView fx:id="progressToken1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-progress/back/token-back.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#Science2Clicked">
+                                 <graphic>
+                                    <ImageView fx:id="progressToken2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-progress/back/token-back.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#Science3Clicked">
+                                 <graphic>
+                                    <ImageView fx:id="progressToken3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-progress/back/token-back.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#Science4Clicked">
+                                 <graphic>
+                                    <ImageView fx:id="progressToken4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-progress/back/token-back.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </HBox>
                         <Label text="Token name" textAlignment="CENTER" />
@@ -246,7 +262,10 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="149.0" spacing="5.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#onNextTurnButtonClick" text="Next turn" />
+            <Button mnemonicParsing="false" onMouseClicked="#onNextTurnButtonClick" text="Next turn">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
             <Label fx:id="Player1Name" text="Player 1 Name" />
             <Label text="Hover For Info">
                <font>
