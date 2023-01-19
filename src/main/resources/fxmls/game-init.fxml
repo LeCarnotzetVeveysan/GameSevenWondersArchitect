@@ -4,57 +4,52 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitController">
    <children>
-      <ImageView fx:id="LogoView" fitHeight="135.0" fitWidth="339.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true">
+      <AnchorPane layoutX="201.0" layoutY="116.0" minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="269.0">
+         <children>
+            <Label fx:id="Player1NameLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="93.0" text="Player 1 Name :" />
+            <Label fx:id="Player2NameLabel" layoutX="14.0" layoutY="31.0" prefHeight="17.0" prefWidth="93.0" text="Player 2 Name :" />
+            <Label fx:id="Player3NameLabel" layoutX="14.0" layoutY="57.0" prefHeight="17.0" prefWidth="93.0" text="Player 3 Name :" />
+            <Label fx:id="Player4NameLabel" layoutX="14.0" layoutY="83.0" prefHeight="17.0" prefWidth="93.0" text="Player 4 Name :" />
+            <Label fx:id="Player5NameLabel" layoutX="14.0" layoutY="109.0" prefHeight="17.0" prefWidth="93.0" text="Player 5 Name :" />
+            <Label fx:id="Player6NameLabel" layoutX="14.0" layoutY="135.0" prefHeight="17.0" prefWidth="93.0" text="Player 6 Name :" />
+            <Label fx:id="Player7NameLabel" layoutX="14.0" layoutY="161.0" prefHeight="17.0" prefWidth="93.0" text="Player 7 Name :" />
+            <TextField fx:id="Player1Name" layoutX="107.0" layoutY="1.0" />
+            <TextField fx:id="Player2Name" layoutX="107.0" layoutY="27.0" />
+            <TextField fx:id="Player3Name" layoutX="107.0" layoutY="53.0" />
+            <TextField fx:id="Player4Name" layoutX="107.0" layoutY="79.0" />
+            <TextField fx:id="Player5Name" layoutX="107.0" layoutY="105.0" />
+            <TextField fx:id="Player6Name" layoutX="107.0" layoutY="131.0" />
+            <TextField fx:id="Player7Name" layoutX="107.0" layoutY="157.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="135.0" fitWidth="225.0" layoutX="137.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Untitled.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="ComboBoxNumPlayer" layoutX="128.0" layoutY="166.0" onAction="#NumPlayerChoosed" prefHeight="26.0" prefWidth="70.0" />
-      <Label layoutX="43.0" layoutY="171.0" text="N° of players :" />
+      <ComboBox fx:id="ComboBoxNumPlayer" layoutX="117.0" layoutY="208.0" onAction="#onNumPlayersChanged" prefHeight="26.0" prefWidth="70.0" />
+      <Label layoutX="117.0" layoutY="182.0" text="N° of players :" />
       <HBox layoutX="74.0" layoutY="316.0" spacing="50.0">
          <children>
-            <Button fx:id="StartButton" mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Start">
+            <Button mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Start">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="RulesButton" mnemonicParsing="false" onAction="#onRuleButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Rules">
+            <Button mnemonicParsing="false" onAction="#onRuleButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Rules">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <TitledPane fx:id="TitledPaneNames" animated="false" disable="true" expanded="false" layoutX="214.0" layoutY="166.0" prefHeight="215.0" prefWidth="271.0" text="Player Names">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="269.0">
-               <children>
-                  <TextField fx:id="Player1NameField" layoutX="107.0" layoutY="1.0" />
-                  <Label fx:id="Player1NameLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="93.0" text="Player 1 Name :" />
-                  <Label fx:id="Player2NameLabel" layoutX="14.0" layoutY="31.0" prefHeight="17.0" prefWidth="93.0" text="Player 2 Name :" />
-                  <Label fx:id="Player3NameLabel" layoutX="14.0" layoutY="57.0" prefHeight="17.0" prefWidth="93.0" text="Player 3 Name :" />
-                  <Label fx:id="Player4NameLabel" layoutX="14.0" layoutY="83.0" prefHeight="17.0" prefWidth="93.0" text="Player 4 Name :" />
-                  <Label fx:id="Player5NameLabel" layoutX="14.0" layoutY="109.0" prefHeight="17.0" prefWidth="93.0" text="Player 5 Name :" />
-                  <Label fx:id="Player6NameLabel" layoutX="14.0" layoutY="135.0" prefHeight="17.0" prefWidth="93.0" text="Player 6 Name :" />
-                  <Label fx:id="Player7NameLabel" layoutX="14.0" layoutY="161.0" prefHeight="17.0" prefWidth="93.0" text="Player 7 Name :" />
-                  <TextField fx:id="Player2NameField" layoutX="107.0" layoutY="27.0" />
-                  <TextField fx:id="Player3NameField" layoutX="107.0" layoutY="53.0" />
-                  <TextField fx:id="Player4NameField" layoutX="107.0" layoutY="79.0" />
-                  <TextField fx:id="Player5NameField" layoutX="107.0" layoutY="105.0" />
-                  <TextField fx:id="Player6NameField" layoutX="107.0" layoutY="131.0" />
-                  <TextField fx:id="Player7NameField" layoutX="107.0" layoutY="157.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </TitledPane>
    </children>
 </AnchorPane>

@@ -109,7 +109,7 @@
       </ImageView>
       <ImageView fx:id="ImageViewJetonsPaix3" fitHeight="49.0" fitWidth="49.0" layoutX="124.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-peace.png" />
+            <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
          </image>
       </ImageView>
       <Button fx:id="NextTurnButton" layoutX="482.0" layoutY="327.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="103.0" text="Next Turn">

@@ -74,4 +74,17 @@ public class Deck {
         return backCardImg;
     }
 
+    public Cards drawTopCard(){
+        Cards topCard = getCardAtIndex(0);
+        removeCardAtIndex(0);
+        return topCard;
+    }
+    public Cards getCardAtIndex(int index){
+        return deck.get(index);
+    }
+
+    public void removeCardAtIndex(int index){
+        deck.remove(index);
+    }
+
 }

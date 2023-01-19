@@ -7,27 +7,27 @@ import token.ScienceToken;
 
 public enum Cards {
 
-    MAT_WOOD("Material", "card-material-wood-lumberjack.png"),
-    MAT_GLASS("Material", "card-material-glass-women.png"),
-    MAT_BRICK("Material", "card-material-brick-women.png"),
-    MAT_STONE("Material", "card-material-stone-stonecutter.png"),
-    MAT_PAPER("Material", "card-material-papyrus-women.png"),
-    MAT_GOLD("Material", "card-material-gold-vizir.png"),
-    LAU_EMPEROR("Laurel", "card-politic-emperor-3laurel.png"),
-    LAU_CAT("Laurel", "card-politic-women-2laurel-cat.png"),
-    SCI_ARCHITECT("Science", "card-progress-architect.png"),
-    SCI_LAW("Science", "card-progress-law.png"),
-    SCI_MECHANIC("Science", "card-progress-mechanic.png"),
-    COM_CENTURION("War", "card-war-centurion.png"),
-    COM_BARBARIAN("War", "card-war-barbarian-1horn.png"),
-    COM_ARCHER("War", "card-war-archer-2horn.png");
+    MAT_WOOD("Material", "material-wood-lumberjack"),
+    MAT_GLASS("Material", "material-glass-woman"),
+    MAT_BRICK("Material", "material-brick-woman"),
+    MAT_STONE("Material", "material-stone-stonecutter"),
+    MAT_PAPER("Material", "material-papyrus-woman"),
+    MAT_GOLD("Material", "material-gold-vizir"),
+    LAU_EMPEROR("Laurel", "politic-emperor"),
+    LAU_CAT("Laurel", "politic-woman-cat"),
+    SCI_ARCHITECT("Science", "progress-architect"),
+    SCI_LAW("Science", "progress-law"),
+    SCI_MECHANIC("Science", "progress-mechanic"),
+    COM_CENTURION("War", "war-centurion"),
+    COM_BARBARIAN("War", "war-barbarian"),
+    COM_ARCHER("War", "war-archer");
 
     private final String type;
     private final String frontImg;
 
     Cards(String type, String frontImg) {
         this.type = type;
-        this.frontImg = "src/main/resources/images/cards/" + frontImg;
+        this.frontImg = "cards/" + frontImg;
     }
 
     public String getType() {
@@ -38,7 +38,24 @@ public enum Cards {
         return frontImg;
     }
 
-    public void getCardToken(Player player) {
+    public Fighter getMilitaryCardToken() {
+        return switch (this) {
+            case COM_CENTURION -> Fighter.CENTURION;
+            case COM_BARBARIAN -> Fighter.BARBARIAN;
+            case COM_ARCHER -> Fighter.ARCHER;
+            default -> null;
+        };
+    }
+
+    public LaurelToken getLaurelCardToken() {
+        return switch (this) {
+            case LAU_EMPEROR -> LaurelToken.LAUREL3;
+            case LAU_CAT -> LaurelToken.LAUREL2;
+            default -> null;
+        };
+    }
+
+    public void getCardTokenToPlayer(Player player) {
         switch (this) {
             case MAT_GOLD -> player.addMaterialToken(MaterialToken.GOLD);
             case MAT_BRICK -> player.addMaterialToken(MaterialToken.BRICK);
@@ -58,3 +75,4 @@ public enum Cards {
     }
 
 }
+

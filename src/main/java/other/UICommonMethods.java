@@ -1,11 +1,13 @@
 package other;
 
+import data.Player;
+import data.Deck;
+import data.ProgressTokenStack;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 public class UICommonMethods {
 
@@ -30,7 +32,6 @@ public class UICommonMethods {
     private void refreshProgressTokenImages() {
 
     }
-
 
     private void refreshPlayer() {
 
