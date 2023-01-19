@@ -2,6 +2,7 @@ package controllers;
 
 import data.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -39,6 +40,8 @@ public class GameSceneController {
 
     @FXML
     private TitledPane HoverPane;
+    @FXML
+    private Label LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7;
 
     @FXML
     private Label InfoPlayer;
@@ -71,6 +74,97 @@ public class GameSceneController {
 
         updateImages();
 
+        LabelHover1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =1;
+                Hovered();
+            }
+        });
+        LabelHover1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =2;
+                Hovered();
+            }
+        });
+        LabelHover2.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =3;
+                Hovered();
+            }
+        });
+        LabelHover3.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover4.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =4;
+                Hovered();
+            }
+        });
+        LabelHover4.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover5.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =5;
+                Hovered();
+            }
+        });
+        LabelHover5.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover6.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =6;
+                Hovered();
+            }
+        });
+        LabelHover6.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover7.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =7;
+                Hovered();
+            }
+        });
+        LabelHover7.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
     }
 
     private void initIVs() {
@@ -247,9 +341,10 @@ public class GameSceneController {
         updateImages();
     }
 
-    public void Hovered() throws FileNotFoundException {
+    public void Hovered(){
         HoverPane.setVisible(true);
         //Set Label InfoPlayer en fonction du joueur qui a été hover ( donc valeur de hoveredPlayer )
+        InfoPlayer.setText("Player "+ hoveredPlayer + " hovered");
     }
 
     @FXML
@@ -270,83 +365,6 @@ public class GameSceneController {
     @FXML
     void Science4Clicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void HoveredOne(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =1;
-        Hovered();
-    }
-
-    @FXML
-    void HoveredTwo(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =2;
-        Hovered();
-    }
-
-    @FXML
-    void HoveredThree(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =3;
-        Hovered();
-    }
-
-    @FXML
-    void HoveredFour(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =4;
-        Hovered();
-    }
-
-    @FXML
-    void HoveredFive(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =5;
-        Hovered();
-    }
-
-    @FXML
-    void HoveredSix(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =6;
-        Hovered();
-    }
-
-    @FXML
-    void HoveredSeven(ActionEvent event) throws FileNotFoundException {
-        hoveredPlayer =7;
-        Hovered();
-    }
-
-    @FXML
-    void UnHoveredOne(ActionEvent event) {
-        HoverPane.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredTwo(ActionEvent event) {
-        HoverPane.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredThree(ActionEvent event) {
-        HoverPane.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredFour(ActionEvent event) {
-        HoverPane.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredFive(ActionEvent event) {
-        HoverPane.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredSix(ActionEvent event) {
-        HoverPane.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredSeven(ActionEvent event) {
-        HoverPane.setVisible(false);
     }
 
 
