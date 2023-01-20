@@ -152,7 +152,7 @@ public class Player {
     }
 
     public int[] getNumberOfTokens(){
-        int[] tokens = new int[12];
+        int[] tokens = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         for (MaterialToken token : materialTokens) {
             switch (token) {
@@ -167,23 +167,25 @@ public class Player {
 
         for(ScienceToken token : scienceTokens){
             switch (token){
-                case LAW -> tokens[6]++;
-                case MECHANIC -> tokens[7]++;
-                case ARCHITECT -> tokens[8]++;
+                case ARCHITECT -> tokens[6]++;
+                case LAW -> tokens[7]++;
+                case MECHANIC -> tokens[8]++;
             }
         }
 
         for(LaurelToken token : laurelTokens) {
             switch (token){
-                case LAUREL2 -> tokens[9]++;
-                case LAUREL3 -> tokens[10]++;
-
+                case LAUREL_BLUE_2 -> tokens[9]++;
+                case LAUREL_BLUE_3 -> tokens[10]++;
+                case LAUREL_RED_3 -> tokens[11]++;
             }
         }
 
-
         for(Fighter fighter : fighters){
-
+            switch (fighter){
+                case CENTURION -> tokens[12]++;
+                case BARBARIAN, ARCHER -> tokens[13]++;
+            }
         }
 
         return tokens;

@@ -34,10 +34,14 @@ public class GameSceneController {
     private ImageView playerWonderIV;
 
     @FXML
-    private HBox playerProgressTokenIVHB;
+    private HBox playerProgressTokenIVHB, playerMaterialTokenIVHB, playerScienceTokenIVHB;
     @FXML
     private ImageView playerProgTok1IV, playerProgTok2IV,playerProgTok3IV,playerProgTok4IV,playerProgTok5IV,playerProgTok6IV,playerProgTok7IV,playerProgTok8IV;
-    private ArrayList<ImageView> playerProgressTokenIVs;
+    @FXML
+    private ImageView woodTokenIV, brickTokenIV, glassTokenIV, paperTokenIV, stoneTokenIV, goldTokenIV;
+    @FXML
+    private ImageView architectTokenIV, lawTokenIV, mechanicTokenIV;
+    private ArrayList<ImageView> playerProgressTokenIVs, playerMaterialTokenIVs, playerScienceTokenIVs;
 
 
     @FXML
@@ -129,11 +133,21 @@ public class GameSceneController {
     }
 
     private void initScienceTokenIVs() {
+        playerScienceTokenIVs = new ArrayList<>();
+        playerScienceTokenIVs.add(architectTokenIV);
+        playerScienceTokenIVs.add(lawTokenIV);
+        playerScienceTokenIVs.add(mechanicTokenIV);
         
     }
 
     private void initMaterialTokenIVs() {
-        
+        playerMaterialTokenIVs = new ArrayList<>();
+        playerMaterialTokenIVs.add(woodTokenIV);
+        playerMaterialTokenIVs.add(brickTokenIV);
+        playerMaterialTokenIVs.add(glassTokenIV);
+        playerMaterialTokenIVs.add(paperTokenIV);
+        playerMaterialTokenIVs.add(stoneTokenIV);
+        playerMaterialTokenIVs.add(goldTokenIV);
     }
 
     private void initPeaceTokenIVs() {
@@ -202,24 +216,52 @@ public class GameSceneController {
     }
 
     private void updatePlayerTokenLabels() {
+        int[] tokens = currentPlayer.getNumberOfTokens();
+
 
     }
 
     private void updatePlayerTokenIVs() {
+        updatePlayerMaterialTokenIVs();
+        updatePlayerScienceTokenIVs();
 
     }
 
+    private void updatePlayerScienceTokenIVs() {
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        int[] tokens = currentPlayer.getNumberOfTokens();
+
+        for(int i = 6; i <= 8;i++){
+            if(tokens[i] > 0){
+                imageViews.add(playerScienceTokenIVs.get(i-6));
+            }
+        }
+
+        playerScienceTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            playerScienceTokenIVHB.getChildren().add(iv);
+        }
+    }
+
+    private void updatePlayerMaterialTokenIVs() {
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        int[] tokens = currentPlayer.getNumberOfTokens();
+
+        for(int i = 0; i <= 5;i++){
+            if(tokens[i] > 0){
+                imageViews.add(playerMaterialTokenIVs.get(i));
+            }
+        }
+
+        playerMaterialTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            playerMaterialTokenIVHB.getChildren().add(iv);
+        }
+    }
+
     private void updateCatImages() {
-        if(gameBoard.isCatTaken()){
-            startCatIV.setVisible(false);
-        } else {
-            startCatIV.setVisible(true);
-        }
-        if(currentPlayer.getHasCat()){
-            playerCatIV.setVisible(true);
-        } else {
-            playerCatIV.setVisible(false);
-        }
+        startCatIV.setVisible(!gameBoard.isCatTaken());
+        playerCatIV.setVisible(currentPlayer.getHasCat());
     }
 
     private void updatePeaceTokenImages() throws FileNotFoundException {

@@ -87,7 +87,7 @@ public class ModelCommonMethods {
         ArrayList<Player> players = board.getPlayers();
         Player player = players.get(board.getCurrentPlayerIndex());
 
-        if (drawnCard.getLaurelCardToken() == LaurelToken.LAUREL2) {
+        if (drawnCard.getLaurelCardToken() == LaurelToken.LAUREL_BLUE_2) {
             for (Player p : players) {
                 if (p != player) {
                     p.setHasCat(false);

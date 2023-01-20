@@ -49,8 +49,8 @@ public enum Cards {
 
     public LaurelToken getLaurelCardToken() {
         return switch (this) {
-            case LAU_EMPEROR -> LaurelToken.LAUREL3;
-            case LAU_CAT -> LaurelToken.LAUREL2;
+            case LAU_EMPEROR -> LaurelToken.LAUREL_BLUE_3;
+            case LAU_CAT -> LaurelToken.LAUREL_BLUE_2;
             default -> null;
         };
     }
@@ -63,8 +63,8 @@ public enum Cards {
             case MAT_STONE -> player.addMaterialToken(MaterialToken.STONE);
             case MAT_PAPER -> player.addMaterialToken(MaterialToken.PAPER);
             case MAT_WOOD -> player.addMaterialToken(MaterialToken.WOOD);
-            case LAU_EMPEROR -> player.addLaurelToken(LaurelToken.LAUREL3);
-            case LAU_CAT -> player.addLaurelToken(LaurelToken.LAUREL2);
+            case LAU_EMPEROR -> player.addLaurelToken(LaurelToken.LAUREL_BLUE_3);
+            case LAU_CAT -> player.addLaurelToken(LaurelToken.LAUREL_BLUE_2);
             case SCI_ARCHITECT -> player.addScienceToken(ScienceToken.ARCHITECT);
             case SCI_LAW -> player.addScienceToken(ScienceToken.LAW);
             case SCI_MECHANIC -> player.addScienceToken(ScienceToken.MECHANIC);
