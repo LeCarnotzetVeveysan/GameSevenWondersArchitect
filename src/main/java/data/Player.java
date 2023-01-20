@@ -175,9 +175,9 @@ public class Player {
 
         for(LaurelToken token : laurelTokens) {
             switch (token){
-                case LAUREL_BLUE_2 -> tokens[9]++;
-                case LAUREL_BLUE_3 -> tokens[10]++;
-                case LAUREL_RED_3 -> tokens[11]++;
+                case LAUREL_RED_3 -> tokens[9]++;
+                case LAUREL_BLUE_2 -> tokens[10]++;
+                case LAUREL_BLUE_3 -> tokens[11]++;
             }
         }
 

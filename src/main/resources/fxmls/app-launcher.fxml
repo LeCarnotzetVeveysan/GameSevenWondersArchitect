@@ -42,7 +42,7 @@
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Select Screen Size" />
-                     <String fx:value="925x603" />
+                     <String fx:value="988x707" />
                      <String fx:value="750x600" />
                      <String fx:value="1000x800" />
                   </FXCollections>
