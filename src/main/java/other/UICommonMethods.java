@@ -13,7 +13,11 @@ public class UICommonMethods {
 
     public static void setImage(ImageView iv, String url) throws FileNotFoundException {
         String resPath = "src/main/resources/images/";
-        Image image = new Image(new FileInputStream(resPath + url + ".png"));
+        url += ".png";
+        if (url.endsWith(".png.png")) {
+            url = url.replace(".png.png", ".png");
+        }
+        Image image = new Image(new FileInputStream(resPath + url));
         iv.setImage(image);
     }
 

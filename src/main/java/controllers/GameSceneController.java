@@ -2,6 +2,7 @@ package controllers;
 
 import data.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static other.ModelCommonMethods.drawCard;
+import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
 
 public class GameSceneController {
@@ -32,26 +33,18 @@ public class GameSceneController {
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
     private ArrayList<ImageView> progressTokenIVs, peaceTokenIVs;
 
-    @FXML
-    private Button ButtonScience1, ButtonScience2, ButtonScience3, ButtonScienceRand;
 
-    @FXML
-    private ImageView ImageViewJetonsPaix1, ImageViewJetonsPaix2, ImageViewJetonsPaix3;
-
-    @FXML
-    private ImageView ImageViewJetonsSciences1, ImageViewJetonsSciences2, ImageViewJetonsSciences3, ImageViewJetonsSciencesRand;
-
-    @FXML
-    private Button NextTurnButton, PiocheCentraleButton, PiocheDroiteButton, PiocheGaucheButton;
 
     @FXML
     private Label Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name;
 
     @FXML
-    private TitledPane HoverPane1, HoverPane2, HoverPane3, HoverPane4, HoverPane5, HoverPane6, HoverPane7;
+    private TitledPane HoverPane;
+    @FXML
+    private Label LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7;
 
     @FXML
-    private Label InfoPlayer1, InfoPlayer2, InfoPlayer3, InfoPlayer4, InfoPlayer5, InfoPlayer6, InfoPlayer7;
+    private Label InfoPlayer;
 
     @FXML
     private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
@@ -59,11 +52,11 @@ public class GameSceneController {
     //Game variables
     private Board gameBoard;
     private int numPlayers = GameData.getNumberOfPlayers();
-    private int currentPlayerIndex;
     private Player currentPlayer;
     private ArrayList<Player> playerList;
     private ArrayList<Deck> deckList;
     private Deck centralDeck, rightDeck, leftDeck;
+    private int hoveredPlayer;
 
     public void initialize() throws FileNotFoundException {
 
@@ -72,7 +65,7 @@ public class GameSceneController {
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
         playerList = gameBoard.getPlayers();
-        currentPlayerIndex = -1;
+        gameBoard.setCurrentPlayerIndex(-1);
 
         switchToNextPlayer();
 
@@ -80,6 +73,97 @@ public class GameSceneController {
 
         updateImages();
 
+        LabelHover1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =1;
+                Hovered();
+            }
+        });
+        LabelHover1.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =2;
+                Hovered();
+            }
+        });
+        LabelHover2.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =3;
+                Hovered();
+            }
+        });
+        LabelHover3.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover4.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =4;
+                Hovered();
+            }
+        });
+        LabelHover4.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover5.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =5;
+                Hovered();
+            }
+        });
+        LabelHover5.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover6.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =6;
+                Hovered();
+            }
+        });
+        LabelHover6.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
+        LabelHover7.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                hoveredPlayer =7;
+                Hovered();
+            }
+        });
+        LabelHover7.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                HoverPane.setVisible(false);
+            }
+        });
     }
 
     private void initIVs() {
@@ -204,23 +288,31 @@ public class GameSceneController {
     }
 
     private void updateDeckImages() throws FileNotFoundException {
-        setImage(leftDeckIV, leftDeck.getCardAtIndex(0).getFront());
-        setImage(rightDeckIV, rightDeck.getCardAtIndex(0).getFront());
+        if (leftDeck.getDeck().size() > 0){
+            setImage(leftDeckIV, leftDeck.getCardAtIndex(0).getFront());
+        } else {
+            setImage(leftDeckIV, leftDeck.getBackCardImg());
+        }
+        if (rightDeck.getDeck().size() > 0){
+            setImage(rightDeckIV, rightDeck.getCardAtIndex(0).getFront());
+        } else {
+            setImage(rightDeckIV, rightDeck.getBackCardImg());
+        }
     }
 
     private void updateDecks() {
         centralDeck = deckList.get(numPlayers);
-        rightDeck = deckList.get(currentPlayerIndex);
-        leftDeck = currentPlayerIndex == 0 ? deckList.get(numPlayers - 1) : deckList.get(currentPlayerIndex - 1);
+        rightDeck = deckList.get(gameBoard.getCurrentPlayerIndex());
+        leftDeck = gameBoard.getCurrentPlayerIndex() == 0 ? deckList.get(numPlayers - 1) : deckList.get(gameBoard.getCurrentPlayerIndex() - 1);
     }
 
     void switchToNextPlayer() throws FileNotFoundException {
-        if (currentPlayerIndex == playerList.size() - 1) {
-            currentPlayerIndex = 0;
+        if (gameBoard.getCurrentPlayerIndex() == playerList.size() - 1) {
+            gameBoard.setCurrentPlayerIndex(0);
         } else {
-            currentPlayerIndex++;
+            gameBoard.setCurrentPlayerIndex(gameBoard.getCurrentPlayerIndex() + 1);
         }
-        currentPlayer = playerList.get(currentPlayerIndex);
+        currentPlayer = playerList.get(gameBoard.getCurrentPlayerIndex());
         updateDecks();
         updateImages();
     }
@@ -236,38 +328,37 @@ public class GameSceneController {
             System.out.println("AOUH ! AOUH ! AOUH !");
             gameBoard.setCombatTokensFlipped(0);
         }
-
+        checkPlayerWar(gameBoard, playerList);
     }
 
     public void onMainDeckButtonClick() throws FileNotFoundException {
-        drawCard(gameBoard,centralDeck,currentPlayer,0);
-
+        if (centralDeck.getDeck().size() > 0) {
+            drawMiddleDeckCard(gameBoard, 0);
+            updateImages();
+        }
         updateImages();
     }
 
     public void onLeftDeckButtonClick() throws FileNotFoundException {
-        drawCard(gameBoard,leftDeck,currentPlayer,0);
-
+        if (leftDeck.getDeck().size() > 0) {
+            drawLeftDeckCard(gameBoard, 0);
+            updateImages();
+        }
         updateImages();
     }
 
     public void onRightDeckButtonClick() throws FileNotFoundException {
-        drawCard(gameBoard,rightDeck,currentPlayer,0);
+        if (rightDeck.getDeck().size() > 0) {
+            drawRightDeckCard(gameBoard, 0);
+            updateImages();
+        }
         updateImages();
     }
-    @FXML
-    void PiocheCentraleClicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void PiocheDroiteClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void PiocheGaucheClicked(ActionEvent event) {
-
+    public void Hovered(){
+        HoverPane.setVisible(true);
+        //Set Label InfoPlayer en fonction du joueur qui a été hover ( donc valeur de hoveredPlayer )
+        InfoPlayer.setText("Player "+ hoveredPlayer + " hovered");
     }
 
     @FXML
@@ -286,78 +377,8 @@ public class GameSceneController {
     }
 
     @FXML
-    void ScienceRandClicked(ActionEvent event) {
+    void Science4Clicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    void HoveredOne(ActionEvent event) {
-        HoverPane1.setVisible(true);
-    }
-
-    @FXML
-    void HoveredTwo(ActionEvent event) {
-        HoverPane2.setVisible(true);
-    }
-
-    @FXML
-    void HoveredThree(ActionEvent event) {
-        HoverPane3.setVisible(true);
-    }
-
-    @FXML
-    void HoveredFour(ActionEvent event) {
-        HoverPane4.setVisible(true);
-    }
-
-    @FXML
-    void HoveredFive(ActionEvent event) {
-        HoverPane5.setVisible(true);
-    }
-
-    @FXML
-    void HoveredSix(ActionEvent event) {
-        HoverPane6.setVisible(true);
-    }
-
-    @FXML
-    void HoveredSeven(ActionEvent event) {
-        HoverPane7.setVisible(true);
-    }
-
-    @FXML
-    void UnHoveredOne(ActionEvent event) {
-        HoverPane1.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredTwo(ActionEvent event) {
-        HoverPane2.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredThree(ActionEvent event) {
-        HoverPane3.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredFour(ActionEvent event) {
-        HoverPane4.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredFive(ActionEvent event) {
-        HoverPane5.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredSix(ActionEvent event) {
-        HoverPane6.setVisible(false);
-    }
-
-    @FXML
-    void UnHoveredSeven(ActionEvent event) {
-        HoverPane7.setVisible(false);
     }
 
 

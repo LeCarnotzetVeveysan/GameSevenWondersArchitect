@@ -1,9 +1,7 @@
 package other;
 
 import data.*;
-import token.Fighter;
-import token.MaterialToken;
-import token.ProgressToken;
+import token.*;
 
 import java.util.*;
 
@@ -11,21 +9,18 @@ public class ModelCommonMethods {
 
     public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
-        Cards drawnCard = targetdeck.getDeck().get(cardIndex);
+        Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
-        if (player.getProgressTokens().contains(ProgressToken.Economy) && drawnCard == Cards.MAT_GOLD) {
-            drawnCard.getCardTokenToPlayer(player);
-            drawnCard.getCardTokenToPlayer(player);
-        } else {
-            drawnCard.getCardTokenToPlayer(player);
-        }
+        drawCardWithChkProgress(player, drawnCard);
+        // Vérifie si la carte contenait un chat Bastet
+        verifCardHasCat(board, drawnCard);
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
     }
 
-    public void drawLeftDeckCard(Board board, int selectedCardIndex) {
+    public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -38,16 +33,16 @@ public class ModelCommonMethods {
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawMiddleDeckCard(Board board, int selectedCardIndex) {
-        int middleDeckIndex = board.getDecks().size() - 1;
-        Player currentPlayer = board.getPlayers().get(middleDeckIndex);
+    public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
+        int middleDeckIndex = board.getPlayers().size();
+        Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         Deck targetdeck = board.getDecks().get(middleDeckIndex);
         // Pioche une carte depuis le deck du milieu
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawRightDeckCard(Board board, int selectedCardIndex) {
+    public static void drawRightDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -56,7 +51,13 @@ public class ModelCommonMethods {
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawCardWithChkProgress(Player player, Cards drawnCard) {
+    public static void drawCardWithChkProgress(Player player, Cards drawnCard) {
+        if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
+            drawnCard.getCardTokenToPlayer(player);
+            drawnCard.getCardTokenToPlayer(player);
+        } else {
+            drawnCard.getCardTokenToPlayer(player);
+        }
         if (player.getProgressTokens().contains(ProgressToken.Urbanism) && (verifDrawnCard(drawnCard, Cards.MAT_WOOD) || verifDrawnCard(drawnCard, Cards.MAT_BRICK))) {
             // pioche parmi les 3
         }
@@ -72,23 +73,31 @@ public class ModelCommonMethods {
         if (player.getProgressTokens().contains(ProgressToken.Propaganda) && drawnCard.getType().equals("Military") && (drawnCard.getMilitaryCardToken() == Fighter.ARCHER || drawnCard.getMilitaryCardToken() == Fighter.BARBARIAN)) {
             // pioche parmi les 3
         }
-        if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
-            drawnCard.getCardTokenToPlayer(player);
-            drawnCard.getCardTokenToPlayer(player);
-        } else {
-            drawnCard.getCardTokenToPlayer(player);
-        }
     }
 
-    public boolean verifPlayerProgressToken(Player player, ProgressToken progressToken) {
+    public static boolean verifPlayerProgressToken(Player player, ProgressToken progressToken) {
         return player.getProgressTokens().contains(progressToken);
     }
 
-    public boolean verifDrawnCard(Cards drawnCard, Cards cardToCheck) {
+    public static boolean verifDrawnCard(Cards drawnCard, Cards cardToCheck) {
         return drawnCard == cardToCheck;
     }
 
-    public void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
+    public static void verifCardHasCat(Board board, Cards drawnCard) {
+        ArrayList<Player> players = board.getPlayers();
+        Player player = players.get(board.getCurrentPlayerIndex());
+
+        if (drawnCard.getLaurelCardToken() == LaurelToken.LAUREL2) {
+            for (Player p : players) {
+                if (p != player) {
+                    p.setHasCat(false);
+                }
+            }
+            player.setHasCat(true);
+        }
+    }
+
+    public static void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         ArrayList<Player> players = board.getPlayers();
         ProgressTokenStack progressTokens = board.getProgressTokens();
@@ -240,7 +249,7 @@ public class ModelCommonMethods {
         return elementTab;
     }
 
-    public void checkPlayerWar(Board board, ArrayList<Player> players) {
+    public static void checkPlayerWar(Board board, ArrayList<Player> players) {
         final int NUM_PLAYERS = players.size();
 
         for (int currentPlayerIndex = 0; currentPlayerIndex < NUM_PLAYERS; currentPlayerIndex++) {

@@ -10,7 +10,7 @@ public class Board {
     private final ArrayList<Deck> decks;
     private final ProgressTokenStack progressTokens;
 
-    private int currentPlayerIndex = 0;
+    private int currentPlayerIndex;
 
     private boolean isCatTaken;
 
@@ -39,6 +39,10 @@ public class Board {
 
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
+    }
+
+    public void setCurrentPlayerIndex(int currentPlayerIndex) {
+        this.currentPlayerIndex = currentPlayerIndex;
     }
 
     public void addCombatTokensFlipped(int combatTokensFlipped) {
