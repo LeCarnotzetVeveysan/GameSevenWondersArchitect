@@ -130,49 +130,45 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/wonders/giseh/gizeh0.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Name" />
+                              <ImageView fx:id="playerWonderIV" fitWidth="300.0" pickOnBounds="true" preserveRatio="true"/>
+                              <Label fx:id="playerNameLabel" text="Name" />
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <HBox fx:id="playerMaterialTokenIVHB" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/tokens-materials/brickToken.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/tokens-materials/glassToken.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/tokens-materials/goldToken.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/tokens-materials/stoneToken.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/tokens-materials/paperToken.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="woodTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/tokens-materials/woodToken.png" />
                                              </image>
                                           </ImageView>
+                                          <ImageView fx:id="brickTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/tokens-materials/brickToken.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="glassTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/tokens-materials/glassToken.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="paperTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/tokens-materials/paperToken.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="stoneTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/tokens-materials/stoneToken.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="goldTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/tokens-materials/goldToken.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </HBox>
-                                    <HBox>
+                                    <HBox fx:id="playerShieldTokenIVHB" >
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -188,28 +184,28 @@
                                     </HBox>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox fx:id="playerScienceTokenIVHB" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="architectTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/tokens-science/architectToken.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="lawTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/tokens-science/lawToken.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="mechanicTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/tokens-science/mechanicToken.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                     </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <HBox fx:id="playerLaurelTokenIVHB" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -228,6 +224,50 @@
                                           </ImageView>
                                        </children>
                                     </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="playerProgressTokenIVHB" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="playerProgTok1IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok2IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok3IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok4IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok5IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok6IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok7IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok8IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </HBox>
                            </children>
