@@ -15,7 +15,7 @@ public class Board {
     private boolean isCatTaken;
 
     int combatTokensNeeded;
-    int combatTokensFlipped;
+    int combatTokensFlipped = 0;
 
     public Board() {
         players = initializers.initPlayers();
