@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -8,14 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AppLauncherController">
    <children>
       <ImageView fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Untitled.png" />
+            <Image url="@../other/sev-logo-gold-16128779869FV5n-large.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
@@ -26,8 +25,8 @@
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Select Language" />
                      <String fx:value="English" />
-                     <String fx:value="Français"/>
-                     <String fx:value="Italiano"/>
+                     <String fx:value="Français" />
+                     <String fx:value="Italiano" />
                   </FXCollections>
                </items>
             </ChoiceBox>
@@ -49,13 +48,13 @@
                   </FXCollections>
                </items>
             </ChoiceBox>
-            <Button onMouseClicked="#onPreviewButtonClick" mnemonicParsing="false" text="Preview" />
+            <Button mnemonicParsing="false" onMouseClicked="#onPreviewButtonClick" text="Preview" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <Button onMouseClicked="#onLaunchButtonClick" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Launch" />
+      <Button mnemonicParsing="false" onMouseClicked="#onLaunchButtonClick" prefHeight="50.0" prefWidth="100.0" text="Launch" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
