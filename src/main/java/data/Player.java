@@ -9,17 +9,18 @@ import token.Fighter;
 import java.util.ArrayList;
 
 public class Player {
+    private final String name;
+    private final Wonder wonder;
+    private boolean hasBuiltWonder = false;
 
-    private String name;
-    private Wonder wonder;
+    private final ArrayList<ProgressToken> progressTokens = new ArrayList<>();
+    private final ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
+    private final ArrayList<MaterialToken> materialTokens = new ArrayList<>();
+    private final ArrayList<ScienceToken> scienceTokens = new ArrayList<>();
+    private final ArrayList<Fighter> fighters = new ArrayList<>();
 
-    private String nameDeck;
-
-    private ArrayList<ProgressToken> progressTokens = new ArrayList<>();
-    private ArrayList<LaurelToken> laurelTokens = new ArrayList<>();
-    private ArrayList<MaterialToken> materialTokens = new ArrayList<>();
-    private ArrayList<ScienceToken> scienceTokens = new ArrayList<>();
-    private ArrayList<Fighter> fighters = new ArrayList<>();
+    private int militaryPoints = 0;
+    private int shield = 0;
 
     private boolean hasCat = false;
 
@@ -40,6 +41,11 @@ public class Player {
         fighters.add(fighter);
     }
 
+    public void removeFightersWithHorn() {
+        this.removeFighter(Fighter.BARBARIAN);
+        this.removeFighter(Fighter.ARCHER);
+    }
+
     public void removeFighter(Fighter fighter) {
         fighters.remove(fighter);
     }
@@ -48,8 +54,29 @@ public class Player {
         return fighters;
     }
 
+    public ArrayList<ProgressToken> getProgressTokens() {
+        return progressTokens;
+    }
+
     public void addProgressToken(ProgressToken progressToken) {
         progressTokens.add(progressToken);
+        switch (progressToken) {
+            case Tactic -> {
+                this.addFighter(Fighter.CENTURION);
+                this.addFighter(Fighter.CENTURION);
+            }
+            case Economy -> {
+                for (int i = 0; i < materialTokens.size(); i++) {
+                    if (materialTokens.get(i) == MaterialToken.GOLD) {
+                        materialTokens.add(MaterialToken.GOLD);
+                    }
+                }
+            }
+        }
+    }
+
+    public ArrayList<LaurelToken> getLaurelTokens() {
+        return laurelTokens;
     }
 
     public void addLaurelToken(LaurelToken laurelToken) {
@@ -92,4 +119,41 @@ public class Player {
         return hasCat;
     }
 
+    public void addShield(int shield) {
+        this.shield += shield;
+    }
+
+    public int getShield() {
+        return shield;
+    }
+
+    public void setShield(int shield) {
+        this.shield = shield;
+    }
+
+    public void setMilitaryPoints(int militaryPoints) {
+        this.militaryPoints = militaryPoints;
+    }
+
+    public int getMilitaryPoints() {
+        return militaryPoints;
+    }
+
+    public void addMilitaryPoints(int militaryPoints) {
+        this.militaryPoints += militaryPoints;
+    }
+
+    public void setHasBuiltWonder(boolean hasBuiltWonder) {
+        this.hasBuiltWonder = hasBuiltWonder;
+    }
+
+    public boolean isHasBuiltWonder() {
+        return hasBuiltWonder;
+    }
+
+    public int[] getNumberOfTokens(){
+        int[] tokens = new int[15];
+
+        return tokens;
+    }
 }

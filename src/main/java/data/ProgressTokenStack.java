@@ -10,7 +10,7 @@ public class ProgressTokenStack {
     String backTokenImg;
 
     public ProgressTokenStack(int nbUrba, int nbArtAndCrafts, int nbJewelry, int nbScience, int nbPropaganda, int nbArchi, int nbEconomy, int nbIngeniery, int nbTactic, int nbDeco, int nbPolitic, int nbStrategy, int nbEducation, int nbCulture, String backTokenImg) {
-        this.backTokenImg = "src/main/resources/images/tokens-progress/back/" + backTokenImg;
+        this.backTokenImg = "tokens-progress/back/" + backTokenImg;
 
         for (int i = 0; i < nbUrba; i++) {
             progressTokens.add(ProgressToken.Urbanism);
@@ -78,4 +78,5 @@ public class ProgressTokenStack {
     public String getBackTokenImg() {
         return backTokenImg;
     }
+
 }

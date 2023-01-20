@@ -22,6 +22,7 @@ public class RulesController {
 
     int currentPageNumber;
     int maxPageNumber;
+
     public void initialize() throws FileNotFoundException {
         currentPageNumber = 1;
         maxPageNumber = 5;
@@ -57,7 +58,7 @@ public class RulesController {
 
     @FXML
     private void onBackButtonClick() throws IOException {
-        changeLauncherScene("launcher");
+        changeLauncherScene("game-init");
     }
 
     public void onPreviousButtonClick() throws FileNotFoundException {

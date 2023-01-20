@@ -1,10 +1,14 @@
 package controllers;
 
-import javafx.event.ActionEvent;
+import application.AppData;
+import data.GameData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.InputEvent;
+import javafx.stage.Stage;
+import other.LoadScene;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,107 +19,92 @@ import static other.LoadScene.changeLauncherScene;
 public class GameInitController implements Initializable {//implements initializable obligatoire pour méthode initialize
 
     @FXML
-    private ComboBox<Integer> ComboBoxNumPlayer;
-
+    private Button startButton;
     @FXML
-    private ImageView LogoView;
-
-    @FXML
-    private Button StartButton;
-
-    @FXML
-    private TextField Player1NameField;
-
-    @FXML
-    private Label Player1NameLabel;
-
-    @FXML
-    private TextField Player2NameField;
-
-    @FXML
-    private Label Player2NameLabel;
-
-    @FXML
-    private TextField Player3NameField;
-
-    @FXML
-    private Label Player3NameLabel;
-
-    @FXML
-    private TextField Player4NameField;
-
-    @FXML
-    private Label Player4NameLabel;
-
-    @FXML
-    private TextField Player5NameField;
-
-    @FXML
-    private Label Player5NameLabel;
-
-    @FXML
-    private TextField Player6NameField;
-
-    @FXML
-    private Label Player6NameLabel;
-
-    @FXML
-    private TextField Player7NameField;
-
-    @FXML
-    private Label Player7NameLabel;
-
-    @FXML
-    private TitledPane TitledPaneNames;
-
-    @FXML
-    private Button RulesButton;
+    private ComboBox ComboBoxNumPlayer;
     private Integer[] NumPlayer = {2,3,4,5,6,7};
 
-    public static int NombreJoueurs;
-
     @FXML
-    void NumPlayerChoosed(ActionEvent event) {
-        StartButton.setDisable(false);
-        TitledPaneNames.setDisable(false);
-        //Afficher les text fields names et labels names en fonction du nombre de joueurs
-    }
+    private TextField Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name;
+    private TextField[] nameInputs;
+    public static int numberOfPlayers;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {//méthode initialize se lance directement à l'ouverture d'une fenêtre
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        nameInputs = new TextField[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
         ComboBoxNumPlayer.getItems().addAll(NumPlayer);
-        StartButton.setDisable(true);
+        numberOfPlayers = 0;
+        refreshNameFields();
     }
 
     public void onRuleButtonClicked() throws IOException {
         changeLauncherScene("rules");
     }
 
-    public void onStartButtonClicked() throws IOException {
+    @FXML
+    void onNumPlayersChanged() {
+        numberOfPlayers = Integer.parseInt(ComboBoxNumPlayer.getValue().toString());
+        refreshNameFields();
+    }
 
-        if(validInputs()){
-            registerAppData();
-            changeLauncherScene("game-initialize");
+    private void refreshNameFields() {
+        for (TextField tf : nameInputs){
+            tf.setDisable(false);
+        }
+        for (int i = numberOfPlayers; i < 7; i++){
+            nameInputs[i].setDisable(true);
+            nameInputs[i].setText("");
         }
     }
 
+    public void onStartButtonClicked() throws IOException {
+        if(validInputs()){
+            registerAppData();
+            LoadScene.changeScene("main","new-game-scene");
+            Stage stage = (Stage) startButton.getScene().getWindow();
+            stage.close();
+
+        } else {
+            //Display that not enough names are selected
+        }
+    }
 
     private boolean validInputs(){
+        if(numberOfPlayers == 0){ return false; }
+        for (int i = 0; i < numberOfPlayers;i++){
+            String name = nameInputs[i].getText();
+            if(!isValidName(name)){
+                return false;
+            }
+        }
+        return  true;
+    }
 
-        boolean numPlayersSelected = false;
-
-        if (!(ComboBoxNumPlayer.getValue() == null)){
-            numPlayersSelected = true;
+    public boolean isValidName(String input){
+        if(input.equals("")){
+            return false;
         }
 
-        return  numPlayersSelected;
+        String[] chars = input.split("");
+        String allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_ ";
 
+        for (String c : chars){
+            if(!(allowed.contains(c))){
+                return false;
+            }
+        }
+        return true;
     }
 
     private void registerAppData() {
-        //AppData.setLanguage() = LanguageComboBox.getValue();
+        GameData.setNumberOfPlayers(numberOfPlayers);
+        String[] names = new String[numberOfPlayers];
+        for(int i = 0; i < numberOfPlayers; i++)
+        {
+            names[i] = nameInputs[i].getText();
+        }
+        GameData.setPlayerNames(names);
     }
-
 
 }
 

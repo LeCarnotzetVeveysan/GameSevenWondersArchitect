@@ -12,10 +12,11 @@ public enum MaterialToken {
     private String image;
 
     MaterialToken(String image) {
-        this.image = "src/main/resources/images/tokens-materials/" + image;
+        this.image = "tokens-materials/" + image;
     }
 
     public String getImage() {
         return image;
     }
+
 }

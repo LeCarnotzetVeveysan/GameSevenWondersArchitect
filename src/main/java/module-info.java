@@ -12,4 +12,8 @@ module gswa.gswa {
     exports controllers;
     opens other to javafx.fxml;
     exports other;
+    opens data to javafx.fxml;
+    exports data;
+    opens token to javafx.fxml;
+    exports token;
 }
