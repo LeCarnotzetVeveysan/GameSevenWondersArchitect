@@ -34,14 +34,18 @@ public class GameSceneController {
     private ImageView playerWonderIV;
 
     @FXML
-    private HBox playerProgressTokenIVHB, playerMaterialTokenIVHB, playerScienceTokenIVHB;
+    private HBox playerProgressTokenIVHB, playerMaterialTokenIVHB, playerScienceTokenIVHB, playerLaurelTokenIVHB, playerShieldTokenIVHB;
     @FXML
     private ImageView playerProgTok1IV, playerProgTok2IV,playerProgTok3IV,playerProgTok4IV,playerProgTok5IV,playerProgTok6IV,playerProgTok7IV,playerProgTok8IV;
     @FXML
     private ImageView woodTokenIV, brickTokenIV, glassTokenIV, paperTokenIV, stoneTokenIV, goldTokenIV;
     @FXML
     private ImageView architectTokenIV, lawTokenIV, mechanicTokenIV;
-    private ArrayList<ImageView> playerProgressTokenIVs, playerMaterialTokenIVs, playerScienceTokenIVs;
+    @FXML
+    private ImageView redLaurelTokenIV, blue2LaurelTokenIV, blue3LaurelTokenIV;
+    @FXML
+    private ImageView shieldWithoutHornTokenIV, shieldWithHornTokenIV;
+    private ArrayList<ImageView> playerProgressTokenIVs, playerMaterialTokenIVs, playerScienceTokenIVs, playerLaurelTokenIVs, playerShieldTokenIVs;
 
 
     @FXML
@@ -55,9 +59,6 @@ public class GameSceneController {
     @FXML
     private Label InfoPlayer;
 
-    @FXML
-    private Label Materials, WarPoints, WinPoints, JetonsSciencesJoueur;
-
     //Game variables
     private Board gameBoard;
     private int numPlayers = GameData.getNumberOfPlayers();
@@ -70,6 +71,7 @@ public class GameSceneController {
     public void initialize() throws FileNotFoundException {
 
         initIVs();
+        initHoverMethods();
 
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
@@ -82,24 +84,7 @@ public class GameSceneController {
 
         updateImages();
 
-        initHoverMethods();
-    }
 
-    private void initHoverMethods() {
-        LabelHover1.setOnMouseEntered(event -> { hoveredPlayer =1; Hovered(); });
-        LabelHover1.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover2.setOnMouseEntered(event -> { hoveredPlayer = 2; Hovered(); });
-        LabelHover2.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover3.setOnMouseEntered(event -> { hoveredPlayer =3; Hovered(); });
-        LabelHover3.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover4.setOnMouseEntered(event -> { hoveredPlayer =4; Hovered(); });
-        LabelHover4.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover5.setOnMouseEntered(event -> { hoveredPlayer =5; Hovered(); });
-        LabelHover5.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover6.setOnMouseEntered(event -> { hoveredPlayer =6; Hovered(); });
-        LabelHover6.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover7.setOnMouseEntered(event -> { hoveredPlayer =7; Hovered(); });
-        LabelHover7.setOnMouseExited(event -> HoverPane.setVisible(false));
     }
 
     private void initIVs() {
@@ -110,62 +95,6 @@ public class GameSceneController {
         initWarTokenIVs();
         initLaurelTokenIVs();
         initPlayerProgressTokensIVs();
-    }
-
-    private void initPlayerProgressTokensIVs() {
-        playerProgressTokenIVs = new ArrayList<>();
-        playerProgressTokenIVs.add(playerProgTok1IV);
-        playerProgressTokenIVs.add(playerProgTok2IV);
-        playerProgressTokenIVs.add(playerProgTok3IV);
-        playerProgressTokenIVs.add(playerProgTok4IV);
-        playerProgressTokenIVs.add(playerProgTok5IV);
-        playerProgressTokenIVs.add(playerProgTok6IV);
-        playerProgressTokenIVs.add(playerProgTok7IV);
-        playerProgressTokenIVs.add(playerProgTok8IV);
-    }
-
-    private void initLaurelTokenIVs() {
-        
-    }
-
-    private void initWarTokenIVs() {
-        
-    }
-
-    private void initScienceTokenIVs() {
-        playerScienceTokenIVs = new ArrayList<>();
-        playerScienceTokenIVs.add(architectTokenIV);
-        playerScienceTokenIVs.add(lawTokenIV);
-        playerScienceTokenIVs.add(mechanicTokenIV);
-        
-    }
-
-    private void initMaterialTokenIVs() {
-        playerMaterialTokenIVs = new ArrayList<>();
-        playerMaterialTokenIVs.add(woodTokenIV);
-        playerMaterialTokenIVs.add(brickTokenIV);
-        playerMaterialTokenIVs.add(glassTokenIV);
-        playerMaterialTokenIVs.add(paperTokenIV);
-        playerMaterialTokenIVs.add(stoneTokenIV);
-        playerMaterialTokenIVs.add(goldTokenIV);
-    }
-
-    private void initPeaceTokenIVs() {
-        peaceTokenIVs = new ArrayList<>();
-        peaceTokenIVs.add(peaceToken1IV);
-        peaceTokenIVs.add(peaceToken2IV);
-        peaceTokenIVs.add(peaceToken3IV);
-        peaceTokenIVs.add(peaceToken4IV);
-        peaceTokenIVs.add(peaceToken5IV);
-        peaceTokenIVs.add(peaceToken6IV);
-    }
-
-    private void initProgressTokenIVs() {
-        progressTokenIVs = new ArrayList<>();
-        progressTokenIVs.add(progressToken1IV);
-        progressTokenIVs.add(progressToken2IV);
-        progressTokenIVs.add(progressToken3IV);
-        progressTokenIVs.add(progressToken4IV);
     }
 
     public void updateImages() throws FileNotFoundException {
@@ -224,7 +153,44 @@ public class GameSceneController {
     private void updatePlayerTokenIVs() {
         updatePlayerMaterialTokenIVs();
         updatePlayerScienceTokenIVs();
+        updatePlayerShieldTokenIVs();
+        updatePlayerLaurelTokenIVs();
 
+    }
+
+    private void updatePlayerLaurelTokenIVs() {
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        int[] tokens = currentPlayer.getNumberOfTokens();
+
+        for(int i = 9; i <= 11;i++){
+            if(tokens[i] > 0){
+                imageViews.add(playerLaurelTokenIVs.get(i-9));
+            }
+        }
+
+        playerLaurelTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            playerLaurelTokenIVHB.getChildren().add(iv);
+        }
+        //je comprends pas pourquoi ça s'affiche pas
+
+    }
+
+    private void updatePlayerShieldTokenIVs() {
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        int[] tokens = currentPlayer.getNumberOfTokens();
+
+        for(int i = 12; i <= 13;i++){
+            if(tokens[i] > 0){
+                imageViews.add(playerShieldTokenIVs.get(i-12));
+            }
+        }
+
+        playerShieldTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            playerShieldTokenIVHB.getChildren().add(iv);
+        }
+        
     }
 
     private void updatePlayerScienceTokenIVs() {
@@ -406,6 +372,84 @@ public class GameSceneController {
     @FXML
     void Science4Clicked(ActionEvent event) {
 
+    }
+
+    //initialization Methods
+    private void initHoverMethods() {
+        LabelHover1.setOnMouseEntered(event -> { hoveredPlayer =1; Hovered(); });
+        LabelHover1.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover2.setOnMouseEntered(event -> { hoveredPlayer = 2; Hovered(); });
+        LabelHover2.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover3.setOnMouseEntered(event -> { hoveredPlayer =3; Hovered(); });
+        LabelHover3.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover4.setOnMouseEntered(event -> { hoveredPlayer =4; Hovered(); });
+        LabelHover4.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover5.setOnMouseEntered(event -> { hoveredPlayer =5; Hovered(); });
+        LabelHover5.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover6.setOnMouseEntered(event -> { hoveredPlayer =6; Hovered(); });
+        LabelHover6.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover7.setOnMouseEntered(event -> { hoveredPlayer =7; Hovered(); });
+        LabelHover7.setOnMouseExited(event -> HoverPane.setVisible(false));
+    }
+
+    private void initPlayerProgressTokensIVs() {
+        playerProgressTokenIVs = new ArrayList<>();
+        playerProgressTokenIVs.add(playerProgTok1IV);
+        playerProgressTokenIVs.add(playerProgTok2IV);
+        playerProgressTokenIVs.add(playerProgTok3IV);
+        playerProgressTokenIVs.add(playerProgTok4IV);
+        playerProgressTokenIVs.add(playerProgTok5IV);
+        playerProgressTokenIVs.add(playerProgTok6IV);
+        playerProgressTokenIVs.add(playerProgTok7IV);
+        playerProgressTokenIVs.add(playerProgTok8IV);
+    }
+
+    private void initLaurelTokenIVs() {
+        playerLaurelTokenIVs = new ArrayList<>();
+        playerLaurelTokenIVs.add(redLaurelTokenIV);
+        playerLaurelTokenIVs.add(blue2LaurelTokenIV);
+        playerLaurelTokenIVs.add(blue3LaurelTokenIV);
+    }
+
+    private void initWarTokenIVs() {
+        playerShieldTokenIVs = new ArrayList<>();
+        playerShieldTokenIVs.add(shieldWithoutHornTokenIV);
+        playerShieldTokenIVs.add(shieldWithHornTokenIV);
+    }
+
+    private void initScienceTokenIVs() {
+        playerScienceTokenIVs = new ArrayList<>();
+        playerScienceTokenIVs.add(architectTokenIV);
+        playerScienceTokenIVs.add(lawTokenIV);
+        playerScienceTokenIVs.add(mechanicTokenIV);
+    }
+
+    private void initMaterialTokenIVs() {
+        playerMaterialTokenIVs = new ArrayList<>();
+        playerMaterialTokenIVs.add(woodTokenIV);
+        playerMaterialTokenIVs.add(brickTokenIV);
+        playerMaterialTokenIVs.add(glassTokenIV);
+        playerMaterialTokenIVs.add(paperTokenIV);
+        playerMaterialTokenIVs.add(stoneTokenIV);
+        playerMaterialTokenIVs.add(goldTokenIV);
+    }
+
+    private void initPeaceTokenIVs() {
+        peaceTokenIVs = new ArrayList<>();
+        peaceTokenIVs.add(peaceToken1IV);
+        peaceTokenIVs.add(peaceToken2IV);
+        peaceTokenIVs.add(peaceToken3IV);
+        peaceTokenIVs.add(peaceToken4IV);
+        peaceTokenIVs.add(peaceToken5IV);
+        peaceTokenIVs.add(peaceToken6IV);
+    }
+
+    private void initProgressTokenIVs() {
+        progressTokenIVs = new ArrayList<>();
+        progressTokenIVs.add(progressToken1IV);
+        progressTokenIVs.add(progressToken2IV);
+        progressTokenIVs.add(progressToken3IV);
+        progressTokenIVs.add(progressToken4IV);
     }
 
 

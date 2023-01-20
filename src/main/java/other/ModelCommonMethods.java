@@ -98,6 +98,7 @@ public class ModelCommonMethods {
                 }
             }
             player.setHasCat(true);
+            board.catIsNowTaken();
         }
     }
 
