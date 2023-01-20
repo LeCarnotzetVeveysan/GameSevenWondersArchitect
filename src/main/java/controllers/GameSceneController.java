@@ -19,7 +19,10 @@ import static other.UICommonMethods.setImage;
 public class GameSceneController {
 
     @FXML
+    private Button Science1Button, Science2Button, Science3Button, Science4Button;
+
     public Label playerNameLabel;
+
     @FXML
     private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
     @FXML
@@ -81,6 +84,9 @@ public class GameSceneController {
     private int hoveredPlayer;
 
     public void initialize() throws FileNotFoundException {
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
+
+        Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
         initIVsAndSPs();
         initHoverMethods();
@@ -90,6 +96,15 @@ public class GameSceneController {
         playerList = gameBoard.getPlayers();
         gameBoard.setCurrentPlayerIndex(-1);
 
+        for (int i = 0; i < GameInitController.numberOfPlayers; i++){
+            playerNames[i].setText(gameBoard.getPlayers().get(i).getName());
+        }
+
+        for (int i = 7; i > GameInitController.numberOfPlayers; i--){
+            playerNames[i-1].setVisible(false);
+            Hovers[i-1].setVisible(false);
+            Hovers[i-1].setDisable(true);
+        }
         switchToNextPlayer();
 
         updateDecks();
@@ -98,8 +113,18 @@ public class GameSceneController {
 
     }
 
+    private void initHoverMethods() {
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
+        for (int i = 0; i < GameInitController.numberOfPlayers; i++){
+            int finalI = i;
+            Hovers[i].setOnMouseEntered(event -> { hoveredPlayer = finalI +1; Hovered(); });;
+            Hovers[i].setOnMouseExited(event -> HoverPane.setVisible(false));
+        }
+    }
+     
     private void initIVsAndSPs() {
         initProgressTokenBTs();
+
         initPeaceTokenIVs();
         initMaterialTokenSPs();
         initScienceTokenSPs();
@@ -376,6 +401,14 @@ public class GameSceneController {
     }
 
     @FXML
+
+    public void Science1Clicked() {
+        System.out.println("Science1Clicked");
+    }
+
+    @FXML
+    public void Science2Clicked() {
+
     void Science1Clicked() {
 
     }
@@ -383,15 +416,18 @@ public class GameSceneController {
     @FXML
     void Science2Clicked() {
 
-    }
-
-    @FXML
-    void Science3Clicked() {
 
     }
 
     @FXML
-    void Science4Clicked() {
+    public void Science3Clicked() {
+
+
+    }
+
+    @FXML
+    public void Science4Clicked() {
+
 
     }
 
@@ -464,6 +500,7 @@ public class GameSceneController {
         peaceTokenIVs.add(peaceToken5IV);
         peaceTokenIVs.add(peaceToken6IV);
     }
+
 
     private void initProgressTokenBTs() {
         progressTokenBTs = new ArrayList<>();

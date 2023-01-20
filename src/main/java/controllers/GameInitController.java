@@ -5,8 +5,10 @@ import data.GameData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import other.LoadScene;
 
@@ -63,6 +65,7 @@ public class GameInitController implements Initializable {//implements initializ
             LoadScene.changeScene("main","new-game-scene");
             Stage stage = (Stage) startButton.getScene().getWindow();
             stage.close();
+
 
         } else {
             //Display that not enough names are selected
