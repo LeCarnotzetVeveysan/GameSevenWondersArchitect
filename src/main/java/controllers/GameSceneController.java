@@ -21,6 +21,8 @@ import static other.UICommonMethods.setImage;
 public class GameSceneController {
 
     @FXML
+    public Label playerNameLabel;
+    @FXML
     private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
     @FXML
     private HBox progressTokenIVHB, peaceTokenIVHB;
@@ -172,8 +174,6 @@ public class GameSceneController {
         for(ImageView iv : imageViews){
             playerLaurelTokenIVHB.getChildren().add(iv);
         }
-        //je comprends pas pourquoi ça s'affiche pas
-
     }
 
     private void updatePlayerShieldTokenIVs() {
@@ -327,7 +327,6 @@ public class GameSceneController {
     public void onMainDeckButtonClick() throws FileNotFoundException {
         if (centralDeck.getDeck().size() > 0) {
             drawMiddleDeckCard(gameBoard, 0);
-            updateImages();
         }
         updateImages();
     }
@@ -335,7 +334,6 @@ public class GameSceneController {
     public void onLeftDeckButtonClick() throws FileNotFoundException {
         if (leftDeck.getDeck().size() > 0) {
             drawLeftDeckCard(gameBoard, 0);
-            updateImages();
         }
         updateImages();
     }
@@ -343,7 +341,6 @@ public class GameSceneController {
     public void onRightDeckButtonClick() throws FileNotFoundException {
         if (rightDeck.getDeck().size() > 0) {
             drawRightDeckCard(gameBoard, 0);
-            updateImages();
         }
         updateImages();
     }
