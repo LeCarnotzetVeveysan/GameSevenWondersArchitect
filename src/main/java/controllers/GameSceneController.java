@@ -60,6 +60,9 @@ public class GameSceneController {
 
     public void initialize() throws FileNotFoundException {
 
+        Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
+
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
         initIVs();
 
         gameBoard = new Board();
@@ -67,6 +70,15 @@ public class GameSceneController {
         playerList = gameBoard.getPlayers();
         gameBoard.setCurrentPlayerIndex(-1);
 
+        for (int i = 0; i < GameInitController.numberOfPlayers; i++){
+            playerNames[i].setText(gameBoard.getPlayers().get(i).getName());
+        }
+
+        for (int i = 7; i > GameInitController.numberOfPlayers; i--){
+            playerNames[i-1].setVisible(false);
+            Hovers[i-1].setVisible(false);
+            Hovers[i-1].setDisable(true);
+        }
         switchToNextPlayer();
 
         updateDecks();
