@@ -6,7 +6,7 @@ public enum LaurelToken {
     LAUREL_BLUE_3("laurel-3-blueToken"),
     LAUREL_RED_3("laurel-3-redToken");
 
-    private String image;
+    private final String image;
 
     LaurelToken(String image) {
         this.image = "tokens-laurel/" + image;

@@ -2,6 +2,7 @@ package controllers;
 
 import data.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
@@ -22,12 +23,15 @@ public class GameSceneController {
     @FXML
     private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
     @FXML
-    private HBox progressTokenIVHB, peaceTokenIVHB;
+    private HBox progressTokenBTHB, peaceTokenIVHB;
+    @FXML
+    private Button progressToken1BT, progressToken2BT, progressToken3BT, progressToken4BT;
     @FXML
     private ImageView progressToken1IV, progressToken2IV, progressToken3IV, progressToken4IV;
     @FXML
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
-    private ArrayList<ImageView> progressTokenIVs, peaceTokenIVs;
+    private ArrayList<ImageView> peaceTokenIVs;
+    private ArrayList<Button> progressTokenBTs;
 
     @FXML
     private ImageView playerWonderIV;
@@ -95,7 +99,7 @@ public class GameSceneController {
     }
 
     private void initIVsAndSPs() {
-        initProgressTokenIVs();
+        initProgressTokenBTs();
         initPeaceTokenIVs();
         initMaterialTokenSPs();
         initScienceTokenSPs();
@@ -274,29 +278,29 @@ public class GameSceneController {
 
     private void updateProgressTokenImages() throws FileNotFoundException {
         ArrayList<ProgressToken> stack = gameBoard.getProgressTokens().getProgressTokens();
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+        ArrayList<Button> buttons = new ArrayList<>();
         if(stack.size() >= 4){
-            imageViews.addAll(progressTokenIVs);
+            buttons.addAll(progressTokenBTs);
             setImage(progressToken1IV, "tokens-progress/back/token-back");
             setImage(progressToken2IV, stack.get(stack.size()-3).getImageResource());
             setImage(progressToken3IV, stack.get(stack.size()-2).getImageResource());
             setImage(progressToken4IV, stack.get(stack.size()-1).getImageResource());
         } else if (stack.size() == 3){
-            for(int i = 0; i < 3; i++){ imageViews.add(progressTokenIVs.get(i)); }
+            for(int i = 0; i < 3; i++){ buttons.add(progressTokenBTs.get(i)); }
             setImage(progressToken1IV, stack.get(0).getImageResource());
             setImage(progressToken2IV, stack.get(1).getImageResource());
             setImage(progressToken3IV, stack.get(2).getImageResource());
         } else if (stack.size() == 2){
-            for(int i = 0; i < 2; i++){ imageViews.add(progressTokenIVs.get(i)); }
+            for(int i = 0; i < 2; i++){ buttons.add(progressTokenBTs.get(i)); }
             setImage(progressToken1IV, stack.get(0).getImageResource());
             setImage(progressToken2IV, stack.get(1).getImageResource());
         } else if (stack.size() == 1){
-            imageViews.add(progressToken1IV);
+            buttons.add(progressToken1BT);
             setImage(progressToken1IV, stack.get(0).getImageResource());
         }
-        progressTokenIVHB.getChildren().clear();
-        for(ImageView iv : imageViews){
-            progressTokenIVHB.getChildren().add(iv);
+        progressTokenBTHB.getChildren().clear();
+        for(Button bt : buttons){
+            progressTokenBTHB.getChildren().add(bt);
         }
     }
 
@@ -461,12 +465,12 @@ public class GameSceneController {
         peaceTokenIVs.add(peaceToken6IV);
     }
 
-    private void initProgressTokenIVs() {
-        progressTokenIVs = new ArrayList<>();
-        progressTokenIVs.add(progressToken1IV);
-        progressTokenIVs.add(progressToken2IV);
-        progressTokenIVs.add(progressToken3IV);
-        progressTokenIVs.add(progressToken4IV);
+    private void initProgressTokenBTs() {
+        progressTokenBTs = new ArrayList<>();
+        progressTokenBTs.add(progressToken1BT);
+        progressTokenBTs.add(progressToken2BT);
+        progressTokenBTs.add(progressToken3BT);
+        progressTokenBTs.add(progressToken4BT);
     }
 
 
