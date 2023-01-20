@@ -9,7 +9,7 @@ public class Deck {
 
     public Deck(int nbGold, int nbStone, int nbBrick, int nbWood, int nbPapyrus, int nbGlass, int nbMechanic, int nbArchitect, int nbLaw, int nbEmperor, int nbCat, int nbCenturion, int nbArcher, int nbBarbarian, String backCardImg) {
 
-        this.backCardImg = "src/main/resources/images/cards/card-back/" + backCardImg;
+        this.backCardImg = "cards/card-back/" + backCardImg;
 
         for (int i = 0; i < nbWood; i++) {
             deck.add(Cards.MAT_WOOD);

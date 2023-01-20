@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static other.ModelCommonMethods.drawCard;
+import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
 
 public class GameSceneController {
@@ -52,7 +52,6 @@ public class GameSceneController {
     //Game variables
     private Board gameBoard;
     private int numPlayers = GameData.getNumberOfPlayers();
-    private int currentPlayerIndex;
     private Player currentPlayer;
     private ArrayList<Player> playerList;
     private ArrayList<Deck> deckList;
@@ -66,7 +65,7 @@ public class GameSceneController {
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
         playerList = gameBoard.getPlayers();
-        currentPlayerIndex = -1;
+        gameBoard.setCurrentPlayerIndex(-1);
 
         switchToNextPlayer();
 
@@ -289,23 +288,31 @@ public class GameSceneController {
     }
 
     private void updateDeckImages() throws FileNotFoundException {
-        setImage(leftDeckIV, leftDeck.getCardAtIndex(0).getFront());
-        setImage(rightDeckIV, rightDeck.getCardAtIndex(0).getFront());
+        if (leftDeck.getDeck().size() > 0){
+            setImage(leftDeckIV, leftDeck.getCardAtIndex(0).getFront());
+        } else {
+            setImage(leftDeckIV, leftDeck.getBackCardImg());
+        }
+        if (rightDeck.getDeck().size() > 0){
+            setImage(rightDeckIV, rightDeck.getCardAtIndex(0).getFront());
+        } else {
+            setImage(rightDeckIV, rightDeck.getBackCardImg());
+        }
     }
 
     private void updateDecks() {
         centralDeck = deckList.get(numPlayers);
-        rightDeck = deckList.get(currentPlayerIndex);
-        leftDeck = currentPlayerIndex == 0 ? deckList.get(numPlayers - 1) : deckList.get(currentPlayerIndex - 1);
+        rightDeck = deckList.get(gameBoard.getCurrentPlayerIndex());
+        leftDeck = gameBoard.getCurrentPlayerIndex() == 0 ? deckList.get(numPlayers - 1) : deckList.get(gameBoard.getCurrentPlayerIndex() - 1);
     }
 
     void switchToNextPlayer() throws FileNotFoundException {
-        if (currentPlayerIndex == playerList.size() - 1) {
-            currentPlayerIndex = 0;
+        if (gameBoard.getCurrentPlayerIndex() == playerList.size() - 1) {
+            gameBoard.setCurrentPlayerIndex(0);
         } else {
-            currentPlayerIndex++;
+            gameBoard.setCurrentPlayerIndex(gameBoard.getCurrentPlayerIndex() + 1);
         }
-        currentPlayer = playerList.get(currentPlayerIndex);
+        currentPlayer = playerList.get(gameBoard.getCurrentPlayerIndex());
         updateDecks();
         updateImages();
     }
@@ -321,23 +328,30 @@ public class GameSceneController {
             System.out.println("AOUH ! AOUH ! AOUH !");
             gameBoard.setCombatTokensFlipped(0);
         }
-
+        checkPlayerWar(gameBoard, playerList);
     }
 
     public void onMainDeckButtonClick() throws FileNotFoundException {
-        drawCard(gameBoard,centralDeck,currentPlayer,0);
-
+        if (centralDeck.getDeck().size() > 0) {
+            drawMiddleDeckCard(gameBoard, 0);
+            updateImages();
+        }
         updateImages();
     }
 
     public void onLeftDeckButtonClick() throws FileNotFoundException {
-        drawCard(gameBoard,leftDeck,currentPlayer,0);
-
+        if (leftDeck.getDeck().size() > 0) {
+            drawLeftDeckCard(gameBoard, 0);
+            updateImages();
+        }
         updateImages();
     }
 
     public void onRightDeckButtonClick() throws FileNotFoundException {
-        drawCard(gameBoard,rightDeck,currentPlayer,0);
+        if (rightDeck.getDeck().size() > 0) {
+            drawRightDeckCard(gameBoard, 0);
+            updateImages();
+        }
         updateImages();
     }
 

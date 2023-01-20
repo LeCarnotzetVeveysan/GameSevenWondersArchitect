@@ -4,23 +4,27 @@ import data.*;
 import token.*;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ModelCommonMethods {
 
     public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
-        Cards drawnCard = targetdeck.getDeck().get(cardIndex);
+        Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
         drawCardWithChkProgress(player, drawnCard);
         // Vérifie si la carte contenait un chat Bastet
         verifCardHasCat(board, drawnCard);
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
+        // Vérifie si le joueur peut piocher un progress token
+        chkProgressTokenDrawingStatus(board);
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
     }
 
-    public void drawLeftDeckCard(Board board, int selectedCardIndex) {
+    public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -33,16 +37,16 @@ public class ModelCommonMethods {
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawMiddleDeckCard(Board board, int selectedCardIndex) {
-        int middleDeckIndex = board.getDecks().size() - 1;
-        Player currentPlayer = board.getPlayers().get(middleDeckIndex);
+    public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
+        int middleDeckIndex = board.getPlayers().size();
+        Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         Deck targetdeck = board.getDecks().get(middleDeckIndex);
         // Pioche une carte depuis le deck du milieu
         drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
     }
 
-    public void drawRightDeckCard(Board board, int selectedCardIndex) {
+    public static void drawRightDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -97,7 +101,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
+    public static void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         ArrayList<Player> players = board.getPlayers();
         ProgressTokenStack progressTokens = board.getProgressTokens();
@@ -107,12 +111,47 @@ public class ModelCommonMethods {
         progressTokens.getProgressTokens().remove(selectedTokenIndex);
     }
 
+    public static void chkProgressTokenDrawingStatus(Board board) {
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
+
+        Map<ProgressToken, Long> countSimilar = player.getProgressTokens().stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        boolean similarRemoved = false;
+        boolean differentRemoved = false;
+
+        for (Map.Entry<ProgressToken, Long> entry : countSimilar.entrySet()) {
+            if (entry.getValue() >= 2) {
+                for (int i = 0; i < 2; i++) {
+                    player.getProgressTokens().remove(entry.getKey());
+                }
+                similarRemoved = true;
+                break;
+            }
+        }
+        long countDifferent = player.getProgressTokens().size() - countSimilar.size();
+        if (countDifferent >= 3) {
+            List<ProgressToken> differents = player.getProgressTokens().stream().distinct().toList();
+            for (int i = 0; i < 3; i++) {
+                player.getProgressTokens().remove(differents.get(i));
+            }
+            differentRemoved = true;
+        }
+        if (similarRemoved || differentRemoved) {
+            //appel de la méthode additionnelle
+            showProgressTokenToDraw();
+        }
+    }
+
+    public static void showProgressTokenToDraw() {
+
+    }
+
     public static void chkLevelUpWonder(Board board) {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         // Génère une liste de jetons de matériaux pour le joueur
-        ArrayList<Long> elementTab = elementSimDiffGenerator(board);
+        ArrayList<Long> elementTab = materialSimDiffGenerator(board);
         // Tableau de jetons de matériaux
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
         // Crée une map pour stocker le nombre de niveaux dans chaque étape
@@ -220,7 +259,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public static ArrayList<Long> elementSimDiffGenerator(Board board) {
+    public static ArrayList<Long> materialSimDiffGenerator(Board board) {
         MaterialToken[] similarMaterials = MaterialToken.values();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -249,7 +288,7 @@ public class ModelCommonMethods {
         return elementTab;
     }
 
-    public void checkPlayerWar(Board board, ArrayList<Player> players) {
+    public static void checkPlayerWar(Board board, ArrayList<Player> players) {
         final int NUM_PLAYERS = players.size();
 
         for (int currentPlayerIndex = 0; currentPlayerIndex < NUM_PLAYERS; currentPlayerIndex++) {
