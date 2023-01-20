@@ -68,10 +68,10 @@ public class GameSceneController {
     private int hoveredPlayer;
 
     public void initialize() throws FileNotFoundException {
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
 
         Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
-        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
         initIVs();
 
         gameBoard = new Board();
@@ -98,20 +98,12 @@ public class GameSceneController {
     }
 
     private void initHoverMethods() {
-        LabelHover1.setOnMouseEntered(event -> { hoveredPlayer =1; Hovered(); });
-        LabelHover1.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover2.setOnMouseEntered(event -> { hoveredPlayer = 2; Hovered(); });
-        LabelHover2.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover3.setOnMouseEntered(event -> { hoveredPlayer =3; Hovered(); });
-        LabelHover3.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover4.setOnMouseEntered(event -> { hoveredPlayer =4; Hovered(); });
-        LabelHover4.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover5.setOnMouseEntered(event -> { hoveredPlayer =5; Hovered(); });
-        LabelHover5.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover6.setOnMouseEntered(event -> { hoveredPlayer =6; Hovered(); });
-        LabelHover6.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover7.setOnMouseEntered(event -> { hoveredPlayer =7; Hovered(); });
-        LabelHover7.setOnMouseExited(event -> HoverPane.setVisible(false));
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
+        for (int i = 0; i < GameInitController.numberOfPlayers; i++){
+            int finalI = i;
+            Hovers[i].setOnMouseEntered(event -> { hoveredPlayer = finalI +1; Hovered(); });;
+            Hovers[i].setOnMouseExited(event -> HoverPane.setVisible(false));
+        }
     }
 
     private void initIVs() {
