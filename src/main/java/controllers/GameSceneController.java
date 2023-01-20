@@ -395,22 +395,22 @@ public class GameSceneController {
     }
 
     @FXML
-    void Science1Clicked(ActionEvent event) {
+    public void Science1Clicked() {
+        System.out.println("Science1Clicked");
+    }
+
+    @FXML
+    public void Science2Clicked() {
 
     }
 
     @FXML
-    void Science2Clicked(ActionEvent event) {
+    public void Science3Clicked() {
 
     }
 
     @FXML
-    void Science3Clicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void Science4Clicked(ActionEvent event) {
+    public void Science4Clicked() {
 
     }
 

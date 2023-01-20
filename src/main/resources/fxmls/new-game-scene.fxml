@@ -64,9 +64,9 @@
                         <Image url="@../images/tokens-laurel/token-cat.png" />
                      </image>
                   </ImageView>
-                  <VBox alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="109.0" prefWidth="293.0">
                      <children>
-                        <HBox fx:id="progressTokenIVHB" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox fx:id="progressTokenIVHB" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Button fx:id="Science1Button" mnemonicParsing="false" onMouseClicked="#Science1Clicked">
                                  <graphic>
