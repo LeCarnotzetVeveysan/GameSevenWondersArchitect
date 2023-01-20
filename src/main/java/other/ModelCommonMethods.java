@@ -4,6 +4,8 @@ import data.*;
 import token.*;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ModelCommonMethods {
 
@@ -16,6 +18,8 @@ public class ModelCommonMethods {
         verifCardHasCat(board, drawnCard);
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
+        // Vérifie si le joueur peut piocher un progress token
+        chkProgressTokenDrawingStatus(board);
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
     }
@@ -107,12 +111,47 @@ public class ModelCommonMethods {
         progressTokens.getProgressTokens().remove(selectedTokenIndex);
     }
 
+    public static void chkProgressTokenDrawingStatus(Board board) {
+        Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
+
+        Map<ProgressToken, Long> countSimilar = player.getProgressTokens().stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        boolean similarRemoved = false;
+        boolean differentRemoved = false;
+
+        for (Map.Entry<ProgressToken, Long> entry : countSimilar.entrySet()) {
+            if (entry.getValue() >= 2) {
+                for (int i = 0; i < 2; i++) {
+                    player.getProgressTokens().remove(entry.getKey());
+                }
+                similarRemoved = true;
+                break;
+            }
+        }
+        long countDifferent = player.getProgressTokens().size() - countSimilar.size();
+        if (countDifferent >= 3) {
+            List<ProgressToken> differents = player.getProgressTokens().stream().distinct().toList();
+            for (int i = 0; i < 3; i++) {
+                player.getProgressTokens().remove(differents.get(i));
+            }
+            differentRemoved = true;
+        }
+        if (similarRemoved || differentRemoved) {
+            //appel de la méthode additionnelle
+            showProgressTokenToDraw();
+        }
+    }
+
+    public static void showProgressTokenToDraw() {
+
+    }
+
     public static void chkLevelUpWonder(Board board) {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         // Génère une liste de jetons de matériaux pour le joueur
-        ArrayList<Long> elementTab = elementSimDiffGenerator(board);
+        ArrayList<Long> elementTab = materialSimDiffGenerator(board);
         // Tableau de jetons de matériaux
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
         // Crée une map pour stocker le nombre de niveaux dans chaque étape
@@ -220,7 +259,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public static ArrayList<Long> elementSimDiffGenerator(Board board) {
+    public static ArrayList<Long> materialSimDiffGenerator(Board board) {
         MaterialToken[] similarMaterials = MaterialToken.values();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
