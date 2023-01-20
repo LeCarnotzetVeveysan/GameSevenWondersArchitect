@@ -130,9 +130,9 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="playerWonderIV" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/wonders/giseh/gizeh0.png" />
+                                    <Image url="@../images/wonders/gizeh/gizeh0.png" />
                                  </image>
                               </ImageView>
                               <Label text="Name" />
@@ -228,6 +228,50 @@
                                           </ImageView>
                                        </children>
                                     </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="playerProgressTokenIVHB" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="playerProgTok1IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok2IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok3IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok4IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok5IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok6IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok7IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="playerProgTok8IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/tokens-materials/brickToken.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </HBox>
                            </children>

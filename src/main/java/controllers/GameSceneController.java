@@ -4,7 +4,6 @@ import data.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
@@ -12,11 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import token.ProgressToken;
-import other.ModelCommonMethods;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
@@ -33,6 +30,14 @@ public class GameSceneController {
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
     private ArrayList<ImageView> progressTokenIVs, peaceTokenIVs;
 
+    @FXML
+    private ImageView playerWonderIV;
+
+    @FXML
+    private HBox playerProgressTokenIVHB;
+    @FXML
+    private ImageView playerProgTok1IV, playerProgTok2IV,playerProgTok3IV,playerProgTok4IV,playerProgTok5IV,playerProgTok6IV,playerProgTok7IV,playerProgTok8IV;
+    private ArrayList<ImageView> playerProgressTokenIVs;
 
 
     @FXML
@@ -73,97 +78,24 @@ public class GameSceneController {
 
         updateImages();
 
-        LabelHover1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =1;
-                Hovered();
-            }
-        });
-        LabelHover1.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
-        LabelHover2.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =2;
-                Hovered();
-            }
-        });
-        LabelHover2.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
-        LabelHover3.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =3;
-                Hovered();
-            }
-        });
-        LabelHover3.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
-        LabelHover4.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =4;
-                Hovered();
-            }
-        });
-        LabelHover4.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
-        LabelHover5.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =5;
-                Hovered();
-            }
-        });
-        LabelHover5.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
-        LabelHover6.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =6;
-                Hovered();
-            }
-        });
-        LabelHover6.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
-        LabelHover7.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                hoveredPlayer =7;
-                Hovered();
-            }
-        });
-        LabelHover7.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                HoverPane.setVisible(false);
-            }
-        });
+        initHoverMethods();
+    }
+
+    private void initHoverMethods() {
+        LabelHover1.setOnMouseEntered(event -> { hoveredPlayer =1; Hovered(); });
+        LabelHover1.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover2.setOnMouseEntered(event -> { hoveredPlayer = 2; Hovered(); });
+        LabelHover2.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover3.setOnMouseEntered(event -> { hoveredPlayer =3; Hovered(); });
+        LabelHover3.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover4.setOnMouseEntered(event -> { hoveredPlayer =4; Hovered(); });
+        LabelHover4.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover5.setOnMouseEntered(event -> { hoveredPlayer =5; Hovered(); });
+        LabelHover5.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover6.setOnMouseEntered(event -> { hoveredPlayer =6; Hovered(); });
+        LabelHover6.setOnMouseExited(event -> HoverPane.setVisible(false));
+        LabelHover7.setOnMouseEntered(event -> { hoveredPlayer =7; Hovered(); });
+        LabelHover7.setOnMouseExited(event -> HoverPane.setVisible(false));
     }
 
     private void initIVs() {
@@ -177,6 +109,15 @@ public class GameSceneController {
     }
 
     private void initPlayerProgressTokensIVs() {
+        playerProgressTokenIVs = new ArrayList<>();
+        playerProgressTokenIVs.add(playerProgTok1IV);
+        playerProgressTokenIVs.add(playerProgTok2IV);
+        playerProgressTokenIVs.add(playerProgTok3IV);
+        playerProgressTokenIVs.add(playerProgTok4IV);
+        playerProgressTokenIVs.add(playerProgTok5IV);
+        playerProgressTokenIVs.add(playerProgTok6IV);
+        playerProgressTokenIVs.add(playerProgTok7IV);
+        playerProgressTokenIVs.add(playerProgTok8IV);
     }
 
     private void initLaurelTokenIVs() {
@@ -218,10 +159,54 @@ public class GameSceneController {
         updateProgressTokenImages();
         updatePeaceTokenImages();
         updateCatImages();
-        updatePlayerTokenIVsAndLabels();
+        updatePlayerImages();
     }
 
-    private void updatePlayerTokenIVsAndLabels() {
+    private void updatePlayerImages() throws FileNotFoundException {
+        updatePlayerTokenIVs();
+        updatePlayerTokenLabels();
+        updatePlayerWonderIVs();
+        updatePlayerProgressTokenIVs();
+    }
+
+    private void updatePlayerProgressTokenIVs() throws FileNotFoundException {
+
+        for(ImageView iv : playerProgressTokenIVs){ setImage(iv,"tokens-progress/back/token-back");}
+
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        ArrayList<ProgressToken> tokens = currentPlayer.getProgressTokens();
+
+        for(int i = 0; i < tokens.size(); i++){
+            setImage(playerProgressTokenIVs.get(i), tokens.get(i).getImageResource());
+            imageViews.add(playerProgressTokenIVs.get(i));
+        }
+
+        playerProgressTokenIVHB.getChildren().clear();
+        for(ImageView iv : imageViews){
+            playerProgressTokenIVHB.getChildren().add(iv);
+        }
+    }
+
+    private void updatePlayerWonderIVs() throws FileNotFoundException {
+
+        Wonder wonder = currentPlayer.getWonder();
+        String path = "wonders/";
+        String name = wonder.getName();
+        path += name.toLowerCase() + "/" + name.toLowerCase();
+        if(wonder.getStage() == 5){
+            path += "Full";
+        } else {
+            path += wonder.getStage();
+        }
+        setImage(playerWonderIV, path);
+    }
+
+    private void updatePlayerTokenLabels() {
+
+    }
+
+    private void updatePlayerTokenIVs() {
+
     }
 
     private void updateCatImages() {
