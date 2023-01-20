@@ -1,15 +1,12 @@
 package controllers;
 
 import data.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import token.ProgressToken;
 
 import java.io.FileNotFoundException;
@@ -36,18 +33,27 @@ public class GameSceneController {
     private ImageView playerWonderIV;
 
     @FXML
-    private HBox playerProgressTokenIVHB, playerMaterialTokenIVHB, playerScienceTokenIVHB, playerLaurelTokenIVHB, playerShieldTokenIVHB;
+    private HBox playerProgressTokenIVHB, playerMaterialTokenSPHB, playerScienceTokenSPHB, playerLaurelTokenSPHB, playerShieldTokenSPHB;
     @FXML
     private ImageView playerProgTok1IV, playerProgTok2IV,playerProgTok3IV,playerProgTok4IV,playerProgTok5IV,playerProgTok6IV,playerProgTok7IV,playerProgTok8IV;
     @FXML
-    private ImageView woodTokenIV, brickTokenIV, glassTokenIV, paperTokenIV, stoneTokenIV, goldTokenIV;
+    private StackPane woodTokenSP, brickTokenSP, glassTokenSP, paperTokenSP, stoneTokenSP, goldTokenSP;
     @FXML
-    private ImageView architectTokenIV, lawTokenIV, mechanicTokenIV;
+    private StackPane shieldWithoutHornSP, shieldWithHornSP;
     @FXML
-    private ImageView redLaurelTokenIV, blue2LaurelTokenIV, blue3LaurelTokenIV;
+    private StackPane architectTokenSP, lawTokenSP, mechanicTokenSP;
     @FXML
-    private ImageView shieldWithoutHornTokenIV, shieldWithHornTokenIV;
-    private ArrayList<ImageView> playerProgressTokenIVs, playerMaterialTokenIVs, playerScienceTokenIVs, playerLaurelTokenIVs, playerShieldTokenIVs;
+    private StackPane laurelRed3TokenSP, laurelBlue2TokenSP, laurelBlue3TokenSP;
+    @FXML
+    private Label woodTokenLabel, brickTokenLabel, glassTokenLabel, paperTokenLabel, stoneTokenLabel, goldTokenLabel;
+    @FXML
+    private Label shieldWithoutHornLabel, shieldWithHornLabel;
+    @FXML
+    private Label architectTokenLabel, lawTokenLabel, mechanicTokenLabel;
+    @FXML
+    private Label laurelRed3TokenLabel, laurelBlue2TokenLabel, laurelBlue3TokenLabel;
+    private ArrayList<ImageView> playerProgressTokenIVs;
+    private ArrayList<StackPane> playerMaterialTokenSPs, playerShieldTokenSPs, playerScienceTokenSPs, playerLaurelTokenSPs;
 
 
     @FXML
@@ -63,7 +69,7 @@ public class GameSceneController {
 
     //Game variables
     private Board gameBoard;
-    private int numPlayers = GameData.getNumberOfPlayers();
+    private final int numPlayers = GameData.getNumberOfPlayers();
     private Player currentPlayer;
     private ArrayList<Player> playerList;
     private ArrayList<Deck> deckList;
@@ -72,7 +78,7 @@ public class GameSceneController {
 
     public void initialize() throws FileNotFoundException {
 
-        initIVs();
+        initIVsAndSPs();
         initHoverMethods();
 
         gameBoard = new Board();
@@ -86,16 +92,15 @@ public class GameSceneController {
 
         updateImages();
 
-
     }
 
-    private void initIVs() {
+    private void initIVsAndSPs() {
         initProgressTokenIVs();
         initPeaceTokenIVs();
-        initMaterialTokenIVs();
-        initScienceTokenIVs();
-        initWarTokenIVs();
-        initLaurelTokenIVs();
+        initMaterialTokenSPs();
+        initScienceTokenSPs();
+        initWarTokenSPs();
+        initLaurelTokenSPs();
         initPlayerProgressTokensIVs();
     }
 
@@ -108,11 +113,13 @@ public class GameSceneController {
     }
 
     private void updatePlayerImages() throws FileNotFoundException {
-        updatePlayerTokenIVs();
+        updatePlayerTokenSPs();
         updatePlayerTokenLabels();
         updatePlayerWonderIVs();
         updatePlayerProgressTokenIVs();
     }
+
+
 
     private void updatePlayerProgressTokenIVs() throws FileNotFoundException {
 
@@ -148,80 +155,93 @@ public class GameSceneController {
 
     private void updatePlayerTokenLabels() {
         int[] tokens = currentPlayer.getNumberOfTokens();
+        woodTokenLabel.setText("x" + tokens[0]);
+        brickTokenLabel.setText("x" + tokens[1]);
+        glassTokenLabel.setText("x" + tokens[2]);
+        paperTokenLabel.setText("x" + tokens[3]);
+        stoneTokenLabel.setText("x" + tokens[4]);
+        goldTokenLabel.setText("x" + tokens[5]);
 
+        architectTokenLabel.setText("x" + tokens[6]);
+        lawTokenLabel.setText("x" + tokens[7]);
+        mechanicTokenLabel.setText("x" + tokens[8]);
 
+        laurelRed3TokenLabel.setText("x" + tokens[9]);
+        laurelBlue2TokenLabel.setText("x" + tokens[10]);
+        laurelBlue3TokenLabel.setText("x" + tokens[11]);
+
+        shieldWithoutHornLabel.setText(String.valueOf(tokens[12]));
+        shieldWithHornLabel.setText(String.valueOf(tokens[13]));
     }
 
-    private void updatePlayerTokenIVs() {
-        updatePlayerMaterialTokenIVs();
-        updatePlayerScienceTokenIVs();
-        updatePlayerShieldTokenIVs();
+    private void updatePlayerTokenSPs() {
+        updatePlayerMaterialTokenSPs();
+        updatePlayerScienceTokenSPs();
+        updatePlayerShieldTokenSPs();
         updatePlayerLaurelTokenIVs();
-
     }
 
     private void updatePlayerLaurelTokenIVs() {
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+        ArrayList<StackPane> stackPanes = new ArrayList<>();
         int[] tokens = currentPlayer.getNumberOfTokens();
 
         for(int i = 9; i <= 11;i++){
             if(tokens[i] > 0){
-                imageViews.add(playerLaurelTokenIVs.get(i-9));
+                stackPanes.add(playerLaurelTokenSPs.get(i-9));
             }
         }
-
-        playerLaurelTokenIVHB.getChildren().clear();
-        for(ImageView iv : imageViews){
-            playerLaurelTokenIVHB.getChildren().add(iv);
+        playerLaurelTokenSPHB.getChildren().clear();
+        for(StackPane sp : stackPanes){
+            playerLaurelTokenSPHB.getChildren().add(sp);
         }
     }
 
-    private void updatePlayerShieldTokenIVs() {
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+    private void updatePlayerShieldTokenSPs() {
+        ArrayList<StackPane> stackPanes = new ArrayList<>();
         int[] tokens = currentPlayer.getNumberOfTokens();
 
         for(int i = 12; i <= 13;i++){
             if(tokens[i] > 0){
-                imageViews.add(playerShieldTokenIVs.get(i-12));
+                stackPanes.add(playerShieldTokenSPs.get(i-12));
             }
         }
 
-        playerShieldTokenIVHB.getChildren().clear();
-        for(ImageView iv : imageViews){
-            playerShieldTokenIVHB.getChildren().add(iv);
+        playerShieldTokenSPHB.getChildren().clear();
+        for(StackPane sp : stackPanes){
+            playerShieldTokenSPHB.getChildren().add(sp);
         }
         
     }
 
-    private void updatePlayerScienceTokenIVs() {
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+    private void updatePlayerScienceTokenSPs() {
+        ArrayList<StackPane> stackPanes = new ArrayList<>();
         int[] tokens = currentPlayer.getNumberOfTokens();
 
         for(int i = 6; i <= 8;i++){
             if(tokens[i] > 0){
-                imageViews.add(playerScienceTokenIVs.get(i-6));
+                stackPanes.add(playerScienceTokenSPs.get(i-6));
             }
         }
 
-        playerScienceTokenIVHB.getChildren().clear();
-        for(ImageView iv : imageViews){
-            playerScienceTokenIVHB.getChildren().add(iv);
+        playerScienceTokenSPHB.getChildren().clear();
+        for(StackPane sp : stackPanes){
+            playerScienceTokenSPHB.getChildren().add(sp);
         }
     }
 
-    private void updatePlayerMaterialTokenIVs() {
-        ArrayList<ImageView> imageViews = new ArrayList<>();
+    private void updatePlayerMaterialTokenSPs() {
+        ArrayList<StackPane> stackPanes = new ArrayList<>();
         int[] tokens = currentPlayer.getNumberOfTokens();
 
         for(int i = 0; i <= 5;i++){
             if(tokens[i] > 0){
-                imageViews.add(playerMaterialTokenIVs.get(i));
+                stackPanes.add(playerMaterialTokenSPs.get(i));
             }
         }
 
-        playerMaterialTokenIVHB.getChildren().clear();
-        for(ImageView iv : imageViews){
-            playerMaterialTokenIVHB.getChildren().add(iv);
+        playerMaterialTokenSPHB.getChildren().clear();
+        for(StackPane sp : stackPanes){
+            playerMaterialTokenSPHB.getChildren().add(sp);
         }
     }
 
@@ -352,22 +372,22 @@ public class GameSceneController {
     }
 
     @FXML
-    void Science1Clicked(ActionEvent event) {
+    void Science1Clicked() {
 
     }
 
     @FXML
-    void Science2Clicked(ActionEvent event) {
+    void Science2Clicked() {
 
     }
 
     @FXML
-    void Science3Clicked(ActionEvent event) {
+    void Science3Clicked() {
 
     }
 
     @FXML
-    void Science4Clicked(ActionEvent event) {
+    void Science4Clicked() {
 
     }
 
@@ -401,34 +421,34 @@ public class GameSceneController {
         playerProgressTokenIVs.add(playerProgTok8IV);
     }
 
-    private void initLaurelTokenIVs() {
-        playerLaurelTokenIVs = new ArrayList<>();
-        playerLaurelTokenIVs.add(redLaurelTokenIV);
-        playerLaurelTokenIVs.add(blue2LaurelTokenIV);
-        playerLaurelTokenIVs.add(blue3LaurelTokenIV);
+    private void initLaurelTokenSPs() {
+        playerLaurelTokenSPs = new ArrayList<>();
+        playerLaurelTokenSPs.add(laurelRed3TokenSP);
+        playerLaurelTokenSPs.add(laurelBlue2TokenSP);
+        playerLaurelTokenSPs.add(laurelBlue3TokenSP);
     }
 
-    private void initWarTokenIVs() {
-        playerShieldTokenIVs = new ArrayList<>();
-        playerShieldTokenIVs.add(shieldWithoutHornTokenIV);
-        playerShieldTokenIVs.add(shieldWithHornTokenIV);
+    private void initWarTokenSPs() {
+        playerShieldTokenSPs = new ArrayList<>();
+        playerShieldTokenSPs.add(shieldWithoutHornSP);
+        playerShieldTokenSPs.add(shieldWithHornSP);
     }
 
-    private void initScienceTokenIVs() {
-        playerScienceTokenIVs = new ArrayList<>();
-        playerScienceTokenIVs.add(architectTokenIV);
-        playerScienceTokenIVs.add(lawTokenIV);
-        playerScienceTokenIVs.add(mechanicTokenIV);
+    private void initScienceTokenSPs() {
+        playerScienceTokenSPs = new ArrayList<>();
+        playerScienceTokenSPs.add(architectTokenSP);
+        playerScienceTokenSPs.add(lawTokenSP);
+        playerScienceTokenSPs.add(mechanicTokenSP);
     }
 
-    private void initMaterialTokenIVs() {
-        playerMaterialTokenIVs = new ArrayList<>();
-        playerMaterialTokenIVs.add(woodTokenIV);
-        playerMaterialTokenIVs.add(brickTokenIV);
-        playerMaterialTokenIVs.add(glassTokenIV);
-        playerMaterialTokenIVs.add(paperTokenIV);
-        playerMaterialTokenIVs.add(stoneTokenIV);
-        playerMaterialTokenIVs.add(goldTokenIV);
+    private void initMaterialTokenSPs() {
+        playerMaterialTokenSPs = new ArrayList<>();
+        playerMaterialTokenSPs.add(woodTokenSP);
+        playerMaterialTokenSPs.add(brickTokenSP);
+        playerMaterialTokenSPs.add(glassTokenSP);
+        playerMaterialTokenSPs.add(paperTokenSP);
+        playerMaterialTokenSPs.add(stoneTokenSP);
+        playerMaterialTokenSPs.add(goldTokenSP);
     }
 
     private void initPeaceTokenIVs() {
