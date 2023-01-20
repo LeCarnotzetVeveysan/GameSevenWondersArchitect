@@ -21,6 +21,8 @@ import static other.UICommonMethods.setImage;
 public class GameSceneController {
 
     @FXML
+    private Button Science1Button, Science2Button, Science3Button, Science4Button;
+    @FXML
     private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
     @FXML
     private HBox progressTokenIVHB, peaceTokenIVHB;
