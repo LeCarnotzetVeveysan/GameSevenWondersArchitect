@@ -409,13 +409,6 @@ public class GameSceneController {
     @FXML
     public void Science2Clicked() {
 
-    void Science1Clicked() {
-
-    }
-
-    @FXML
-    void Science2Clicked() {
-
 
     }
 
@@ -432,22 +425,6 @@ public class GameSceneController {
     }
 
     //initialization Methods
-    private void initHoverMethods() {
-        LabelHover1.setOnMouseEntered(event -> { hoveredPlayer =1; Hovered(); });
-        LabelHover1.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover2.setOnMouseEntered(event -> { hoveredPlayer = 2; Hovered(); });
-        LabelHover2.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover3.setOnMouseEntered(event -> { hoveredPlayer =3; Hovered(); });
-        LabelHover3.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover4.setOnMouseEntered(event -> { hoveredPlayer =4; Hovered(); });
-        LabelHover4.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover5.setOnMouseEntered(event -> { hoveredPlayer =5; Hovered(); });
-        LabelHover5.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover6.setOnMouseEntered(event -> { hoveredPlayer =6; Hovered(); });
-        LabelHover6.setOnMouseExited(event -> HoverPane.setVisible(false));
-        LabelHover7.setOnMouseEntered(event -> { hoveredPlayer =7; Hovered(); });
-        LabelHover7.setOnMouseExited(event -> HoverPane.setVisible(false));
-    }
 
     private void initPlayerProgressTokensIVs() {
         playerProgressTokenIVs = new ArrayList<>();
