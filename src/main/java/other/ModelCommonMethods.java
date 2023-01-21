@@ -16,12 +16,15 @@ public class ModelCommonMethods {
         drawCardWithChkProgress(player, drawnCard);
         // Vérifie si la carte contenait un chat Bastet
         verifCardHasCat(board, drawnCard);
+        // Vérifie si la carte était un ARCHER ou BARBARIAN
+        verifCardHasFighter(board, drawnCard);
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
         // Vérifie si le joueur peut piocher un progress token
         chkProgressTokenDrawingStatus(board);
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
+        System.out.println(player.getMaterialTokens());
     }
 
     public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
@@ -102,6 +105,14 @@ public class ModelCommonMethods {
         }
     }
 
+    public static void verifCardHasFighter(Board board, Cards drawnCard) {
+        if (drawnCard.getMilitaryCardToken() == Fighter.ARCHER) {
+            board.setCombatTokensFlipped(board.getCombatTokensFlipped() + 2);
+        } else if (drawnCard.getMilitaryCardToken() == Fighter.BARBARIAN) {
+            board.setCombatTokensFlipped(board.getCombatTokensFlipped() + 1);
+        }
+    }
+
     public static void drawSelectedProgressToken(Board board, int selectedTokenIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         ArrayList<Player> players = board.getPlayers();
@@ -144,7 +155,7 @@ public class ModelCommonMethods {
     }
 
     public static void showProgressTokenToDraw() {
-
+        // active les boutons de progress tokens pour pouvoir en piocher
     }
 
     public static void chkLevelUpWonder(Board board) {
@@ -152,7 +163,7 @@ public class ModelCommonMethods {
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
         // Génère une liste de jetons de matériaux pour le joueur
-        ArrayList<Long> elementTab = materialSimDiffGenerator(board);
+        ArrayList<Long> materialTab = materialSimDiffGenerator(board);
         // Tableau de jetons de matériaux
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
         // Crée une map pour stocker le nombre de niveaux dans chaque étape
@@ -160,8 +171,13 @@ public class ModelCommonMethods {
 
         for (int i = 0; i < wonder.getNbLevelsInStages().length; i++) {
             // Vérifie si les étages précédents ont été construits
-            boolean previousStagesBuilt = wonder.getIsStageBuilt()[i];
-
+            boolean previousStagesBuilt = (i == 0) || wonder.getIsStageBuilt()[i - 1];
+            System.out.println("i" + i);
+            System.out.println("previousStagesBuilt = " + previousStagesBuilt);
+            System.out.println("levelsInStages.get(i) = " + levelsInStages.get(i));
+            System.out.println("wonder.getNbLevelsInStages()[i] = " + wonder.getNbLevelsInStages()[i]);
+            System.out.println("wonder.getNbMaterials()[i]" + wonder.getNbMaterials()[i]);
+            System.out.println("wonder.getSameMaterials()[i]" + wonder.getSameMaterials()[i]);
             if (!wonder.getIsStageBuilt()[i] && previousStagesBuilt) {
                 // Récupère le numéro de l'étape en cours de construction
                 int stage = wonder.getNbLevelsInStages()[i];
@@ -169,13 +185,15 @@ public class ModelCommonMethods {
                 long levelsInCurrentStage = levelsInStages.get(stage);
                 if (wonder.getSameMaterials()[i]) {
                     // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux identiques
-                    updateSameMat(board, elementTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
+                    updateSameMat(board, materialTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
+                    System.out.println("Mêmes matériaux passés");
                 } else {
                     // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux différents
-                    updateDiffMat(board, elementTab, levelsInStages, i, stage, levelsInCurrentStage);
+                    updateDiffMat(board, materialTab, levelsInStages, i, stage, levelsInCurrentStage);
+                    System.out.println("Matériaux différents passés");
                 }
             }
-
+            System.out.println(Arrays.toString(wonder.getIsStageBuilt()));
         }
     }
 
@@ -196,12 +214,16 @@ public class ModelCommonMethods {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
-        if (elementTab.get(5) == wonder.getNbMaterials()[i]) {
+        System.out.println("element diff " + (elementTab.get(elementTab.size()-1)));
+        System.out.println(elementTab);
+
+        if ((elementTab.get(elementTab.size()-1) >= wonder.getNbMaterials()[i])) {
+            System.out.println("passage diff mat");
             int uniqueCount = 0;
             HashSet<MaterialToken> setToRemove = new HashSet<>();
-            for (int m = 0; m < wonder.getNbMaterials()[i]; i++) {
-                if (!setToRemove.contains(player.getMaterialTokens().get(i))) {
-                    setToRemove.add(player.getMaterialTokens().get(i));
+            for (int m = 0; m < wonder.getNbMaterials()[i]; m++) {
+                if (!setToRemove.contains(player.getMaterialTokens().get(m))) {
+                    setToRemove.add(player.getMaterialTokens().get(m));
                     uniqueCount++;
                 }
                 if (uniqueCount == wonder.getNbMaterials()[i]) {
@@ -212,6 +234,7 @@ public class ModelCommonMethods {
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
             levelUpWonder(board, i);
+            System.out.println("BLOUPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
             levelsInStages.put(stage, levelsInCurrentStage - 1);
         }
     }
@@ -220,7 +243,7 @@ public class ModelCommonMethods {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
-        for (int j = 0; j <= 4; j++) {
+        for (int j = 0; j <= elementTab.size() - 2; j++) {
             if (elementTab.get(j) == wonder.getNbMaterials()[i]) {
                 for (int n = 0; n <= wonder.getNbMaterials()[i]; n++) {
                     player.removeMaterialToken(elementTabToToken[j]);
@@ -243,7 +266,7 @@ public class ModelCommonMethods {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
 
-        wonder.setIsStageBuilt(i, true);
+        wonder.getIsStageBuilt()[i] = true;
         chkActionWonder(board, i);
         // vérifie si le joueur a construit toutes les étapes de la merveille
         if (wonder.getIsStageBuilt()[wonder.getIsStageBuilt().length - 1]) {

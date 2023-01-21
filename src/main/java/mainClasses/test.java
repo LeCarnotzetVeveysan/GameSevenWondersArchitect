@@ -2,23 +2,45 @@
 package mainClasses;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import data.Board;
+import data.Player;
+import token.MaterialToken;
 
 public class test {
 
     public static void main(String[] args) {
-        ArrayList<String> playerNames = new ArrayList<>();
+        ArrayList<Long> matTab = materialSimDiffGenerator();
+        System.out.println(matTab);
+    }
 
-        playerNames.add("Player 1");
-        playerNames.add("Player 2");
-        playerNames.add("Player 3");
+    public static ArrayList<Long> materialSimDiffGenerator() {
+        MaterialToken[] materialTokens = {MaterialToken.PAPER, MaterialToken.GLASS, MaterialToken.WOOD, MaterialToken.WOOD, MaterialToken.GOLD};
 
-        Board board = new Board();
+        // dans l'odre : wood, glass, brick, stone, paper et nombre de diff
+        // pour vérif si contient des éléments similaires : boucle entre 0 et 4
+        // pour vérif le nombre d'éléments différents : index 5
+        ArrayList<Long> elementTab = new ArrayList<>();
 
-        // boucle indiquant la merveille de chaque joueurs
-        for (int i = 0; i < board.getPlayers().size(); i++) {
-            System.out.println("Player " + (i + 1) + " : " + board.getPlayers().get(i).getWonder().getName());
+        for (MaterialToken mat: materialTokens) {
+            long countSimilar = Arrays.stream(materialTokens)
+                    .filter(s-> s.equals(MaterialToken.GOLD) || s.equals(mat))
+                    .count();
+            elementTab.add(countSimilar);
         }
+
+        long countGold = Arrays.stream(materialTokens)
+                .filter(s-> s.equals(MaterialToken.GOLD))
+                .count();
+        long countDifferent = Arrays.stream(materialTokens)
+                .filter(s-> !s.equals(MaterialToken.GOLD))
+                .distinct()
+                .count()
+                + countGold;
+        elementTab.add(countDifferent);
+
+        return elementTab;
     }
 
 }
