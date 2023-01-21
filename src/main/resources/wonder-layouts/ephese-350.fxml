@@ -6,27 +6,27 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="68.0" fitWidth="318.0" layoutX="16.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage0IV" fitHeight="68.0" fitWidth="318.0" layoutX="16.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/ephese/ephese_0_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="146.0" fitWidth="76.0" layoutX="50.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage1IV" fitHeight="146.0" fitWidth="76.0" layoutX="50.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/ephese/ephese_1_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="146.0" fitWidth="76.0" layoutX="138.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage2IV" fitHeight="146.0" fitWidth="76.0" layoutX="138.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/ephese/ephese_2_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="146.0" fitWidth="86.0" layoutX="225.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage3IV" fitHeight="146.0" fitWidth="86.0" layoutX="225.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/ephese/ephese_3_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="108.0" fitWidth="272.0" layoutX="39.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage4IV" fitHeight="108.0" fitWidth="272.0" layoutX="39.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/ephese/ephese_4_unbuilt.png" />
          </image>

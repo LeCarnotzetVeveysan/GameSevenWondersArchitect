@@ -6,27 +6,27 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="59.0" fitWidth="334.0" layoutX="8.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage0IV" fitHeight="59.0" fitWidth="334.0" layoutX="8.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/gizeh/gizeh_0_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="67.0" fitWidth="279.0" layoutX="36.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage1IV" fitHeight="67.0" fitWidth="279.0" layoutX="36.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/gizeh/gizeh_1_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="56.0" fitWidth="214.0" layoutX="68.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage2IV" fitHeight="56.0" fitWidth="214.0" layoutX="68.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/gizeh/gizeh_2_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="88.0" layoutX="130.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage3IV" fitHeight="76.0" fitWidth="88.0" layoutX="130.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/gizeh/gizeh_4_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="55.0" fitWidth="151.0" layoutX="98.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage4IV" fitHeight="55.0" fitWidth="151.0" layoutX="98.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/gizeh/gizeh_3_unbuilt.png" />
          </image>
