@@ -111,7 +111,13 @@ public enum Wonder {
     }
 
     public int getStage() {
-        return stage;
+        int built = 0;
+        for(boolean b : isStageBuilt){
+            if(b){
+                built++;
+            }
+        }
+        return built;
     }
 
     public void addStage() {
