@@ -2,16 +2,24 @@ package controllers;
 
 import data.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import token.ProgressToken;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
@@ -25,6 +33,10 @@ public class GameSceneController {
 
     @FXML
     private ImageView startCatIV, playerCatIV, centralDeckIV, leftDeckIV, rightDeckIV;
+    @FXML
+    private StackPane wonderSP;
+    @FXML
+    private ImageView stage0IV, stage1IV, stage2IV, stage3IV, stage4IV;
     @FXML
     private HBox progressTokenBTHB, peaceTokenIVHB;
     @FXML
@@ -83,13 +95,13 @@ public class GameSceneController {
     private Deck centralDeck, rightDeck, leftDeck;
     private int hoveredPlayer;
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws IOException {
         Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
 
         Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
         initIVsAndSPs();
-        initHoverMethods();
+        //initHoverMethods();
 
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
@@ -117,7 +129,7 @@ public class GameSceneController {
         Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
         for (int i = 0; i < GameInitController.numberOfPlayers; i++){
             int finalI = i;
-            Hovers[i].setOnMouseEntered(event -> { hoveredPlayer = finalI +1; Hovered(); });;
+            Hovers[i].setOnMouseEntered(event -> { hoveredPlayer = finalI + 1; Hovered(); });
             Hovers[i].setOnMouseExited(event -> HoverPane.setVisible(false));
         }
     }
@@ -133,7 +145,7 @@ public class GameSceneController {
         initPlayerProgressTokensIVs();
     }
 
-    public void updateImages() throws FileNotFoundException {
+    public void updateImages() throws IOException {
         updateDeckImages();
         updateProgressTokenImages();
         updatePeaceTokenImages();
@@ -141,11 +153,36 @@ public class GameSceneController {
         updatePlayerImages();
     }
 
-    private void updatePlayerImages() throws FileNotFoundException {
+    private void updatePlayerImages() throws IOException {
+        loadWonderLayout();
         updatePlayerTokenSPs();
         updatePlayerTokenLabels();
         updatePlayerWonderIVs();
         updatePlayerProgressTokenIVs();
+    }
+
+    private void loadWonderLayout() throws IOException {
+
+        String file = "/wonder-layouts/" + currentPlayer.getWonder().getName().toLowerCase() + "-350.fxml";
+        URL url = getClass().getResource(file);
+        if (url == null) {
+            System.out.println("FXML file not found.");
+        } else {
+            FXMLLoader loader = new FXMLLoader(url);
+            AnchorPane anchorPane = loader.load();
+            wonderSP.getChildren().clear();
+            wonderSP.getChildren().add(anchorPane);
+            Node[] children = anchorPane.getChildren().toArray(new Node[0]);
+            stage0IV = (ImageView) children[0];
+            stage1IV = (ImageView) children[1];
+            stage2IV = (ImageView) children[2];
+            stage3IV = (ImageView) children[3];
+            stage4IV = (ImageView) children[4];
+
+        }
+
+
+
     }
 
 
@@ -171,15 +208,23 @@ public class GameSceneController {
     private void updatePlayerWonderIVs() throws FileNotFoundException {
 
         Wonder wonder = currentPlayer.getWonder();
-        String path = "wonders/";
-        String name = wonder.getName();
-        path += name.toLowerCase() + "/" + name.toLowerCase();
-        if(wonder.getStage() == 5){
-            path += "Full";
-        } else {
-            path += wonder.getStage();
+        boolean[] built = wonder.getIsStageBuilt();
+        ImageView[] ivs = new ImageView[]{stage0IV, stage1IV, stage2IV, stage3IV, stage4IV};
+
+        String name = wonder.getName().toLowerCase();
+        String path = "wonders/" + name + "/" + name;
+
+        for(int i = 0; i <= 4; i++){
+            if(built[i]){
+                String tempPath = path + "_" + i + "_built";
+                setImage(ivs[i], tempPath);
+            } else {
+                String tempPath = path + "_" + i + "_unbuilt";
+                setImage(ivs[i], tempPath);
+            }
         }
-        setImage(playerWonderIV, path);
+
+
     }
 
     private void updatePlayerTokenLabels() {
@@ -348,7 +393,7 @@ public class GameSceneController {
         leftDeck = gameBoard.getCurrentPlayerIndex() == 0 ? deckList.get(numPlayers - 1) : deckList.get(gameBoard.getCurrentPlayerIndex() - 1);
     }
 
-    void switchToNextPlayer() throws FileNotFoundException {
+    void switchToNextPlayer() throws IOException {
         if (gameBoard.getCurrentPlayerIndex() == playerList.size() - 1) {
             gameBoard.setCurrentPlayerIndex(0);
         } else {
@@ -360,7 +405,7 @@ public class GameSceneController {
     }
 
     @FXML
-    void onNextTurnButtonClick() throws FileNotFoundException {
+    void onNextTurnButtonClick() throws IOException {
         checkForWar();
         switchToNextPlayer();
     }
@@ -373,21 +418,21 @@ public class GameSceneController {
         checkPlayerWar(gameBoard, playerList);
     }
 
-    public void onMainDeckButtonClick() throws FileNotFoundException {
+    public void onMainDeckButtonClick() throws IOException {
         if (centralDeck.getDeck().size() > 0) {
             drawMiddleDeckCard(gameBoard, 0);
         }
         updateImages();
     }
 
-    public void onLeftDeckButtonClick() throws FileNotFoundException {
+    public void onLeftDeckButtonClick() throws IOException {
         if (leftDeck.getDeck().size() > 0) {
             drawLeftDeckCard(gameBoard, 0);
         }
         updateImages();
     }
 
-    public void onRightDeckButtonClick() throws FileNotFoundException {
+    public void onRightDeckButtonClick() throws IOException {
         if (rightDeck.getDeck().size() > 0) {
             drawRightDeckCard(gameBoard, 0);
         }
