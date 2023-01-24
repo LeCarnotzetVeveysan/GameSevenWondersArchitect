@@ -148,7 +148,7 @@ public class GameSceneController {
     public void updateImages() throws IOException {
         updateDeckImages();
         updateProgressTokenImages();
-        updatePeaceTokenImages();
+        //updatePeaceTokenImages();
         updateCatImages();
         updatePlayerImages();
     }

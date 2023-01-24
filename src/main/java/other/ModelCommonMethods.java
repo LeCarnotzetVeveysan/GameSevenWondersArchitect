@@ -165,13 +165,13 @@ public class ModelCommonMethods {
         // Génère une liste de jetons de matériaux pour le joueur
         ArrayList<Long> materialTab = materialSimDiffGenerator(board);
         // Tableau de jetons de matériaux
-        MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
+        MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER, MaterialToken.GOLD};
         // Crée une map pour stocker le nombre de niveaux dans chaque étape
         Map<Integer, Long> levelsInStages = getNbLevelsInEachStages(currentPlayer);
 
         for (int i = 0; i < wonder.getNbLevelsInStages().length; i++) {
             // Vérifie si les étages précédents ont été construits
-            boolean previousStagesBuilt = (i == 0) || wonder.getIsStageBuilt()[i - 1];
+            boolean previousStagesBuilt = (i == 0) || (wonder.getIsStageBuilt()[i - 1]);
             System.out.println("i" + i);
             System.out.println("previousStagesBuilt = " + previousStagesBuilt);
             System.out.println("levelsInStages.get(i) = " + levelsInStages.get(i));
@@ -185,12 +185,14 @@ public class ModelCommonMethods {
                 long levelsInCurrentStage = levelsInStages.get(stage);
                 if (wonder.getSameMaterials()[i]) {
                     // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux identiques
-                    updateSameMat(board, materialTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage);
-                    System.out.println("Mêmes matériaux passés");
+                    if (updateSameMat(board, materialTab, elementTabToToken, levelsInStages, i, stage, levelsInCurrentStage)) {
+                        break;
+                    }
                 } else {
                     // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux différents
-                    updateDiffMat(board, materialTab, levelsInStages, i, stage, levelsInCurrentStage);
-                    System.out.println("Matériaux différents passés");
+                    if(updateDiffMat(board, materialTab, levelsInStages, i, stage, levelsInCurrentStage)) {
+                        break;
+                    }
                 }
             }
             System.out.println(Arrays.toString(wonder.getIsStageBuilt()));
@@ -210,7 +212,7 @@ public class ModelCommonMethods {
         return levelsInStages;
     }
 
-    private static void updateDiffMat(Board board, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+    private static boolean updateDiffMat(Board board, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -234,26 +236,34 @@ public class ModelCommonMethods {
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
             levelUpWonder(board, i);
-            System.out.println("BLOUPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
             levelsInStages.put(stage, levelsInCurrentStage - 1);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    private static void updateSameMat(Board board, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+    private static boolean updateSameMat(Board board, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
+        // nom de variable pour savoir si des jetons de matériaux ont été retirés
+        boolean materialRemoved = false;
 
         for (int j = 0; j <= elementTab.size() - 2; j++) {
             if (elementTab.get(j) == wonder.getNbMaterials()[i]) {
-                for (int n = 0; n <= wonder.getNbMaterials()[i]; n++) {
+                for (int n = 0; n < wonder.getNbMaterials()[i]; n++) {
                     player.removeMaterialToken(elementTabToToken[j]);
+                    System.out.println(n);
                 }
                 chkArchitecture(player);
                 levelUpWonder(board, i);
                 levelsInStages.put(stage, levelsInCurrentStage - 1);
+                materialRemoved = true;
                 break;
             }
         }
+
+        return materialRemoved;
     }
 
     public static void chkArchitecture(Player player) {

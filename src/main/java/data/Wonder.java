@@ -49,8 +49,6 @@ public enum Wonder {
 
     // ------------------------------------------------------------------------
 
-    private ModelCommonMethods comMeth = new ModelCommonMethods();
-
     private final String name;
     private final String effectDescription;
     private final String wonderDeck;
@@ -157,13 +155,13 @@ public enum Wonder {
 
     public void epheseAction(Board board) {
         // prendre la première carte de la pioche centrale
-        comMeth.drawMiddleDeckCard(board, 0);
+        ModelCommonMethods.drawMiddleDeckCard(board, 0);
     }
 
     public void olympieAction(Board board) {
         // prendre les cartes de la pioche de droite et de gauche
-        comMeth.drawLeftDeckCard(board, 0);
-        comMeth.drawRightDeckCard(board, 0);
+        ModelCommonMethods.drawLeftDeckCard(board, 0);
+        ModelCommonMethods.drawRightDeckCard(board, 0);
     }
 
     public void babylonAction() {
