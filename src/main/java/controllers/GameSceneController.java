@@ -178,7 +178,6 @@ public class GameSceneController {
             stage2IV = (ImageView) children[2];
             stage3IV = (ImageView) children[3];
             stage4IV = (ImageView) children[4];
-
         }
 
 
