@@ -21,14 +21,14 @@
             <Image url="@../images/wonders/olympie/olympie_2_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="stage3IV" fitHeight="93.0" fitWidth="209.0" layoutX="72.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wonders/olympie/olympie_4_unbuilt.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="stage4IV" fitHeight="101.0" fitWidth="231.0" layoutX="58.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage3IV" fitHeight="101.0" fitWidth="231.0" layoutX="58.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/olympie/olympie_3_unbuilt.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stage4IV" fitHeight="93.0" fitWidth="209.0" layoutX="72.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/wonders/olympie/olympie_4_unbuilt.png" />
          </image>
       </ImageView>
    </children>

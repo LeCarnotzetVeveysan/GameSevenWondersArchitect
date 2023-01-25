@@ -21,14 +21,14 @@
             <Image url="@../images/wonders/rhodes/rhodes_2_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="stage3IV" fitHeight="100.0" fitWidth="147.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wonders/rhodes/rhodes_4_unbuilt.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="stage4IV" fitHeight="85.0" fitWidth="157.0" layoutX="91.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage3IV" fitHeight="85.0" fitWidth="157.0" layoutX="91.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/rhodes/rhodes_3_unbuilt.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stage4IV" fitHeight="100.0" fitWidth="147.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/wonders/rhodes/rhodes_4_unbuilt.png" />
          </image>
       </ImageView>
    </children>

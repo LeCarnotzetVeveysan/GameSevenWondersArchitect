@@ -110,16 +110,6 @@ public enum Wonder {
         this.isStageBuilt[index] = isStageBuilt;
     }
 
-    public int getStage() {
-        int built = 0;
-        for(boolean b : isStageBuilt){
-            if(b){
-                built++;
-            }
-        }
-        return built;
-    }
-
     public void addStage() {
         this.stage++;
     }
