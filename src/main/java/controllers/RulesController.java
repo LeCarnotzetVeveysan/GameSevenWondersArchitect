@@ -1,5 +1,6 @@
 package controllers;
 
+import application.AppData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,7 +26,7 @@ public class RulesController {
 
     public void initialize() throws FileNotFoundException {
         currentPageNumber = 1;
-        maxPageNumber = 5;
+        maxPageNumber = 18;
         refreshScene();
     }
 
@@ -36,7 +37,7 @@ public class RulesController {
     }
 
     private void setPageImage() throws FileNotFoundException {
-        String imageUrl = "rules/rules_page" + currentPageNumber;
+        String imageUrl = "rules/" + AppData.getLanguage() + "_page_" + currentPageNumber;
         setImage(rulesImageView, imageUrl);
     }
 

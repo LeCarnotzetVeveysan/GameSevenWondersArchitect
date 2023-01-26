@@ -21,14 +21,14 @@
             <Image url="@../images/wonders/halicarnasse/halicarnasse_2_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="stage3IV" fitHeight="106.0" fitWidth="191.0" layoutX="88.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wonders/halicarnasse/halicarnasse_4_unbuilt.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="stage4IV" fitHeight="106.0" fitWidth="109.0" layoutX="175.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage3IV" fitHeight="106.0" fitWidth="109.0" layoutX="175.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/halicarnasse/halicarnasse_3_unbuilt.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stage4IV" fitHeight="106.0" fitWidth="191.0" layoutX="88.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/wonders/halicarnasse/halicarnasse_4_unbuilt.png" />
          </image>
       </ImageView>
    </children>

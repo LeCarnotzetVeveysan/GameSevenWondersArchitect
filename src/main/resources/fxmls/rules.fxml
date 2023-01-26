@@ -17,7 +17,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="330.0" prefWidth="470.0">
          <children>
-            <ImageView fx:id="rulesImageView" />
+            <ImageView fx:id="rulesImageView" fitHeight="330.0" fitWidth="470.0" preserveRatio="true" />
          </children>
       </HBox>
       <Button layoutX="14.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" text="Back" />
