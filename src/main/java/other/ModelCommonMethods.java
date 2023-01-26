@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 
 public class ModelCommonMethods {
 
+    public static boolean isDeckEmpty(Deck inputDeck){
+        return inputDeck.getDeck().isEmpty();
+    }
+
     public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
@@ -25,6 +29,8 @@ public class ModelCommonMethods {
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
         System.out.println(player.getMaterialTokens());
+        //nextTurn true
+
     }
 
     public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
@@ -36,8 +42,15 @@ public class ModelCommonMethods {
         int leftPlayerIndex = (currentPlayerIndex == 0) ? nbPlayers - 1 : currentPlayerIndex - 1;
 
         Deck targetdeck = board.getDecks().get(leftPlayerIndex);
-        // Pioche une carte depuis le deck du joueur à gauche
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        if(!isDeckEmpty(targetdeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
+
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        }
+
     }
 
     public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
@@ -150,12 +163,15 @@ public class ModelCommonMethods {
         }
         if (similarRemoved || differentRemoved) {
             //appel de la méthode additionnelle
-            showProgressTokenToDraw();
+            showProgressTokenToDraw(board);
         }
     }
 
-    public static void showProgressTokenToDraw() {
+    public static void showProgressTokenToDraw(Board board) {
         // active les boutons de progress tokens pour pouvoir en piocher
+        board.setCanDrawCard(false);
+        board.setCanDrawProgressToken(true);
+        board.setCanNextTurn(false);
     }
 
     public static void chkLevelUpWonder(Board board) {

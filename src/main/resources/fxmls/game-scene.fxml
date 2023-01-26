@@ -12,8 +12,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameSceneController">
    <children>
-      <Button fx:id="PiocheGaucheButton" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheGaucheClicked" text="Pioche de gauche" />
-      <Button fx:id="PiocheDroiteButton" layoutX="441.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheDroiteClicked" text="Pioche de droite" />
+      <Button fx:id="leftDeckButton" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheGaucheClicked" text="Pioche de gauche" />
+      <Button fx:id="rightDeckButton" layoutX="441.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheDroiteClicked" text="Pioche de droite" />
       <ImageView fx:id="ImageViewJetonsPaix1" fitHeight="49.0" fitWidth="49.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-war.png" />

@@ -13,6 +13,10 @@ public class Board {
     private int currentPlayerIndex;
 
     private boolean isCatTaken;
+    private boolean canNextTurn;
+    private boolean canDrawProgressToken;
+    private boolean hasDrawnCard;
+    private boolean canDrawCard;
 
     int combatTokensNeeded;
     int combatTokensFlipped = 0;
@@ -69,4 +73,19 @@ public class Board {
         isCatTaken = true;
     }
 
+    public boolean getCanNextTurn(){ return canNextTurn; }
+
+    public void setCanNextTurn(boolean input){ canNextTurn = input; }
+
+    public boolean getCanDrawCard(){ return canDrawCard; }
+
+    public void setCanDrawCard(boolean input) { canDrawCard = input; }
+
+    public boolean getCanDrawProgressToken(){ return canDrawProgressToken; }
+
+    public void setCanDrawProgressToken(boolean input){ canDrawProgressToken = input; }
+
+    public boolean getHasDrawnCard(){ return hasDrawnCard; }
+
+    public void setHasDrawnCard(boolean input){ hasDrawnCard = input; }
 }

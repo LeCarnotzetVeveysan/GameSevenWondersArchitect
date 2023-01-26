@@ -35,7 +35,7 @@
                <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
             </ImageView>
          </HBox>
-         <Button mnemonicParsing="false" onMouseClicked="#onMainDeckButtonClick">
+         <Button fx:id="centralDeckButton" mnemonicParsing="false" onMouseClicked="#onMainDeckButtonClick">
             <graphic>
                <ImageView fx:id="centralDeckIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/cards/card-back/card-back-question.png" />
@@ -84,7 +84,7 @@
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
-         <Button mnemonicParsing="false" onMouseClicked="#onLeftDeckButtonClick">
+         <Button fx:id="leftDeckButton" mnemonicParsing="false" onMouseClicked="#onLeftDeckButtonClick">
             <graphic>
                <ImageView fx:id="leftDeckIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/cards/card-back/card-back-question.png" />
@@ -152,19 +152,19 @@
                <HBox prefHeight="100.0" prefWidth="200.0">
                   <HBox fx:id="playerScienceTokenSPHB" prefHeight="30.0" prefWidth="168.0">
                      <StackPane fx:id="architectTokenSP" alignment="BOTTOM_RIGHT">
-                        <ImageView fx:id="architectTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <Image url="@../images/tokens-science/architectToken.png" />
                         </ImageView>
                         <Label fx:id="architectTokenLabel" text="Label" />
                      </StackPane>
                      <StackPane fx:id="lawTokenSP" alignment="BOTTOM_RIGHT">
-                        <ImageView fx:id="lawTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <Image url="@../images/tokens-science/lawToken.png" />
                         </ImageView>
                         <Label fx:id="lawTokenLabel" text="Label" />
                      </StackPane>
                      <StackPane fx:id="mechanicTokenSP" alignment="BOTTOM_RIGHT">
-                        <ImageView fx:id="mechanicTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <Image url="@../images/tokens-science/mechanicToken.png" />
                         </ImageView>
                         <Label fx:id="mechanicTokenLabel" text="Label" />
@@ -173,7 +173,7 @@
                   <HBox fx:id="playerLaurelTokenSPHB" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="93.0">
                      <StackPane fx:id="laurelRed3TokenSP" alignment="BOTTOM_RIGHT">
                         <children>
-                           <ImageView fx:id="redLaurelTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                               <Image url="@../images/tokens-laurel/laurel-3-redToken.png" />
                            </ImageView>
                            <Label fx:id="laurelRed3TokenLabel" text="Label" />
@@ -181,7 +181,7 @@
                      </StackPane>
                      <StackPane fx:id="laurelBlue2TokenSP" alignment="BOTTOM_RIGHT">
                         <children>
-                           <ImageView fx:id="blue2LaurelTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                               <Image url="@../images/tokens-laurel/laurel-2-blueToken.png" />
                            </ImageView>
                            <Label fx:id="laurelBlue2TokenLabel" text="Label" />
@@ -189,7 +189,7 @@
                      </StackPane>
                      <StackPane fx:id="laurelBlue3TokenSP" alignment="BOTTOM_RIGHT">
                         <children>
-                           <ImageView fx:id="blue3LaurelTokenIV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                               <Image url="@../images/tokens-laurel/laurel-3-blueToken.png" />
                            </ImageView>
                            <Label fx:id="laurelBlue3TokenLabel" text="Label" />
@@ -228,7 +228,7 @@
                <Image url="@../images/tokens-laurel/token-cat.png" />
             </ImageView>
          </HBox>
-         <Button mnemonicParsing="false" onMouseClicked="#onRightDeckButtonClick">
+         <Button fx:id="rightDeckButton" mnemonicParsing="false" onMouseClicked="#onRightDeckButtonClick">
             <graphic>
                <ImageView fx:id="rightDeckIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/cards/card-back/card-back-question.png" />
@@ -241,7 +241,7 @@
       </HBox>
    </VBox>
    <VBox alignment="TOP_CENTER" prefHeight="562.0" prefWidth="116.0" spacing="5.0">
-      <Button mnemonicParsing="false" onMouseClicked="#onNextTurnButtonClick" text="Next turn">
+      <Button fx:id="nextTurnButton" mnemonicParsing="false" onMouseClicked="#onNextTurnButtonClick" text="Next turn">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
