@@ -96,7 +96,7 @@ public class ResultsController {
         for (int i = 0; i < playerNames.length; i++){
             if(scoreBoard[i][4] == topScore){
                 laurelIVs[i].setVisible(true);
-                nameLabels[i].setFont(Font.font("system", FontWeight.BOLD, 12));
+                nameLabels[i].setFont(Font.font("system", FontWeight.BOLD, 14));
                 //ajouter un petit contour pour bien voir le texte
                 nameLabels[i].setTextFill(Color.GOLDENROD);
             }
