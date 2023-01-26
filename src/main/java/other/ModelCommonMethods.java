@@ -395,7 +395,36 @@ public class ModelCommonMethods {
     }
 
     public static int getGreenLaurelPoints(Player player){
+        int score = 0;
         //regarder si il a progress tokens et faire en fonction
+        //if hasDecoration token
+        score += getDecorationScore(player);
+
+        return 1;
+    }
+
+    public static int getDecorationScore(Player player){
+        //retourner état avancement merveille
+        return 1;
+    }
+
+    public static int getPoliticsScore(Player player){
+        //retourner nombre de jetons bleus avec un chat
+        return 1;
+    }
+
+    public static int getStrategyScoe(Player player){
+        //retourner nombre de jetons victoire militair rouges
+        return 1;
+    }
+
+    public static int getEducationScore(Player player){
+        //retourner nombre jetons progrès
+        return 1;
+    }
+
+    public static int getCultureScore(Player player){
+        //retourner 4 si un jeton et 12 si 2 jetons
         return 1;
     }
 
