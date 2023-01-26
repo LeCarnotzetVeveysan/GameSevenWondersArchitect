@@ -193,13 +193,6 @@ public class ModelCommonMethods {
         board.setCanDrawCard(false);
         board.setCanDrawProgressToken(true);
         board.setCanNextTurn(false);
-            showProgressTokenToDraw();
-        }
-    }
-
-    public static void showProgressTokenToDraw() {
-        GameSceneController.ActivateProgressToken();
-
     }
 
     public static void chkLevelUpWonder(Board board) {

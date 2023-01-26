@@ -385,9 +385,9 @@ public class GameSceneController {
         if(stack.size() >= 4){
             buttons.addAll(progressTokenBTs);
             setImage(progressToken1IV, "tokens-progress/back/token-back");
-            setImage(progressToken2IV, stack.get(stack.size()-3).getImageResource());
-            setImage(progressToken3IV, stack.get(stack.size()-2).getImageResource());
-            setImage(progressToken4IV, stack.get(stack.size()-1).getImageResource());
+            setImage(progressToken2IV, stack.get(1).getImageResource());
+            setImage(progressToken3IV, stack.get(2).getImageResource());
+            setImage(progressToken4IV, stack.get(3).getImageResource());
         } else if (stack.size() == 3){
             for(int i = 0; i < 3; i++){ buttons.add(progressTokenBTs.get(i)); }
             setImage(progressToken1IV, stack.get(0).getImageResource());
@@ -431,7 +431,7 @@ public class GameSceneController {
         leftDeck = gameBoard.getCurrentPlayerIndex() == 0 ? deckList.get(numPlayers - 1) : deckList.get(gameBoard.getCurrentPlayerIndex() - 1);
     }
 
-    void switchToNextPlayer() {
+    void switchToNextPlayer() throws IOException {
         if (gameBoard.getCurrentPlayerIndex() == playerList.size() - 1) {
             gameBoard.setCurrentPlayerIndex(0);
         } else {
@@ -491,24 +491,32 @@ public class GameSceneController {
 
     @FXML
 
-    public void onProgressToken1Click() {
+    public void onProgressToken1Click() throws IOException {
         System.out.println("progress token 1 click");
         gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,0);
+        updateScene();
     }
 
     @FXML
-    public void onProgressToken2Click() {
+    public void onProgressToken2Click() throws IOException {
         gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,1);
+        updateScene();
     }
 
     @FXML
-    public void onProgressToken3Click() {
+    public void onProgressToken3Click() throws IOException {
         gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,2);
+        updateScene();
     }
 
     @FXML
-    public void onProgressToken4Click() {
+    public void onProgressToken4Click() throws IOException {
         gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,3);
+        updateScene();
     }
 
     //initialization Methods
@@ -571,15 +579,6 @@ public class GameSceneController {
         progressTokenBTs.add(progressToken2BT);
         progressTokenBTs.add(progressToken3BT);
         progressTokenBTs.add(progressToken4BT);
-        for (Button bt : progressTokenBTs) {
-            bt.setDisable(true);
-        }
-    }
-
-    public static void ActivateProgressToken() {
-        for (Button bt : progressTokenBTs) {
-            bt.setDisable(false);
-        }
     }
 
 }
