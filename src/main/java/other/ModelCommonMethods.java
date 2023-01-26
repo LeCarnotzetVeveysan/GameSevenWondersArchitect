@@ -1,5 +1,6 @@
 package other;
 
+import controllers.GameSceneController;
 import data.*;
 import token.*;
 
@@ -9,11 +10,15 @@ import java.util.stream.Collectors;
 
 public class ModelCommonMethods {
 
+    public static boolean isDeckEmpty(Deck inputDeck){
+        return inputDeck.getDeck().isEmpty();
+    }
+
     public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
-        drawCardWithChkProgress(player, drawnCard);
+        drawCardWithChkProgress(player, drawnCard, board);
         // Vérifie si la carte contenait un chat Bastet
         verifCardHasCat(board, drawnCard);
         // Vérifie si la carte était un ARCHER ou BARBARIAN
@@ -25,6 +30,13 @@ public class ModelCommonMethods {
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
         System.out.println(player.getMaterialTokens());
+        //nextTurn true
+        if(board.getCanDrawProgressToken() || board.getCanDrawCard()){
+            board.setCanNextTurn(false);
+        } else {
+            board.setCanNextTurn(true);
+        }
+
     }
 
     public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
@@ -36,29 +48,45 @@ public class ModelCommonMethods {
         int leftPlayerIndex = (currentPlayerIndex == 0) ? nbPlayers - 1 : currentPlayerIndex - 1;
 
         Deck targetdeck = board.getDecks().get(leftPlayerIndex);
-        // Pioche une carte depuis le deck du joueur à gauche
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        if(!isDeckEmpty(targetdeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        }
+
     }
 
     public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
         int middleDeckIndex = board.getPlayers().size();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
-        Deck targetdeck = board.getDecks().get(middleDeckIndex);
-        // Pioche une carte depuis le deck du milieu
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        Deck targetDeck = board.getDecks().get(middleDeckIndex);
+        if(!isDeckEmpty(targetDeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetDeck, currentPlayer, selectedCardIndex);
+        }
     }
 
     public static void drawRightDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
-        Deck targetdeck = board.getDecks().get(currentPlayerIndex);
-        // Pioche une carte depuis le deck du joueur à droite
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        Deck targetDeck = board.getDecks().get(currentPlayerIndex);
+        if(!isDeckEmpty(targetDeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(true);
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetDeck, currentPlayer, selectedCardIndex);
+        }
     }
 
-    public static void drawCardWithChkProgress(Player player, Cards drawnCard) {
+    public static void drawCardWithChkProgress(Player player, Cards drawnCard, Board board) {
         if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
             drawnCard.getCardTokenToPlayer(player);
             drawnCard.getCardTokenToPlayer(player);
@@ -66,19 +94,19 @@ public class ModelCommonMethods {
             drawnCard.getCardTokenToPlayer(player);
         }
         if (player.getProgressTokens().contains(ProgressToken.Urbanism) && (verifDrawnCard(drawnCard, Cards.MAT_WOOD) || verifDrawnCard(drawnCard, Cards.MAT_BRICK))) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.ArtsAndCrafts) && (verifDrawnCard(drawnCard, Cards.MAT_PAPER) || verifDrawnCard(drawnCard, Cards.MAT_GLASS))) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.Jewelry) && (verifDrawnCard(drawnCard, Cards.MAT_STONE) || verifDrawnCard(drawnCard, Cards.MAT_GOLD))) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.Science) && drawnCard.getType().equals("Science")) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.Propaganda) && drawnCard.getType().equals("Military") && (drawnCard.getMilitaryCardToken() == Fighter.ARCHER || drawnCard.getMilitaryCardToken() == Fighter.BARBARIAN)) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
     }
 
@@ -126,36 +154,43 @@ public class ModelCommonMethods {
     public static void chkProgressTokenDrawingStatus(Board board) {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
-        Map<ProgressToken, Long> countSimilar = player.getProgressTokens().stream()
+        Map<ScienceToken, Long> countSimilar = player.getScienceTokens().stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        long countDifferent = player.getScienceTokens().stream()
+                .distinct()
+                .count();
         boolean similarRemoved = false;
         boolean differentRemoved = false;
 
-        for (Map.Entry<ProgressToken, Long> entry : countSimilar.entrySet()) {
+        for (Map.Entry<ScienceToken, Long> entry : countSimilar.entrySet()) {
             if (entry.getValue() >= 2) {
                 for (int i = 0; i < 2; i++) {
-                    player.getProgressTokens().remove(entry.getKey());
+                    player.getScienceTokens().remove(entry.getKey());
                 }
                 similarRemoved = true;
                 break;
             }
         }
-        long countDifferent = player.getProgressTokens().size() - countSimilar.size();
+
+
         if (countDifferent >= 3) {
-            List<ProgressToken> differents = player.getProgressTokens().stream().distinct().toList();
+            List<ScienceToken> differents = player.getScienceTokens().stream().distinct().toList();
             for (int i = 0; i < 3; i++) {
-                player.getProgressTokens().remove(differents.get(i));
+                player.getScienceTokens().remove(differents.get(i));
             }
             differentRemoved = true;
         }
         if (similarRemoved || differentRemoved) {
             //appel de la méthode additionnelle
-            showProgressTokenToDraw();
+            showProgressTokenToDraw(board);
         }
     }
 
-    public static void showProgressTokenToDraw() {
+    public static void showProgressTokenToDraw(Board board) {
         // active les boutons de progress tokens pour pouvoir en piocher
+        board.setCanDrawCard(false);
+        board.setCanDrawProgressToken(true);
+        board.setCanNextTurn(false);
     }
 
     public static void chkLevelUpWonder(Board board) {
@@ -254,7 +289,7 @@ public class ModelCommonMethods {
                     break;
                 }
             }
-            chkArchitecture(player);
+            chkArchitecture(player, board);
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
             levelUpWonder(board, i);
@@ -277,7 +312,7 @@ public class ModelCommonMethods {
                     player.removeMaterialToken(elementTabToToken[j]);
                     System.out.println(n);
                 }
-                chkArchitecture(player);
+                chkArchitecture(player, board);
                 levelUpWonder(board, i);
                 levelsInStages.put(stage, levelsInCurrentStage - 1);
                 materialRemoved = true;
@@ -288,9 +323,10 @@ public class ModelCommonMethods {
         return materialRemoved;
     }
 
-    public static void chkArchitecture(Player player) {
+    public static void chkArchitecture(Player player, Board board) {
         if (player.getProgressTokens().contains(ProgressToken.Architecture)) {
             // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
     }
 
@@ -364,5 +400,112 @@ public class ModelCommonMethods {
 
         board.setCombatTokensFlipped(0);
     }
+
+    public static int[][] getScoreBoard(ArrayList<Player> players){
+        int numPlayers = players.size();
+        int[][] scores = new int[numPlayers][5];
+        for(int i = 0; i < numPlayers; i++){
+            Player player = players.get(i);
+            scores[i][0] = getWonderLaurelPoints(player);
+            scores[i][1] = getBlueRedLaurelPoints(player);
+            scores[i][2] = player.getHasCat() ? 2 : 0;
+            scores[i][3] = getGreenLaurelPoints(player);
+            scores[i][4] = getCultureScore(player) + getPoliticsScore(player) + getStrategyScore(player) + getEducationScore(player);
+            scores[i][5] = scores[i][0] + scores[i][1] + scores[i][2] + scores[i][3] + scores[i][4];
+        }
+        return scores;
+    }
+
+    public static int getWonderLaurelPoints(Player player){
+        //faire la sommes des points des étages de la merveille qui sont construits
+        int nbStage = player.getWonder().getNbLevelsInStages().length;
+        int score = 0;
+        for (int i =0; i < nbStage; i++){
+            if (player.getWonder().getIsStageBuilt()[i] == true){
+                score = score + player.getWonder().getLevelPoints()[i];
+            }
+        }
+        return score;
+
+    }
+
+    public static int getBlueRedLaurelPoints(Player player){
+        //faire la sommes des points des laurelsTokens
+        int score = 0;
+        long countLaurelBlue2 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
+        long countLaurelBlue3 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_3)).count();
+        long countLaurelRed3 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_RED_3)).count();
+        score = (int) ((countLaurelBlue3*3) + (countLaurelBlue2*2) + (countLaurelRed3*3));
+        return score;
+    }
+
+    public static int getGreenLaurelPoints(Player player){
+        int score = 0;
+        //regarder si il a progress tokens et faire en fonction
+        if (player.getProgressTokens().contains(ProgressToken.Decoration)){
+            score += getDecorationScore(player);
+        }
+
+        return score;
+    }
+
+    public static int getDecorationScore(Player player){
+        //retourner état avancement merveille
+        int score = 4;
+        int nbLevels = player.getWonder().getNbLevelsInStages().length;
+        if (player.getWonder().getIsStageBuilt()[nbLevels]){
+            score = 6;
+        }
+        return score;
+    }
+
+    public static int getPoliticsScore(Player player){
+        //retourner nombre de jetons bleus avec un chat
+        int score = 0;
+        if (player.getProgressTokens().contains(ProgressToken.Politic)){
+            long countLaurelBlue2 = player.getLaurelTokens().stream()
+                    .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
+            score = (int) countLaurelBlue2;
+        }
+        return score;
+    }
+
+    public static int getStrategyScore(Player player){
+        //retourner nombre de jetons victoire militair rouges
+        int score = 0;
+        if (player.getProgressTokens().contains(ProgressToken.Strategy)){
+            score = player.getMilitaryPoints();
+        }
+        return score;
+    }
+
+    public static int getEducationScore(Player player){
+        //retourner nombre jetons progrès
+        int score = 0;
+        if (player.getProgressTokens().contains(ProgressToken.Education)){
+            score = player.getProgressTokens().size()*2;
+        }
+        return score;
+    }
+
+    public static int getCultureScore(Player player){
+        //retourner 4 si un jeton et 12 si 2
+        int score = 0;
+        long countCulture = player.getProgressTokens().stream()
+                .filter(s-> s.equals(ProgressToken.Culture)).count();
+        if (countCulture == 1){
+            score = 4;
+        }
+        else if (countCulture == 2) {
+            score = 12;
+        }
+        return score;
+    }
+
+
+
 
 }

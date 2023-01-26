@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitController">
    <children>
       <AnchorPane layoutX="201.0" layoutY="116.0" minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="269.0">
          <children>
@@ -32,7 +27,7 @@
       </AnchorPane>
       <ImageView fitHeight="135.0" fitWidth="225.0" layoutX="137.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Untitled.png" />
+            <Image url="@../other/arc-common-logo-1630334595bVXyZ-large.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="ComboBoxNumPlayer" layoutX="117.0" layoutY="208.0" onAction="#onNumPlayersChanged" prefHeight="26.0" prefWidth="70.0" />

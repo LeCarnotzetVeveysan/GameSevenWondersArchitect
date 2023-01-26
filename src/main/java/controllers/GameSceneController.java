@@ -11,23 +11,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import token.ProgressToken;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 
 import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
 
 public class GameSceneController {
-
-    @FXML
-    private Button Science1Button, Science2Button, Science3Button, Science4Button;
 
     public Label playerNameLabel;
 
@@ -46,7 +40,7 @@ public class GameSceneController {
     @FXML
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
     private ArrayList<ImageView> peaceTokenIVs;
-    private ArrayList<Button> progressTokenBTs;
+    private static ArrayList<Button> progressTokenBTs;
 
     @FXML
     private ImageView playerWonderIV;
@@ -86,6 +80,9 @@ public class GameSceneController {
     @FXML
     private Label InfoPlayer;
 
+    @FXML
+    private Button nextTurnButton, centralDeckButton, leftDeckButton, rightDeckButton;
+
     //Game variables
     private Board gameBoard;
     private final int numPlayers = GameData.getNumberOfPlayers();
@@ -101,7 +98,7 @@ public class GameSceneController {
         Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
         initIVsAndSPs();
-        //initHoverMethods();
+        initHoverMethods();
 
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
@@ -117,12 +114,10 @@ public class GameSceneController {
             Hovers[i-1].setVisible(false);
             Hovers[i-1].setDisable(true);
         }
+
         switchToNextPlayer();
-
         updateDecks();
-
-        updateImages();
-
+        updateScene();
     }
 
     private void initHoverMethods() {
@@ -143,6 +138,49 @@ public class GameSceneController {
         initWarTokenSPs();
         initLaurelTokenSPs();
         initPlayerProgressTokensIVs();
+    }
+
+    public void updateScene() throws IOException {
+        updateButtons();
+        updateImages();
+    }
+
+    private void updateButtons() {
+        updateNextTurnButton();
+        updateDeckButtons();
+        updateProgressButtons();
+    }
+
+    private void updateProgressButtons() {
+        if(gameBoard.getCanDrawProgressToken()){
+            progressToken1BT.setDisable(false);
+            progressToken2BT.setDisable(false);
+            progressToken3BT.setDisable(false);
+            progressToken4BT.setDisable(false);
+        } else {
+            progressToken1BT.setDisable(true);
+            progressToken2BT.setDisable(true);
+            progressToken3BT.setDisable(true);
+            progressToken4BT.setDisable(true);
+        }
+
+    }
+
+    private void updateDeckButtons() {
+        if(gameBoard.getCanDrawCard()){
+            centralDeckButton.setDisable(false);
+            rightDeckButton.setDisable(false);
+            leftDeckButton.setDisable(false);
+        } else {
+            centralDeckButton.setDisable(true);
+            rightDeckButton.setDisable(true);
+            leftDeckButton.setDisable(true);
+        }
+
+    }
+
+    private void updateNextTurnButton() {
+        nextTurnButton.setDisable(!gameBoard.getCanNextTurn());
     }
 
     public void updateImages() throws IOException {
@@ -179,9 +217,6 @@ public class GameSceneController {
             stage3IV = (ImageView) children[3];
             stage4IV = (ImageView) children[4];
         }
-
-
-
     }
 
 
@@ -214,15 +249,14 @@ public class GameSceneController {
         String path = "wonders/" + name + "/" + name;
 
         for(int i = 0; i <= 4; i++){
+            String tempPath;
             if(built[i]){
-                String tempPath = path + "_" + i + "_built";
-                setImage(ivs[i], tempPath);
+                tempPath = path + "_" + i + "_built";
             } else {
-                String tempPath = path + "_" + i + "_unbuilt";
-                setImage(ivs[i], tempPath);
+                tempPath = path + "_" + i + "_unbuilt";
             }
+            setImage(ivs[i], tempPath);
         }
-
 
     }
 
@@ -351,9 +385,9 @@ public class GameSceneController {
         if(stack.size() >= 4){
             buttons.addAll(progressTokenBTs);
             setImage(progressToken1IV, "tokens-progress/back/token-back");
-            setImage(progressToken2IV, stack.get(stack.size()-3).getImageResource());
-            setImage(progressToken3IV, stack.get(stack.size()-2).getImageResource());
-            setImage(progressToken4IV, stack.get(stack.size()-1).getImageResource());
+            setImage(progressToken2IV, stack.get(1).getImageResource());
+            setImage(progressToken3IV, stack.get(2).getImageResource());
+            setImage(progressToken4IV, stack.get(3).getImageResource());
         } else if (stack.size() == 3){
             for(int i = 0; i < 3; i++){ buttons.add(progressTokenBTs.get(i)); }
             setImage(progressToken1IV, stack.get(0).getImageResource());
@@ -384,6 +418,11 @@ public class GameSceneController {
         } else {
             setImage(rightDeckIV, rightDeck.getBackCardImg());
         }
+        if(!gameBoard.getHasDrawnCard() && currentPlayer.getHasCat()){
+            setImage(centralDeckIV, centralDeck.getCardAtIndex(0).getFront());
+        } else {
+            setImage(centralDeckIV, centralDeck.getBackCardImg());
+        }
     }
 
     private void updateDecks() {
@@ -399,6 +438,10 @@ public class GameSceneController {
             gameBoard.setCurrentPlayerIndex(gameBoard.getCurrentPlayerIndex() + 1);
         }
         currentPlayer = playerList.get(gameBoard.getCurrentPlayerIndex());
+        gameBoard.setHasDrawnCard(false);
+        gameBoard.setCanDrawCard(true);
+        gameBoard.setCanNextTurn(false);
+        playerNameLabel.setText(currentPlayer.getName());
         updateDecks();
         updateImages();
     }
@@ -407,6 +450,8 @@ public class GameSceneController {
     void onNextTurnButtonClick() throws IOException {
         checkForWar();
         switchToNextPlayer();
+        updateDecks();
+        updateScene();
     }
 
     private void checkForWar() {
@@ -421,21 +466,21 @@ public class GameSceneController {
         if (centralDeck.getDeck().size() > 0) {
             drawMiddleDeckCard(gameBoard, 0);
         }
-        updateImages();
+        updateScene();
     }
 
     public void onLeftDeckButtonClick() throws IOException {
         if (leftDeck.getDeck().size() > 0) {
             drawLeftDeckCard(gameBoard, 0);
         }
-        updateImages();
+        updateScene();
     }
 
     public void onRightDeckButtonClick() throws IOException {
         if (rightDeck.getDeck().size() > 0) {
             drawRightDeckCard(gameBoard, 0);
         }
-        updateImages();
+        updateScene();
     }
 
     public void Hovered(){
@@ -446,30 +491,35 @@ public class GameSceneController {
 
     @FXML
 
-    public void Science1Clicked() {
-        System.out.println("Science1Clicked");
+    public void onProgressToken1Click() throws IOException {
+        System.out.println("progress token 1 click");
+        gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,0);
+        updateScene();
     }
 
     @FXML
-    public void Science2Clicked() {
-
-
+    public void onProgressToken2Click() throws IOException {
+        gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,1);
+        updateScene();
     }
 
     @FXML
-    public void Science3Clicked() {
-
-
+    public void onProgressToken3Click() throws IOException {
+        gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,2);
+        updateScene();
     }
 
     @FXML
-    public void Science4Clicked() {
-
-
+    public void onProgressToken4Click() throws IOException {
+        gameBoard.setCanDrawProgressToken(false);
+        drawSelectedProgressToken(gameBoard,3);
+        updateScene();
     }
 
     //initialization Methods
-
     private void initPlayerProgressTokensIVs() {
         playerProgressTokenIVs = new ArrayList<>();
         playerProgressTokenIVs.add(playerProgTok1IV);
@@ -530,6 +580,5 @@ public class GameSceneController {
         progressTokenBTs.add(progressToken3BT);
         progressTokenBTs.add(progressToken4BT);
     }
-
 
 }
