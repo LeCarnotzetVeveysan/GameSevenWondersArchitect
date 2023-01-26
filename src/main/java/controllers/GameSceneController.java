@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import other.ModelCommonMethods;
+import token.LaurelToken;
 import token.ProgressToken;
 
 import java.io.FileNotFoundException;
@@ -177,6 +179,9 @@ public class GameSceneController {
     }
 
     private void updateNextTurnButton() {
+        if((gameBoard.getCanDrawCard() ==false) && (gameBoard.getCanDrawProgressToken() == false)){
+            gameBoard.setCanNextTurn(true);
+        }
         nextTurnButton.setDisable(!gameBoard.getCanNextTurn());
     }
 
@@ -481,15 +486,31 @@ public class GameSceneController {
     }
 
     public void Hovered(){
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
         HoverPane.setVisible(true);
-        //Set Label InfoPlayer en fonction du joueur qui a été hover ( donc valeur de hoveredPlayer )
-        InfoPlayer.setText("Player "+ hoveredPlayer + " hovered");
+        int score = 0;
+        int built = 0;
+        long countLaurelBlue2 = gameBoard.getPlayers().get(hoveredPlayer-1).getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
+        long countLaurelBlue3 = gameBoard.getPlayers().get(hoveredPlayer-1).getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_3)).count();
+        long countLaurelRed3 = gameBoard.getPlayers().get(hoveredPlayer-1).getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_RED_3)).count();
+        score = (int) ((countLaurelBlue3*3) + (countLaurelBlue2*2) + (countLaurelRed3*3));
+        int nbStage = gameBoard.getPlayers().get(hoveredPlayer-1).getWonder().getNbLevelsInStages().length;
+        for (int i =0; i < nbStage; i++) {
+            if (gameBoard.getPlayers().get(hoveredPlayer-1).getWonder().getIsStageBuilt()[i] == true) {
+                built += 1;
+            }
+        }
+        InfoPlayer.setText(gameBoard.getPlayers().get(hoveredPlayer-1).getName() + " has " + score + " Victory Points, " +
+                gameBoard.getPlayers().get(hoveredPlayer-1).getProgressTokens().size()+ " Progress Tokens and has built " +
+                built + " Stages out of " + nbStage);
     }
 
     @FXML
 
     public void onProgressToken1Click() throws IOException {
-        System.out.println("progress token 1 click");
         gameBoard.setCanDrawProgressToken(false);
         drawSelectedProgressToken(gameBoard,0);
         updateScene();
