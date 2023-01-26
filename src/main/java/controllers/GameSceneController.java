@@ -40,7 +40,7 @@ public class GameSceneController {
     @FXML
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
     private ArrayList<ImageView> peaceTokenIVs;
-    private ArrayList<Button> progressTokenBTs;
+    private static ArrayList<Button> progressTokenBTs;
 
     @FXML
     private ImageView playerWonderIV;
@@ -98,7 +98,7 @@ public class GameSceneController {
         Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
         initIVsAndSPs();
-        //initHoverMethods();
+        initHoverMethods();
 
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
@@ -441,6 +441,9 @@ public class GameSceneController {
         gameBoard.setHasDrawnCard(false);
         gameBoard.setCanDrawCard(true);
         gameBoard.setCanNextTurn(false);
+        playerNameLabel.setText(currentPlayer.getName());
+        updateDecks();
+        updateImages();
     }
 
     @FXML
@@ -568,7 +571,15 @@ public class GameSceneController {
         progressTokenBTs.add(progressToken2BT);
         progressTokenBTs.add(progressToken3BT);
         progressTokenBTs.add(progressToken4BT);
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(true);
+        }
     }
 
+    public static void ActivateProgressToken() {
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(false);
+        }
+    }
 
 }

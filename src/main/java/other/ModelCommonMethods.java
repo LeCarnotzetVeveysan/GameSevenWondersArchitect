@@ -1,5 +1,6 @@
 package other;
 
+import controllers.GameSceneController;
 import data.*;
 import token.*;
 
@@ -153,25 +154,31 @@ public class ModelCommonMethods {
     public static void chkProgressTokenDrawingStatus(Board board) {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
-        Map<ProgressToken, Long> countSimilar = player.getProgressTokens().stream()
+        Map<ScienceToken, Long> countSimilar = player.getScienceTokens().stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        long countDifferent = player.getScienceTokens().stream()
+                .distinct()
+                .count();
+        System.out.println("SIMILAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR"+countSimilar);
+        System.out.println("DIFFEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENT"+countDifferent);
         boolean similarRemoved = false;
         boolean differentRemoved = false;
 
-        for (Map.Entry<ProgressToken, Long> entry : countSimilar.entrySet()) {
+        for (Map.Entry<ScienceToken, Long> entry : countSimilar.entrySet()) {
             if (entry.getValue() >= 2) {
                 for (int i = 0; i < 2; i++) {
-                    player.getProgressTokens().remove(entry.getKey());
+                    player.getScienceTokens().remove(entry.getKey());
                 }
                 similarRemoved = true;
                 break;
             }
         }
-        long countDifferent = player.getProgressTokens().size() - countSimilar.size();
+
+
         if (countDifferent >= 3) {
-            List<ProgressToken> differents = player.getProgressTokens().stream().distinct().toList();
+            List<ScienceToken> differents = player.getScienceTokens().stream().distinct().toList();
             for (int i = 0; i < 3; i++) {
-                player.getProgressTokens().remove(differents.get(i));
+                player.getScienceTokens().remove(differents.get(i));
             }
             differentRemoved = true;
         }
@@ -186,6 +193,13 @@ public class ModelCommonMethods {
         board.setCanDrawCard(false);
         board.setCanDrawProgressToken(true);
         board.setCanNextTurn(false);
+            showProgressTokenToDraw();
+        }
+    }
+
+    public static void showProgressTokenToDraw() {
+        GameSceneController.ActivateProgressToken();
+
     }
 
     public static void chkLevelUpWonder(Board board) {
@@ -264,7 +278,6 @@ public class ModelCommonMethods {
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
             levelUpWonder(board, i);
-            System.out.println("BLOUPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
             levelsInStages.put(stage, levelsInCurrentStage - 1);
         }
     }
