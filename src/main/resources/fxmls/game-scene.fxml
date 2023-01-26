@@ -38,9 +38,9 @@
             <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/back/token-back.png" />
          </image>
       </ImageView>
-      <Button fx:id="ButtonScience3" layoutX="533.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#Science3Clicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
-      <Button fx:id="ButtonScience2" layoutX="484.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#Science2Clicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
-      <Button fx:id="ButtonScience1" layoutX="435.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#Science1Clicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
+      <Button fx:id="ButtonScience3" layoutX="533.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#onProgressToken3Click" prefHeight="49.0" prefWidth="49.0" visible="false" />
+      <Button fx:id="ButtonScience2" layoutX="484.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#onProgressToken2Click" prefHeight="49.0" prefWidth="49.0" visible="false" />
+      <Button fx:id="ButtonScience1" layoutX="435.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#onProgressToken1Click" prefHeight="49.0" prefWidth="49.0" visible="false" />
       <Button fx:id="ButtonScienceRand" layoutX="386.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#ScienceRandClicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
       <VBox layoutX="588.0" prefHeight="400.0" prefWidth="149.0">
          <children>

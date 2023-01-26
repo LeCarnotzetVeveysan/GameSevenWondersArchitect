@@ -47,28 +47,28 @@
          </ImageView>
          <VBox alignment="CENTER">
             <HBox fx:id="progressTokenBTHB" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <Button fx:id="progressToken1BT" mnemonicParsing="false" onMouseClicked="#Science1Clicked">
+               <Button fx:id="progressToken1BT" mnemonicParsing="false" onMouseClicked="#onProgressToken1Click">
                   <graphic>
                      <ImageView fx:id="progressToken1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/tokens-progress/back/token-back.png" />
                      </ImageView>
                   </graphic>
                </Button>
-               <Button fx:id="progressToken2BT" mnemonicParsing="false" onMouseClicked="#Science2Clicked">
+               <Button fx:id="progressToken2BT" mnemonicParsing="false" onMouseClicked="#onProgressToken2Click">
                   <graphic>
                      <ImageView fx:id="progressToken2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/tokens-progress/back/token-back.png" />
                      </ImageView>
                   </graphic>
                </Button>
-               <Button fx:id="progressToken3BT" mnemonicParsing="false" onMouseClicked="#Science3Clicked">
+               <Button fx:id="progressToken3BT" mnemonicParsing="false" onMouseClicked="#onProgressToken3Click">
                   <graphic>
                      <ImageView fx:id="progressToken3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/tokens-progress/back/token-back.png" />
                      </ImageView>
                   </graphic>
                </Button>
-               <Button fx:id="progressToken4BT" mnemonicParsing="false" onMouseClicked="#Science4Clicked">
+               <Button fx:id="progressToken4BT" mnemonicParsing="false" onMouseClicked="#onProgressToken4Click">
                   <graphic>
                      <ImageView fx:id="progressToken4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/tokens-progress/back/token-back.png" />

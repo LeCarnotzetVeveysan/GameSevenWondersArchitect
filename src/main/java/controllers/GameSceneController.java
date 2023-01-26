@@ -421,7 +421,7 @@ public class GameSceneController {
         if(!gameBoard.getHasDrawnCard() && currentPlayer.getHasCat()){
             setImage(centralDeckIV, centralDeck.getCardAtIndex(0).getFront());
         } else {
-            setImage(rightDeckIV, centralDeck.getBackCardImg());
+            setImage(centralDeckIV, centralDeck.getBackCardImg());
         }
     }
 
@@ -488,23 +488,24 @@ public class GameSceneController {
 
     @FXML
 
-    public void Science1Clicked() {
-        System.out.println("Science1Clicked");
+    public void onProgressToken1Click() {
+        System.out.println("progress token 1 click");
+        gameBoard.setCanDrawProgressToken(false);
     }
 
     @FXML
-    public void Science2Clicked() {
-
+    public void onProgressToken2Click() {
+        gameBoard.setCanDrawProgressToken(false);
     }
 
     @FXML
-    public void Science3Clicked() {
-
+    public void onProgressToken3Click() {
+        gameBoard.setCanDrawProgressToken(false);
     }
 
     @FXML
-    public void Science4Clicked() {
-
+    public void onProgressToken4Click() {
+        gameBoard.setCanDrawProgressToken(false);
     }
 
     //initialization Methods

@@ -30,13 +30,11 @@ public class ModelCommonMethods {
         chkLevelUpWonder(board);
         System.out.println(player.getMaterialTokens());
         //nextTurn true
-
         if(board.getCanDrawProgressToken() || board.getCanDrawCard()){
             board.setCanNextTurn(false);
         } else {
             board.setCanNextTurn(true);
         }
-
 
     }
 
