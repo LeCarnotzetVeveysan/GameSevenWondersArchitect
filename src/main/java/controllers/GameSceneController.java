@@ -11,23 +11,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import token.ProgressToken;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 
 import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
 
 public class GameSceneController {
-
-    @FXML
-    private Button Science1Button, Science2Button, Science3Button, Science4Button;
 
     public Label playerNameLabel;
 
@@ -445,12 +439,15 @@ public class GameSceneController {
         }
         currentPlayer = playerList.get(gameBoard.getCurrentPlayerIndex());
         gameBoard.setHasDrawnCard(false);
+        gameBoard.setCanDrawCard(true);
+        gameBoard.setCanNextTurn(false);
     }
 
     @FXML
     void onNextTurnButtonClick() throws IOException {
         checkForWar();
         switchToNextPlayer();
+        updateDecks();
         updateScene();
     }
 
