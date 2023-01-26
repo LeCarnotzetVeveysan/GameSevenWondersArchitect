@@ -46,7 +46,7 @@ public class GameSceneController {
     @FXML
     private ImageView peaceToken1IV, peaceToken2IV, peaceToken3IV, peaceToken4IV, peaceToken5IV, peaceToken6IV;
     private ArrayList<ImageView> peaceTokenIVs;
-    private ArrayList<Button> progressTokenBTs;
+    private static ArrayList<Button> progressTokenBTs;
 
     @FXML
     private ImageView playerWonderIV;
@@ -101,7 +101,7 @@ public class GameSceneController {
         Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
         initIVsAndSPs();
-        //initHoverMethods();
+        initHoverMethods();
 
         gameBoard = new Board();
         deckList = gameBoard.getDecks();
@@ -399,6 +399,7 @@ public class GameSceneController {
             gameBoard.setCurrentPlayerIndex(gameBoard.getCurrentPlayerIndex() + 1);
         }
         currentPlayer = playerList.get(gameBoard.getCurrentPlayerIndex());
+        playerNameLabel.setText(currentPlayer.getName());
         updateDecks();
         updateImages();
     }
@@ -447,24 +448,36 @@ public class GameSceneController {
     @FXML
 
     public void Science1Clicked() {
-        System.out.println("Science1Clicked");
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(true);
+        }
+        drawSelectedProgressToken(gameBoard, 3);
     }
 
     @FXML
     public void Science2Clicked() {
-
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(true);
+        }
+        drawSelectedProgressToken(gameBoard, 2);
 
     }
 
     @FXML
     public void Science3Clicked() {
-
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(true);
+        }
+        drawSelectedProgressToken(gameBoard, 1);
 
     }
 
     @FXML
     public void Science4Clicked() {
-
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(true);
+        }
+        drawSelectedProgressToken(gameBoard, 0);
 
     }
 
@@ -529,7 +542,15 @@ public class GameSceneController {
         progressTokenBTs.add(progressToken2BT);
         progressTokenBTs.add(progressToken3BT);
         progressTokenBTs.add(progressToken4BT);
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(true);
+        }
     }
 
+    public static void ActivateProgressToken() {
+        for (Button bt : progressTokenBTs) {
+            bt.setDisable(false);
+        }
+    }
 
 }
