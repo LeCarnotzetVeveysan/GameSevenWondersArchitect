@@ -43,7 +43,13 @@ public class AppLauncherController {
 
     public void setLanguage(){
         if(validLanguageInput()){
-            AppData.setLanguage((String) languageChoiceBox.getValue());
+            String toSet = "";
+            switch ((String) languageChoiceBox.getValue()){
+                case "English" -> toSet = "EN";
+                case "Français" -> toSet = "FR";
+                case "Italiano" -> toSet = "IT";
+            }
+            AppData.setLanguage(toSet);
         }
     }
 

@@ -21,14 +21,14 @@
             <Image url="@../images/wonders/gizeh/gizeh_2_unbuilt.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="stage3IV" fitHeight="76.0" fitWidth="88.0" layoutX="130.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wonders/gizeh/gizeh_4_unbuilt.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="stage4IV" fitHeight="55.0" fitWidth="151.0" layoutX="98.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="stage3IV" fitHeight="55.0" fitWidth="151.0" layoutX="98.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wonders/gizeh/gizeh_3_unbuilt.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stage4IV" fitHeight="76.0" fitWidth="88.0" layoutX="130.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/wonders/gizeh/gizeh_4_unbuilt.png" />
          </image>
       </ImageView>
    </children>
