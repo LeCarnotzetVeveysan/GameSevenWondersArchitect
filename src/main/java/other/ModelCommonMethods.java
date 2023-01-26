@@ -165,6 +165,27 @@ public class ModelCommonMethods {
         // Génère une liste de jetons de matériaux pour le joueur
         ArrayList<Long> materialTab = materialSimDiffGenerator(board);
         // Tableau de jetons de matériaux
+        MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER};
+
+        for (int i = 0; i < wonder.getNbLevelsInStages().length; i++) {
+            for (int n = 0; n < wonder.getNbLevelsInStages()[i]; n++) {
+                boolean previousStageBuild = verifPreviousStageBuilt(currentPlayer);
+            }
+        }
+    }
+
+    public static boolean verifPreviousStageBuilt(Player player) {
+        // faire une boucle vérifiant l'étage précédent et dans le cas où tous les niveaux de l'étage sont construits, return true
+    }
+
+    /*
+    public static void chkLevelUpWonder(Board board) {
+        Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
+        Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
+
+        // Génère une liste de jetons de matériaux pour le joueur
+        ArrayList<Long> materialTab = materialSimDiffGenerator(board);
+        // Tableau de jetons de matériaux
         MaterialToken[] elementTabToToken = {MaterialToken.WOOD, MaterialToken.GLASS, MaterialToken.BRICK, MaterialToken.STONE, MaterialToken.PAPER, MaterialToken.GOLD};
         // Crée une map pour stocker le nombre de niveaux dans chaque étape
         Map<Integer, Long> levelsInStages = getNbLevelsInEachStages(currentPlayer);
@@ -198,6 +219,7 @@ public class ModelCommonMethods {
             System.out.println(Arrays.toString(wonder.getIsStageBuilt()));
         }
     }
+     */
 
     private static Map<Integer, Long> getNbLevelsInEachStages(Player player) {
         Map<Integer, Long> levelsInStages = new HashMap<>();
