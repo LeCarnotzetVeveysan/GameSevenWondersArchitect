@@ -413,7 +413,7 @@ public class ModelCommonMethods {
         return 1;
     }
 
-    public static int getStrategyScoe(Player player){
+    public static int getStrategyScore(Player player){
         //retourner nombre de jetons victoire militair rouges
         return 1;
     }

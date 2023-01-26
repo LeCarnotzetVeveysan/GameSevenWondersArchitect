@@ -12,18 +12,23 @@
       <Label text="Results" />
       <TableView>
         <columns>
-          <TableColumn fx:id="PlayerCollumn" editable="false" prefWidth="75.0" resizable="false" sortable="false" text="Player" />
-            <TableColumn fx:id="P1Collumn" editable="false" prefWidth="75.0" sortable="false" text="P1" />
-            <TableColumn fx:id="P2Collumn" editable="false" prefWidth="75.0" sortable="false" text="P2" />
-            <TableColumn fx:id="P3Collumn" editable="false" prefWidth="75.0" sortable="false" text="P3" />
-          <TableColumn fx:id="P4Collumn" editable="false" prefWidth="75.0" sortable="false" text="P4" />
-            <TableColumn fx:id="TotalCollumn" editable="false" prefWidth="75.0" sortable="false" text="Total" />
+            <TableColumn fx:id="nameCL" prefWidth="75.0" resizable="false" text="Name" />
+            <TableColumn fx:id="wonderPointsCL" prefWidth="75.0" text="Wonder points" />
+            <TableColumn fx:id="catPointsCL" prefWidth="75.0" text="P2" />
+            <TableColumn fx:id="laurelPointsCL" prefWidth="75.0" text="P3" />
+            <TableColumn fx:id="progressPointsCL" prefWidth="75.0" text="P4" />
+            <TableColumn fx:id="totalCL" editable="false" prefWidth="75.0" sortable="false" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id="EndButton" mnemonicParsing="false" onAction="#EndClicked" text="End">
+      <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#onMainMenuButtonClick" text="End">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
+       <Button fx:id="quitButton" mnemonicParsing="false" onAction="#onQuitButtonClick" text="End">
+           <font>
+               <Font name="System Bold" size="14.0" />
+           </font>
+       </Button>
    </children>
 </VBox>

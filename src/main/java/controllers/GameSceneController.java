@@ -43,9 +43,6 @@ public class GameSceneController {
     private static ArrayList<Button> progressTokenBTs;
 
     @FXML
-    private ImageView playerWonderIV;
-
-    @FXML
     private HBox playerProgressTokenIVHB, playerMaterialTokenSPHB, playerScienceTokenSPHB, playerLaurelTokenSPHB, playerShieldTokenSPHB;
     @FXML
     private ImageView playerProgTok1IV, playerProgTok2IV,playerProgTok3IV,playerProgTok4IV,playerProgTok5IV,playerProgTok6IV,playerProgTok7IV,playerProgTok8IV;
