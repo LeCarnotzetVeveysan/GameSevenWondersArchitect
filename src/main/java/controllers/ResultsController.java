@@ -1,11 +1,15 @@
 package controllers;
 
 import data.GameData;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +20,8 @@ public class ResultsController {
 
     @FXML
     private Button quitButton;
+    @FXML
+    private ImageView p1LaurelIV, p2LaurelIV, p3LaurelIV, p4LaurelIV, p5LaurelIV, p6LaurelIV, p7LaurelIV;
     @FXML
     private Label p1NameLabel, p2NameLabel,p3NameLabel,p4NameLabel,p5NameLabel,p6NameLabel,p7NameLabel;
     @FXML
@@ -30,19 +36,23 @@ public class ResultsController {
     private Label p1TPLabel, p2TPLabel, p3TPLabel, p4TPLabel, p5TPLabel, p6TPLabel, p7TPLabel;
     private Label[] nameLabels, p1Labels, p2Labels, p3Labels, p4Labels, p5Labels, p6Labels, p7Labels;
     private Label[][] labelGrid;
+    private ImageView[] laurelIVs;
     String[] playerNames;
     int[][] scoreBoard;
 
     public void initialize(){
-
         playerNames = GameData.getPlayerNames();
         scoreBoard = GameData.getScoreBoard();
 
-        initLabels();
+        initComponents();
         setLabelValues();
+        showWinner();
     }
 
-    private void initLabels() {
+
+
+    private void initComponents() {
+        laurelIVs = new ImageView[]{p1LaurelIV, p2LaurelIV, p3LaurelIV, p4LaurelIV, p5LaurelIV, p6LaurelIV, p7LaurelIV};
         nameLabels = new Label[]{p1NameLabel, p2NameLabel, p3NameLabel, p4NameLabel, p5NameLabel, p6NameLabel, p7NameLabel};
         p1Labels = new Label[]{p1WPLabel, p1LPLabel, p1CPLabel, p1PPLabel, p1TPLabel};
         p2Labels = new Label[]{p2WPLabel, p2LPLabel, p2CPLabel, p2PPLabel, p2TPLabel};
@@ -55,10 +65,40 @@ public class ResultsController {
     }
 
     private void setLabelValues() {
+
+        for (int i = 0; i < 7;i++){
+            nameLabels[i].setText("");
+            for(int j = 0; j < 5; j++){
+                labelGrid[i][j].setText("");
+            }
+        }
+
         for (int i = 0; i < playerNames.length;i++){
             nameLabels[i].setText(playerNames[i]);
             for(int j = 0; j < 5; j++){
                 labelGrid[i][j].setText(String.valueOf(scoreBoard[i][j]));
+            }
+        }
+    }
+
+    private void showWinner() {
+
+        for(ImageView iv : laurelIVs){
+            iv.setVisible(false);
+        }
+
+        int topScore = -1;
+        for (int i = 0; i < playerNames.length; i++){
+            if(scoreBoard[i][4] > topScore){
+                topScore = scoreBoard[i][4];
+            }
+        }
+        for (int i = 0; i < playerNames.length; i++){
+            if(scoreBoard[i][4] == topScore){
+                laurelIVs[i].setVisible(true);
+                nameLabels[i].setFont(Font.font("system", FontWeight.BOLD, 12));
+                //ajouter un petit contour pour bien voir le texte
+                nameLabels[i].setTextFill(Color.GOLDENROD);
             }
         }
     }
