@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsController">
+   <children>
+      <Label layoutX="160.0" layoutY="14.0" text="Game Results">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+      <StackPane layoutX="25.0" layoutY="60.0" prefHeight="260.0" prefWidth="450.0">
+         <children>
+            <GridPane alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="60.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Player Name" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../images/tokens-laurel/laurel-3-redToken.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../images/tokens-laurel/token-cat.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Total" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <font>
+                          <Font name="System Bold" size="12.0" />
+                      </font>
+                  </Label>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p1LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p1NameLabel" text="player1Name" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p2LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p2NameLabel" text="player2Name" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p3LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p3NameLabel" text="player3Name" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p4LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p4NameLabel" text="player4Name" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p5LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p5NameLabel" text="player5Name" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p6LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p6NameLabel" text="player6Name" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView fx:id="p7LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="p7NameLabel" text="player7Name" />
+                     </children>
+                  </StackPane>
+                  <Label fx:id="p1WPLabel" text="p1WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="p2WPLabel" text="p2WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="p3WPLabel" text="p3WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Label fx:id="p4WPLabel" text="p4WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Label fx:id="p5WPLabel" text="p5WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Label fx:id="p6WPLabel" text="p6WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Label fx:id="p7WPLabel" text="p7WP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                  <Label fx:id="p1LPLabel" text="p1LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="p2LPLabel" text="p2LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="p3LPLabel" text="p3LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Label fx:id="p4LPLabel" text="p4LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Label fx:id="p5LPLabel" text="p5LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Label fx:id="p6LPLabel" text="p6LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Label fx:id="p7LPLabel" text="p7LP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                  <Label fx:id="p1CPLabel" text="p1CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="p2CPLabel" text="p2CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="p3CPLabel" text="p3CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Label fx:id="p4CPLabel" text="p4CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Label fx:id="p5CPLabel" text="p5CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Label fx:id="p6CPLabel" text="p6CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Label fx:id="p7CPLabel" text="p7CP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                  <Label fx:id="p1PPLabel" text="p1PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="p2PPLabel" text="p2PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="p3PPLabel" text="p3PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Label fx:id="p4PPLabel" text="p4PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Label fx:id="p5PPLabel" text="p5PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Label fx:id="p6PPLabel" text="p6PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Label fx:id="p7PPLabel" text="p7PP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                  <Label fx:id="p1TPLabel" text="p1TP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label fx:id="p2TPLabel" text="p2TP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="p3TPLabel" text="p3TP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Label fx:id="p4TPLabel" text="p4TP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Label fx:id="p5TPLabel" text="p5TP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Label fx:id="p6TPLabel" text="p6TP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Label fx:id="p7TPLabel" text="p7PP" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+      <Button fx:id="quitButton" layoutX="289.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onQuitButtonClick" prefHeight="50.0" prefWidth="99.0" text="Quit" />
+      <Button layoutX="150.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onMainMenuButtonClick" prefHeight="50.0" prefWidth="99.0" text="Main Menu" />
+   </children>
+</AnchorPane>

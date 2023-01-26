@@ -16,4 +16,6 @@ module gswa.gswa {
     exports data;
     opens token to javafx.fxml;
     exports token;
+    opens mainClasses to javafx.fxml;
+    exports mainClasses;
 }
