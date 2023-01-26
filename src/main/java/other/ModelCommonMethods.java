@@ -18,7 +18,7 @@ public class ModelCommonMethods {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
-        drawCardWithChkProgress(player, drawnCard);
+        drawCardWithChkProgress(player, drawnCard, board);
         // Vérifie si la carte contenait un chat Bastet
         verifCardHasCat(board, drawnCard);
         // Vérifie si la carte était un ARCHER ou BARBARIAN
@@ -86,7 +86,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public static void drawCardWithChkProgress(Player player, Cards drawnCard) {
+    public static void drawCardWithChkProgress(Player player, Cards drawnCard, Board board) {
         if (verifPlayerProgressToken(player, ProgressToken.Economy) && verifDrawnCard(drawnCard, Cards.MAT_GOLD)) {
             drawnCard.getCardTokenToPlayer(player);
             drawnCard.getCardTokenToPlayer(player);
@@ -94,19 +94,19 @@ public class ModelCommonMethods {
             drawnCard.getCardTokenToPlayer(player);
         }
         if (player.getProgressTokens().contains(ProgressToken.Urbanism) && (verifDrawnCard(drawnCard, Cards.MAT_WOOD) || verifDrawnCard(drawnCard, Cards.MAT_BRICK))) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.ArtsAndCrafts) && (verifDrawnCard(drawnCard, Cards.MAT_PAPER) || verifDrawnCard(drawnCard, Cards.MAT_GLASS))) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.Jewelry) && (verifDrawnCard(drawnCard, Cards.MAT_STONE) || verifDrawnCard(drawnCard, Cards.MAT_GOLD))) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.Science) && drawnCard.getType().equals("Science")) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
         if (player.getProgressTokens().contains(ProgressToken.Propaganda) && drawnCard.getType().equals("Military") && (drawnCard.getMilitaryCardToken() == Fighter.ARCHER || drawnCard.getMilitaryCardToken() == Fighter.BARBARIAN)) {
-            // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
     }
 
@@ -159,8 +159,6 @@ public class ModelCommonMethods {
         long countDifferent = player.getScienceTokens().stream()
                 .distinct()
                 .count();
-        System.out.println("SIMILAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR"+countSimilar);
-        System.out.println("DIFFEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENT"+countDifferent);
         boolean similarRemoved = false;
         boolean differentRemoved = false;
 
@@ -267,7 +265,7 @@ public class ModelCommonMethods {
                     break;
                 }
             }
-            chkArchitecture(player);
+            chkArchitecture(player, board);
             // remove elements from list
             player.getMaterialTokens().removeAll(setToRemove);
             levelUpWonder(board, i);
@@ -284,7 +282,7 @@ public class ModelCommonMethods {
                 for (int n = 0; n <= wonder.getNbMaterials()[i]; n++) {
                     player.removeMaterialToken(elementTabToToken[j]);
                 }
-                chkArchitecture(player);
+                chkArchitecture(player, board);
                 levelUpWonder(board, i);
                 levelsInStages.put(stage, levelsInCurrentStage - 1);
                 break;
@@ -292,9 +290,10 @@ public class ModelCommonMethods {
         }
     }
 
-    public static void chkArchitecture(Player player) {
+    public static void chkArchitecture(Player player, Board board) {
         if (player.getProgressTokens().contains(ProgressToken.Architecture)) {
             // pioche parmi les 3
+            board.setCanDrawCard(true);
         }
     }
 
@@ -378,54 +377,99 @@ public class ModelCommonMethods {
             scores[i][1] = getBlueRedLaurelPoints(player);
             scores[i][2] = player.getHasCat() ? 2 : 0;
             scores[i][3] = getGreenLaurelPoints(player);
-            scores[i][4] = scores[i][0] + scores[i][1] + scores[i][2] + scores[i][3];
+            scores[i][4] = getCultureScore(player) + getPoliticsScore(player) + getStrategyScore(player) + getEducationScore(player);
+            scores[i][5] = scores[i][0] + scores[i][1] + scores[i][2] + scores[i][3] + scores[i][4];
         }
         return scores;
     }
 
     public static int getWonderLaurelPoints(Player player){
         //faire la sommes des points des étages de la merveille qui sont construits
-        return 1;
+        int nbStage = player.getWonder().getNbLevelsInStages().length;
+        int score = 0;
+        for (int i =0; i < nbStage; i++){
+            if (player.getWonder().getIsStageBuilt()[i] == true){
+                score = score + player.getWonder().getLevelPoints()[i];
+            }
+        }
+        return score;
 
     }
 
     public static int getBlueRedLaurelPoints(Player player){
         //faire la sommes des points des laurelsTokens
-        return 1;
+        int score = 0;
+        long countLaurelBlue2 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
+        long countLaurelBlue3 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_3)).count();
+        long countLaurelRed3 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_RED_3)).count();
+        score = (int) ((countLaurelBlue3*3) + (countLaurelBlue2*2) + (countLaurelRed3*3));
+        return score;
     }
 
     public static int getGreenLaurelPoints(Player player){
         int score = 0;
         //regarder si il a progress tokens et faire en fonction
-        //if hasDecoration token
-        score += getDecorationScore(player);
+        if (player.getProgressTokens().contains(ProgressToken.Decoration)){
+            score += getDecorationScore(player);
+        }
 
-        return 1;
+        return score;
     }
 
     public static int getDecorationScore(Player player){
         //retourner état avancement merveille
-        return 1;
+        int score = 4;
+        int nbLevels = player.getWonder().getNbLevelsInStages().length;
+        if (player.getWonder().getIsStageBuilt()[nbLevels]){
+            score = 6;
+        }
+        return score;
     }
 
     public static int getPoliticsScore(Player player){
         //retourner nombre de jetons bleus avec un chat
-        return 1;
+        int score = 0;
+        if (player.getProgressTokens().contains(ProgressToken.Politic)){
+            long countLaurelBlue2 = player.getLaurelTokens().stream()
+                    .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
+            score = (int) countLaurelBlue2;
+        }
+        return score;
     }
 
     public static int getStrategyScore(Player player){
         //retourner nombre de jetons victoire militair rouges
-        return 1;
+        int score = 0;
+        if (player.getProgressTokens().contains(ProgressToken.Strategy)){
+            score = player.getMilitaryPoints();
+        }
+        return score;
     }
 
     public static int getEducationScore(Player player){
         //retourner nombre jetons progrès
-        return 1;
+        int score = 0;
+        if (player.getProgressTokens().contains(ProgressToken.Education)){
+            score = player.getProgressTokens().size()*2;
+        }
+        return score;
     }
 
     public static int getCultureScore(Player player){
-        //retourner 4 si un jeton et 12 si 2 jetons
-        return 1;
+        //retourner 4 si un jeton et 12 si 2
+        int score = 0;
+        long countCulture = player.getProgressTokens().stream()
+                .filter(s-> s.equals(ProgressToken.Culture)).count();
+        if (countCulture == 1){
+            score = 4;
+        }
+        else if (countCulture == 2) {
+            score = 12;
+        }
+        return score;
     }
 
 
