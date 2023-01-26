@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 
 public class ModelCommonMethods {
 
+    public static boolean isDeckEmpty(Deck inputDeck){
+        return inputDeck.getDeck().isEmpty();
+    }
+
     public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
@@ -26,6 +30,13 @@ public class ModelCommonMethods {
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
         System.out.println(player.getMaterialTokens());
+        //nextTurn true
+        if(board.getCanDrawProgressToken() || board.getCanDrawCard()){
+            board.setCanNextTurn(false);
+        } else {
+            board.setCanNextTurn(true);
+        }
+
     }
 
     public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
@@ -37,26 +48,42 @@ public class ModelCommonMethods {
         int leftPlayerIndex = (currentPlayerIndex == 0) ? nbPlayers - 1 : currentPlayerIndex - 1;
 
         Deck targetdeck = board.getDecks().get(leftPlayerIndex);
-        // Pioche une carte depuis le deck du joueur à gauche
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        if(!isDeckEmpty(targetdeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        }
+
     }
 
     public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
         int middleDeckIndex = board.getPlayers().size();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
-        Deck targetdeck = board.getDecks().get(middleDeckIndex);
-        // Pioche une carte depuis le deck du milieu
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        Deck targetDeck = board.getDecks().get(middleDeckIndex);
+        if(!isDeckEmpty(targetDeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetDeck, currentPlayer, selectedCardIndex);
+        }
     }
 
     public static void drawRightDeckCard(Board board, int selectedCardIndex) {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
-        Deck targetdeck = board.getDecks().get(currentPlayerIndex);
-        // Pioche une carte depuis le deck du joueur à droite
-        drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
+        Deck targetDeck = board.getDecks().get(currentPlayerIndex);
+        if(!isDeckEmpty(targetDeck)){
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(true);
+            // Pioche une carte depuis le deck du joueur à gauche
+            drawCard(board, targetDeck, currentPlayer, selectedCardIndex);
+        }
     }
 
     public static void drawCardWithChkProgress(Player player, Cards drawnCard) {
@@ -156,6 +183,16 @@ public class ModelCommonMethods {
             differentRemoved = true;
         }
         if (similarRemoved || differentRemoved) {
+            //appel de la méthode additionnelle
+            showProgressTokenToDraw(board);
+        }
+    }
+
+    public static void showProgressTokenToDraw(Board board) {
+        // active les boutons de progress tokens pour pouvoir en piocher
+        board.setCanDrawCard(false);
+        board.setCanDrawProgressToken(true);
+        board.setCanNextTurn(false);
             showProgressTokenToDraw();
         }
     }
@@ -338,5 +375,38 @@ public class ModelCommonMethods {
 
         board.setCombatTokensFlipped(0);
     }
+
+    public static int[][] getScoreBoard(ArrayList<Player> players){
+        int numPlayers = players.size();
+        int[][] scores = new int[numPlayers][5];
+        for(int i = 0; i < numPlayers; i++){
+            Player player = players.get(i);
+            scores[i][0] = getWonderLaurelPoints(player);
+            scores[i][1] = getBlueRedLaurelPoints(player);
+            scores[i][2] = player.getHasCat() ? 2 : 0;
+            scores[i][3] = getGreenLaurelPoints(player);
+            scores[i][4] = scores[i][0] + scores[i][1] + scores[i][2] + scores[i][3];
+        }
+        return scores;
+    }
+
+    public static int getWonderLaurelPoints(Player player){
+        //faire la sommes des points des étages de la merveille qui sont construits
+        return 1;
+
+    }
+
+    public static int getBlueRedLaurelPoints(Player player){
+        //faire la sommes des points des laurelsTokens
+        return 1;
+    }
+
+    public static int getGreenLaurelPoints(Player player){
+        //regarder si il a progress tokens et faire en fonction
+        return 1;
+    }
+
+
+
 
 }
