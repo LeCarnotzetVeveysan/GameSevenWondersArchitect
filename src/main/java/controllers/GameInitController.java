@@ -5,14 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import other.LoadScene;
+import utils.LoadScene;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static other.LoadScene.changeLauncherScene;
-import static other.UICommonMethods.getTextFromLangDict;
+import static utils.LoadScene.changeLauncherScene;
+import static utils.UICommonMethods.getTextFromLangDict;
 
 public class GameInitController implements Initializable {//implements initializable obligatoire pour méthode initialize
 

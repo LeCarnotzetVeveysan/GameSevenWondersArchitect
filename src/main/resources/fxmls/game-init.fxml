@@ -37,7 +37,7 @@
       </AnchorPane>
       <ImageView fitHeight="135.0" fitWidth="225.0" layoutX="137.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../other/arc-common-logo-1630334595bVXyZ-large.png" />
+            <Image url="@../other/7wonders_logo2.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="ComboBoxNumPlayer" layoutX="81.0" layoutY="208.0" onAction="#onNumPlayersChanged" prefHeight="26.0" prefWidth="70.0" />

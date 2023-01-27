@@ -1,6 +1,5 @@
 package controllers;
 
-import application.AppData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,8 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static other.LoadScene.changeLauncherScene;
-import static other.LoadScene.changeScene;
+import static utils.LoadScene.changeLauncherScene;
 
 public class LauncherController implements Initializable {//implements initializable obligatoire pour méthode initialize
 

@@ -1,16 +1,14 @@
 
-package mainClasses;
+package tests;
 
 import application.AppData;
 import data.GameData;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import other.LoadScene;
+import utils.LoadScene;
 
 
 import java.io.IOException;
-
-import static other.LoadScene.changeLauncherScene;
 
 public class test2 extends Application {
 

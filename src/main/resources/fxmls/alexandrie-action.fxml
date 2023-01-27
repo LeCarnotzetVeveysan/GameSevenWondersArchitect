@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.AlexandrieActionController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.AlexandrieActionController">
+    <ImageView fitHeight="400.0" fitWidth="500.0" pickOnBounds="true">
+        <Image url="@../images/other/parchment.png"/>
+    </ImageView>
+    <ImageView fx:id="card1IV" fitHeight="82.0" fitWidth="55.0" layoutX="223.0" layoutY="68.0"
+               onMouseClicked="#onCard1Clicked" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card2IV" fitHeight="92.0" fitWidth="55.0" layoutX="307.0" layoutY="109.0"
+               onMouseClicked="#onCard2Clicked" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card3IV" fitHeight="82.0" fitWidth="55.0" layoutX="348.0" layoutY="200.0"
+               onMouseClicked="#onCard3Clicked" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card4IV" fitHeight="92.0" fitWidth="55.0" layoutX="280.0" layoutY="282.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card5IV" fitHeight="82.0" fitWidth="55.0" layoutX="168.0" layoutY="282.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card6IV" fitHeight="82.0" fitWidth="55.0" layoutX="102.0" layoutY="200.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card7IV" fitHeight="82.0" fitWidth="55.0" layoutX="138.0" layoutY="109.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <ImageView fx:id="card8IV" fitHeight="82.0" fitWidth="55.0" layoutX="222.0" layoutY="191.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../images/cards/card-back/card-back-question.png"/>
+    </ImageView>
+    <Label fx:id="selectCardLB" alignment="CENTER" layoutX="62.0" layoutY="22.0" prefHeight="30.0" prefWidth="375.0"
+           text="selectCard">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
 </AnchorPane>
