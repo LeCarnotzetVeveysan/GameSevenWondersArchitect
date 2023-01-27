@@ -17,7 +17,7 @@ public enum Wonder {
 
     Halicarnasse("Halicarnasse", "Prenez les 5 premières cartes de la pioche à votre gauche ou à votre droite, choisissez-en 1 et posez-la devant vous" + "Mélangez-les cartes restantes dans leur pioche",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{3, 3, 6, 5, 7},
+            new boolean[]{false, true, false, true, false}, new int[]{3, 3, 6, 5, 7},
             new int[]{1,2,3,3,4},
             "wonder-halicarnasse.png"),
 
@@ -136,7 +136,7 @@ public enum Wonder {
             case Halicarnasse -> halicarnasseAction(board);
             case Ephese -> epheseAction(board);
             case Olympie -> olympieAction(board);
-            case Babylon -> babylonAction();
+            case Babylon -> babylonAction(board);
             case Rhodes -> rhodesAction(board);
         }
     }
@@ -165,8 +165,11 @@ public enum Wonder {
         comMeth.drawRightDeckCard(board, 0);
     }
 
-    public void babylonAction() {
+    public void babylonAction(Board board) {
         // choisir un jeton progrès parmi les 4 disponibles
+        board.setCanDrawProgressToken(true);
+        board.setCanNextTurn(false);
+
     }
 
     public void rhodesAction(Board board) {
