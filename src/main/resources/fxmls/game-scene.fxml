@@ -101,139 +101,164 @@
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                   <StackPane fx:id="wonderSP" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" />
-                  <Label fx:id="playerNameLabel" text="Name" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <HBox fx:id="playerMaterialTokenSPHB" prefHeight="100.0" prefWidth="200.0">
-                        <StackPane fx:id="woodTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-materials/woodToken.png" />
-                           </ImageView>
-                           <Label fx:id="woodTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="brickTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-materials/brickToken.png" />
-                           </ImageView>
-                           <Label fx:id="brickTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="glassTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-materials/glassToken.png" />
-                           </ImageView>
-                           <Label fx:id="glassTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="paperTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-materials/paperToken.png" />
-                           </ImageView>
-                           <Label fx:id="paperTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="stoneTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-materials/stoneToken.png" />
-                           </ImageView>
-                           <Label fx:id="stoneTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="goldTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-materials/goldToken.png" />
-                           </ImageView>
-                           <Label fx:id="goldTokenLabel" text="Label" />
-                        </StackPane>
-                     </HBox>
-                     <HBox fx:id="playerShieldTokenSPHB">
-                        <StackPane fx:id="shieldWithoutHornSP">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-conflict/shieldCounterToken.png" />
-                           </ImageView>
-                           <Label fx:id="shieldWithoutHornLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="shieldWithHornSP">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-conflict/shieldHornToken.png" />
-                           </ImageView>
-                           <Label fx:id="shieldWithHornLabel" text="Label" />
-                        </StackPane>
-                     </HBox>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <HBox fx:id="playerScienceTokenSPHB" prefHeight="30.0" prefWidth="168.0">
-                        <StackPane fx:id="architectTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-science/architectToken.png" />
-                           </ImageView>
-                           <Label fx:id="architectTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="lawTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-science/lawToken.png" />
-                           </ImageView>
-                           <Label fx:id="lawTokenLabel" text="Label" />
-                        </StackPane>
-                        <StackPane fx:id="mechanicTokenSP" alignment="BOTTOM_RIGHT">
-                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="@../images/tokens-science/mechanicToken.png" />
-                           </ImageView>
-                           <Label fx:id="mechanicTokenLabel" text="Label" />
-                        </StackPane>
-                     </HBox>
-                     <HBox fx:id="playerLaurelTokenSPHB" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="93.0">
-                        <StackPane fx:id="laurelRed3TokenSP" alignment="BOTTOM_RIGHT">
+                  <StackPane>
+                     <children>
+                        <ImageView fitHeight="120.0" fitWidth="350.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/other/parchment.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER">
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <Image url="@../images/tokens-laurel/laurel-3-redToken.png" />
-                              </ImageView>
-                              <Label fx:id="laurelRed3TokenLabel" text="Label" />
+                              <Label fx:id="playerNameLabel" text="Name">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <HBox fx:id="playerMaterialTokenSPHB" prefHeight="100.0" prefWidth="200.0">
+                                                <StackPane fx:id="woodTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-materials/woodToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="woodTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="brickTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-materials/brickToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="brickTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="glassTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-materials/glassToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="glassTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="paperTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-materials/paperToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="paperTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="stoneTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-materials/stoneToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="stoneTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="goldTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-materials/goldToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="goldTokenLabel" text="Label" />
+                                                </StackPane>
+                                             </HBox>
+                                             <HBox fx:id="playerShieldTokenSPHB">
+                                                <StackPane fx:id="shieldWithoutHornSP">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-conflict/shieldCounterToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="shieldWithoutHornLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="shieldWithHornSP">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-conflict/shieldHornToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="shieldWithHornLabel" text="Label" />
+                                                </StackPane>
+                                             </HBox>
+                                          </HBox>
+                                          <HBox prefHeight="31.0" prefWidth="348.0">
+                                             <HBox fx:id="playerScienceTokenSPHB" prefHeight="30.0" prefWidth="168.0">
+                                                <StackPane fx:id="architectTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-science/architectToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="architectTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="lawTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-science/lawToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="lawTokenLabel" text="Label" />
+                                                </StackPane>
+                                                <StackPane fx:id="mechanicTokenSP" alignment="BOTTOM_RIGHT">
+                                                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                      <Image url="@../images/tokens-science/mechanicToken.png" />
+                                                   </ImageView>
+                                                   <Label fx:id="mechanicTokenLabel" text="Label" />
+                                                </StackPane>
+                                             </HBox>
+                                             <HBox fx:id="playerLaurelTokenSPHB" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="93.0">
+                                                <StackPane fx:id="laurelRed3TokenSP" alignment="BOTTOM_RIGHT">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <Image url="@../images/tokens-laurel/laurel-3-redToken.png" />
+                                                      </ImageView>
+                                                      <Label fx:id="laurelRed3TokenLabel" text="Label" />
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane fx:id="laurelBlue2TokenSP" alignment="BOTTOM_RIGHT">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <Image url="@../images/tokens-laurel/laurel-2-blueToken.png" />
+                                                      </ImageView>
+                                                      <Label fx:id="laurelBlue2TokenLabel" text="Label" />
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane fx:id="laurelBlue3TokenSP" alignment="BOTTOM_RIGHT">
+                                                   <children>
+                                                      <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                         <Image url="@../images/tokens-laurel/laurel-3-blueToken.png" />
+                                                      </ImageView>
+                                                      <Label fx:id="laurelBlue3TokenLabel" text="Label" />
+                                                   </children>
+                                                </StackPane>
+                                             </HBox>
+                                          </HBox>
+                                          <HBox fx:id="playerProgressTokenIVHB" prefHeight="30.0" prefWidth="250.0">
+                                             <ImageView fx:id="playerProgTok1IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok2IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok3IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok4IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok5IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok6IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok7IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                             <ImageView fx:id="playerProgTok8IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <Image url="@../images/tokens-progress/back/token-back.png" />
+                                             </ImageView>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <ImageView fx:id="playerCatIV" fitHeight="96.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                                       <Image url="@../images/tokens-laurel/token-cat.png" />
+                                    </ImageView>
+                                 </children>
+                              </HBox>
                            </children>
-                        </StackPane>
-                        <StackPane fx:id="laurelBlue2TokenSP" alignment="BOTTOM_RIGHT">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <Image url="@../images/tokens-laurel/laurel-2-blueToken.png" />
-                              </ImageView>
-                              <Label fx:id="laurelBlue2TokenLabel" text="Label" />
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="laurelBlue3TokenSP" alignment="BOTTOM_RIGHT">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <Image url="@../images/tokens-laurel/laurel-3-blueToken.png" />
-                              </ImageView>
-                              <Label fx:id="laurelBlue3TokenLabel" text="Label" />
-                           </children>
-                        </StackPane>
-                     </HBox>
-                  </HBox>
-                  <HBox fx:id="playerProgressTokenIVHB" prefHeight="30.0" prefWidth="250.0">
-                     <ImageView fx:id="playerProgTok1IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok2IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok3IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok4IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok5IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok6IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok7IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                     <ImageView fx:id="playerProgTok8IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/tokens-progress/back/token-back.png" />
-                     </ImageView>
-                  </HBox>
+                        </VBox>
+                     </children>
+                  </StackPane>
                </VBox>
-               <ImageView fx:id="playerCatIV" fitHeight="96.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/tokens-laurel/token-cat.png" />
-               </ImageView>
             </HBox>
             <Button fx:id="rightDeckButton" mnemonicParsing="false" onMouseClicked="#onRightDeckButtonClick">
                <graphic>
