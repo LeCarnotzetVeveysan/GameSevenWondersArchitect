@@ -1,0 +1,6 @@
+windowSizeIndic|Ceci sera la taille de la fenêtre de jeu.
+understood|Compris
+start|Démarrer
+rules|Règles
+playerName|Nom Joueur X :
+numPlayers|N° de joueurs

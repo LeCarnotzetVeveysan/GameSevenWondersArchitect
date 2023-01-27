@@ -2,15 +2,24 @@ package application;
 
 public class AppData {
 
+    private static String language;
     private static int prefWidth;
     private static int prefHeight;
-    private static String language;
-
+    private static int wonderLayoutSize;
 
     public AppData() {
+        language = "EN";
         prefWidth = 500;
         prefHeight = 400;
-        language = "";
+        wonderLayoutSize = 350;
+    }
+
+    public static void setLanguage(String inputLanguage){
+        language = inputLanguage;
+    }
+
+    public static String getLanguage() {
+        return language;
     }
 
     public static void setPrefWidth(int input){
@@ -25,13 +34,13 @@ public class AppData {
     public static int getPrefHeight(){
         return prefHeight;
     }
-
-    public static void setLanguage(String inputLanguage){
-        language = inputLanguage;
+    public static void setWonderLayoutSize(int input){
+        wonderLayoutSize = input;
+    }
+    public static int getWonderLayoutSize(){
+        return wonderLayoutSize;
     }
 
-    public static String getLanguage() {
-        return language;
-    }
+
 
 }
