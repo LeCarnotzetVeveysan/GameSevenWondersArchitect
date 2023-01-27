@@ -9,3 +9,6 @@ previous|Precedente
 next|A seguire
 gameResults|Risultati
 playerName|Nome del giocatore
+mainMenu|Menu principale
+quit|Terminare
+nextTurn|Prossimo

@@ -9,3 +9,6 @@ previous|Previous
 next|Next
 gameResults|Game results
 playerName|Player name
+mainMenu|Main menu
+quit|Quit
+nextTurn|Next turn

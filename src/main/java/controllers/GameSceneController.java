@@ -20,10 +20,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static other.LoadScene.changeLauncherScene;
 import static other.ModelCommonMethods.*;
+import static other.UICommonMethods.getTextFromLangDict;
 import static other.UICommonMethods.setImage;
 
 public class GameSceneController {
@@ -95,8 +95,8 @@ public class GameSceneController {
     private int hoveredPlayer;
 
     public void initialize() throws IOException {
-        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
 
+        Label[] Hovers = new Label[]{LabelHover1, LabelHover2, LabelHover3, LabelHover4, LabelHover5, LabelHover6, LabelHover7};
         Label[] playerNames = new Label[]{Player1Name, Player2Name, Player3Name, Player4Name, Player5Name, Player6Name, Player7Name};
 
         initIVsAndSPs();
@@ -106,6 +106,7 @@ public class GameSceneController {
         deckList = gameBoard.getDecks();
         playerList = gameBoard.getPlayers();
         gameBoard.setCurrentPlayerIndex(-1);
+        nextTurnButton.setText(getTextFromLangDict("nextTurn"));
 
         for (int i = 0; i < GameInitController.numberOfPlayers; i++){
             playerNames[i].setText(gameBoard.getPlayers().get(i).getName());

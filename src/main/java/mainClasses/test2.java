@@ -1,6 +1,7 @@
 
 package mainClasses;
 
+import application.AppData;
 import data.GameData;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ public class test2 extends Application {
         LoadScene ls = new LoadScene(launcherStage, mainStage, selectionStage);
         String[] names = new String[]{"jean-mi","edouard","gusse3","jaiplusdidée"};
         GameData.setPlayerNames(names);
+        AppData.setLanguage("IT");
         initTestScoreBoard();
         ls.changeLauncherScene("results");
     }

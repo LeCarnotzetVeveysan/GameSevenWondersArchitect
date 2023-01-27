@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResultsController">
    <children>
-      <Label fx:id="gameResultsLabel" layoutX="160.0" layoutY="14.0" text="Game Results">
+      <Label fx:id="gameResultsLabel" alignment="CENTER" layoutX="109.0" layoutY="14.0" prefHeight="46.0" prefWidth="282.0" text="Game Results">
          <font>
             <Font size="30.0" />
          </font></Label>
@@ -76,7 +76,7 @@
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="p1NameLabel" prefHeight="20.0" prefWidth="72.0" text="player1Name" />
+                        <Label fx:id="p1NameLabel" text="player1Name" textAlignment="CENTER" />
                      </children>
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
@@ -86,7 +86,7 @@
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="p2NameLabel" text="player2Name" />
+                        <Label fx:id="p2NameLabel" text="player2Name" textAlignment="CENTER" />
                      </children>
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -178,11 +178,11 @@
             </GridPane>
          </children>
       </StackPane>
-      <Button fx:id="quitButton" layoutX="289.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onQuitButtonClick" prefHeight="50.0" prefWidth="99.0" text="Quit">
+      <Button fx:id="quitButton" layoutX="283.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onQuitButtonClick" prefHeight="50.0" prefWidth="136.0" text="Quit">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="150.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onMainMenuButtonClick" prefHeight="50.0" prefWidth="99.0" text="Main Menu">
+      <Button fx:id="mainMenuButton" layoutX="109.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onMainMenuButtonClick" prefHeight="50.0" prefWidth="136.0" text="Main Menu">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>

@@ -22,7 +22,7 @@ public class ResultsController {
     @FXML
     private Label playerNameLabel, gameResultsLabel;
     @FXML
-    private Button quitButton, menuButton;
+    private Button quitButton, mainMenuButton;
     @FXML
     private ImageView p1LaurelIV, p2LaurelIV, p3LaurelIV, p4LaurelIV, p5LaurelIV, p6LaurelIV, p7LaurelIV;
     @FXML
@@ -48,6 +48,8 @@ public class ResultsController {
 
         gameResultsLabel.setText(getTextFromLangDict("gameResults"));
         playerNameLabel.setText(getTextFromLangDict("playerName"));
+        mainMenuButton.setText(getTextFromLangDict("mainMenu"));
+        quitButton.setText(getTextFromLangDict("quit"));
 
         playerNames = GameData.getPlayerNames();
         scoreBoard = GameData.getScoreBoard();
