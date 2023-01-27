@@ -9,8 +9,8 @@ import javafx.scene.image.ImageView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static other.LoadScene.changeLauncherScene;
-import static other.UICommonMethods.setImage;
+import static utils.LoadScene.changeLauncherScene;
+import static utils.UICommonMethods.setImage;
 
 public class RulesController {
 

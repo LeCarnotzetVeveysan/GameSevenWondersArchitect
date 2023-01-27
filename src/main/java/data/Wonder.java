@@ -1,11 +1,11 @@
 package data;
 
-import other.ModelCommonMethods;
+import utils.ModelCommonMethods;
 import token.Fighter;
 
 import java.io.IOException;
 
-import static other.LoadScene.changeLauncherScene;
+import static utils.LoadScene.changeLauncherScene;
 
 public enum Wonder {
 

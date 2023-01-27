@@ -11,9 +11,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static other.ModelCommonMethods.drawCard;
-import static other.UICommonMethods.getTextFromLangDict;
-import static other.UICommonMethods.setImage;
+import static utils.ModelCommonMethods.drawCard;
+import static utils.UICommonMethods.getTextFromLangDict;
+import static utils.UICommonMethods.setImage;
 
 public class AlexandrieActionController {
 

@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import other.ModelCommonMethods;
 import token.LaurelToken;
 import token.ProgressToken;
 
@@ -21,10 +20,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static other.LoadScene.changeLauncherScene;
-import static other.ModelCommonMethods.*;
-import static other.UICommonMethods.getTextFromLangDict;
-import static other.UICommonMethods.setImage;
+import static utils.LoadScene.changeLauncherScene;
+import static utils.ModelCommonMethods.*;
+import static utils.UICommonMethods.getTextFromLangDict;
+import static utils.UICommonMethods.setImage;
 
 public class GameSceneController {
 

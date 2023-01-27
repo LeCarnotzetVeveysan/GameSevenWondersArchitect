@@ -13,8 +13,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static other.ModelCommonMethods.drawCard;
-import static other.UICommonMethods.setImage;
+import static utils.ModelCommonMethods.drawCard;
+import static utils.UICommonMethods.setImage;
 
 public class HalicarnasseActionController {
 

@@ -10,12 +10,12 @@ module gswa.gswa {
     exports application;
     opens controllers to javafx.fxml;
     exports controllers;
-    opens other to javafx.fxml;
-    exports other;
+    opens utils to javafx.fxml;
+    exports utils;
     opens data to javafx.fxml;
     exports data;
     opens token to javafx.fxml;
     exports token;
-    opens mainClasses to javafx.fxml;
-    exports mainClasses;
+    opens tests to javafx.fxml;
+    exports tests;
 }

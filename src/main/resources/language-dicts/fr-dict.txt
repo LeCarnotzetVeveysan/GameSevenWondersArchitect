@@ -12,3 +12,4 @@ playerName|Nom du joueur
 mainMenu|Menu principal
 quit|Quitter
 nextTurn|Suivant
+selectCard|Sélectionnez une carte

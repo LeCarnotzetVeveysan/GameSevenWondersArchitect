@@ -4,9 +4,7 @@ import data.GameData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -14,8 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static other.LoadScene.changeLauncherScene;
-import static other.UICommonMethods.getTextFromLangDict;
+import static utils.LoadScene.changeLauncherScene;
+import static utils.UICommonMethods.getTextFromLangDict;
 
 public class ResultsController {
 

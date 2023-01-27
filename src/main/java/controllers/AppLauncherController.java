@@ -1,14 +1,8 @@
 package controllers;
 
 import application.AppData;
-import com.almasb.fxgl.core.collection.Array;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import other.LoadScene;
+import utils.LoadScene;
 
 import java.io.IOException;
 

@@ -2,7 +2,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import other.LoadScene;
+import utils.LoadScene;
 
 public class AppLaunch extends Application {
 
