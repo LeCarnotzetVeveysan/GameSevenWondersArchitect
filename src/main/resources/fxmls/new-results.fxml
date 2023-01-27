@@ -41,17 +41,17 @@
                <children>
                   <Label text="Player Name" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                   <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
-                        <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                        <Image url="@../other/WonderPoints.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
-                        <Image url="@../images/tokens-laurel/laurel-3-redToken.png" />
+                        <Image url="@../other/RedBlueLaurelPoints.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -59,29 +59,29 @@
                         <Image url="@../images/tokens-laurel/token-cat.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <ImageView fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
-                        <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
+                        <Image url="@../other/PointsProgressTokens.png" />
                      </image>
                   </ImageView>
                   <Label text="Total" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                       <font>
-                          <Font name="System Bold" size="12.0" />
+                          <Font name="System Bold" size="14.0" />
                       </font>
                   </Label>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p1LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p1LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="p1NameLabel" text="player1Name" />
+                        <Label fx:id="p1NameLabel" prefHeight="20.0" prefWidth="72.0" text="player1Name" />
                      </children>
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p2LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p2LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
@@ -91,7 +91,7 @@
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p3LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p3LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
@@ -101,7 +101,7 @@
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p4LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p4LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
@@ -111,7 +111,7 @@
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p5LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p5LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
@@ -121,7 +121,7 @@
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p6LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p6LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
@@ -131,7 +131,7 @@
                   </StackPane>
                   <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <children>
-                        <ImageView fx:id="p7LaurelIV" fitHeight="30.0" fitWidth="120.0" pickOnBounds="true">
+                        <ImageView fx:id="p7LaurelIV" fitHeight="54.0" fitWidth="180.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/tokens-laurel/laurelBlankToken.png" />
                            </image>
@@ -178,7 +178,13 @@
             </GridPane>
          </children>
       </StackPane>
-      <Button fx:id="quitButton" layoutX="289.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onQuitButtonClick" prefHeight="50.0" prefWidth="99.0" text="Quit" />
-      <Button layoutX="150.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onMainMenuButtonClick" prefHeight="50.0" prefWidth="99.0" text="Main Menu" />
+      <Button fx:id="quitButton" layoutX="289.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onQuitButtonClick" prefHeight="50.0" prefWidth="99.0" text="Quit">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="150.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#onMainMenuButtonClick" prefHeight="50.0" prefWidth="99.0" text="Main Menu">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>
