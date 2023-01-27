@@ -2,5 +2,13 @@ windowSizeIndic|This will be the game window size.
 understood|Understood
 start|Start
 rules|Rules
-playerName|Player X Name :
+playerXName|Player X Name :
 numPlayers|N° of players
+back|Back
+previous|Previous
+next|Next
+gameResults|Game results
+playerName|Player name
+mainMenu|Main menu
+quit|Quit
+nextTurn|Next turn

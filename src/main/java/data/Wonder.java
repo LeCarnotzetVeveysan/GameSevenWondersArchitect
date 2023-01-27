@@ -3,6 +3,10 @@ package data;
 import other.ModelCommonMethods;
 import token.Fighter;
 
+import java.io.IOException;
+
+import static other.LoadScene.changeLauncherScene;
+
 public enum Wonder {
 
     Alexandrie("Alexandrie", "Prenez la premi�re carte d'une pioche au choix, n'importe où sur la table, et posez-la devant vous",
@@ -126,10 +130,10 @@ public enum Wonder {
         return levelAction;
     }
 
-    public void eventAction(Board board) {
+    public void eventAction(Board board) throws IOException {
         switch (this) {
             case Alexandrie -> alexandrieAction();
-            case Halicarnasse -> halicarnasseAction();
+            case Halicarnasse -> halicarnasseAction(board);
             case Ephese -> epheseAction(board);
             case Olympie -> olympieAction(board);
             case Babylon -> babylonAction();
@@ -137,20 +141,25 @@ public enum Wonder {
         }
     }
 
-    public void alexandrieAction() {
-        // prendre la première carte au choix parmi les 3 decks (gauche, droite et milieu)
+    public void alexandrieAction() throws IOException {
+        // prendre la première carte au choix parmi les decks sur la table
+        changeLauncherScene("alexandrie-action");
     }
 
-    public void halicarnasseAction() {
+    public void halicarnasseAction(Board board) throws IOException {
         // parmi les 5 premières carte de la pioche à gauche et à droite, choisissez-en une
+        GameData.setBoard(board);
+        changeLauncherScene("halicarnasse-action");
+        board = GameData.getBoard();
+
     }
 
-    public void epheseAction(Board board) {
+    public void epheseAction(Board board) throws IOException {
         // prendre la première carte de la pioche centrale
         comMeth.drawMiddleDeckCard(board, 0);
     }
 
-    public void olympieAction(Board board) {
+    public void olympieAction(Board board) throws IOException {
         // prendre les cartes de la pioche de droite et de gauche
         comMeth.drawLeftDeckCard(board, 0);
         comMeth.drawRightDeckCard(board, 0);

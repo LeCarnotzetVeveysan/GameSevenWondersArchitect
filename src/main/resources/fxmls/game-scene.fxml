@@ -1,165 +1,304 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameSceneController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameSceneController">
    <children>
-      <Button fx:id="leftDeckButton" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheGaucheClicked" text="Pioche de gauche" />
-      <Button fx:id="rightDeckButton" layoutX="441.0" layoutY="188.0" mnemonicParsing="false" onAction="#PiocheDroiteClicked" text="Pioche de droite" />
-      <ImageView fx:id="ImageViewJetonsPaix1" fitHeight="49.0" fitWidth="49.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="808.0" fitWidth="987.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-war.png" />
-         </image></ImageView>
-      <ImageView fx:id="ImageViewJetonsSciences3" fitHeight="49.0" fitWidth="49.0" layoutX="533.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/token-artsAndCrafts.png" />
-         </image></ImageView>
-      <Label layoutX="75.0" layoutY="74.0" text="Jetons paix" />
-      <Label layoutX="452.0" layoutY="74.0" text="Jetons sciences" />
-      <ImageView fx:id="ImageViewJetonsSciences2" fitHeight="49.0" fitWidth="49.0" layoutX="484.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/token-science.png" />
-         </image></ImageView>
-      <ImageView fx:id="ImageViewJetonsSciences1" fitHeight="49.0" fitWidth="49.0" layoutX="435.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/token-tactic.png" />
-         </image></ImageView>
-      <Button fx:id="PiocheCentraleButton" layoutX="251.0" layoutY="70.0" mnemonicParsing="false" onAction="#PiocheCentraleClicked" text="Pioche Centrale" />
-      <ImageView fx:id="ImageViewJetonsSciencesRand" fitHeight="49.0" fitWidth="49.0" layoutX="386.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens-progress/back/token-back.png" />
+            <Image url="@../images/other/parchment.png" />
          </image>
       </ImageView>
-      <Button fx:id="ButtonScience3" layoutX="533.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#onProgressToken3Click" prefHeight="49.0" prefWidth="49.0" visible="false" />
-      <Button fx:id="ButtonScience2" layoutX="484.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#onProgressToken2Click" prefHeight="49.0" prefWidth="49.0" visible="false" />
-      <Button fx:id="ButtonScience1" layoutX="435.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#onProgressToken1Click" prefHeight="49.0" prefWidth="49.0" visible="false" />
-      <Button fx:id="ButtonScienceRand" layoutX="386.0" layoutY="14.0" maxHeight="49.0" maxWidth="49.0" minHeight="49.0" minWidth="49.0" mnemonicParsing="false" onAction="#ScienceRandClicked" prefHeight="49.0" prefWidth="49.0" visible="false" />
-      <VBox layoutX="588.0" prefHeight="400.0" prefWidth="149.0">
-         <children>
-            <Label fx:id="Player1Name" text="Player 1 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredOne" onShown="#HoveredOne" />
-               </tooltip></Label>
-            <Label fx:id="Player2Name" text="Player 2 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredTwo" onShown="#HoveredTwo" />
-               </tooltip></Label>
-            <Label fx:id="Player3Name" text="Player 3 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredThree" onShown="#HoveredThree" />
-               </tooltip></Label>
-            <Label fx:id="Player4Name" text="Player 4 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredFour" onShown="#HoveredFour" />
-               </tooltip></Label>
-            <Label fx:id="Player5Name" text="Player 5 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredFive" onShown="#HoveredFive" />
-               </tooltip></Label>
-            <Label fx:id="Player6Name" text="Player 6 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredSix" onShown="#HoveredSix" />
-               </tooltip></Label>
-            <Label fx:id="Player7Name" text="Player 7 Name" />
-            <Label text="Hover For Info">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <tooltip>
-                  <Tooltip onHiding="#UnHoveredSeven" onShown="#HoveredSeven" />
-               </tooltip></Label>
-         </children>
+      <VBox layoutX="20.0" layoutY="7.0" prefHeight="649.0" prefWidth="826.0" spacing="20.0">
+         <HBox prefHeight="122.0" prefWidth="826.0" spacing="20.0">
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <HBox fx:id="peaceTokenIVHB" alignment="CENTER" prefWidth="384.0">
+               <ImageView fx:id="peaceToken1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
+               </ImageView>
+               <ImageView fx:id="peaceToken2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
+               </ImageView>
+               <ImageView fx:id="peaceToken3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
+               </ImageView>
+               <ImageView fx:id="peaceToken4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
+               </ImageView>
+               <ImageView fx:id="peaceToken5IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
+               </ImageView>
+               <ImageView fx:id="peaceToken6IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
+               </ImageView>
+            </HBox>
+            <Button fx:id="centralDeckButton" mnemonicParsing="false" onMouseClicked="#onMainDeckButtonClick">
+               <graphic>
+                  <ImageView fx:id="centralDeckIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../images/cards/card-back/card-back-question.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fx:id="startCatIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../images/tokens-laurel/token-cat.png" />
+            </ImageView>
+            <VBox alignment="CENTER">
+               <HBox fx:id="progressTokenBTHB" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <Button fx:id="progressToken1BT" mnemonicParsing="false" onMouseClicked="#onProgressToken1Click">
+                     <graphic>
+                        <ImageView fx:id="progressToken1IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../images/tokens-progress/back/token-back.png" />
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="progressToken2BT" mnemonicParsing="false" onMouseClicked="#onProgressToken2Click">
+                     <graphic>
+                        <ImageView fx:id="progressToken2IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../images/tokens-progress/back/token-back.png" />
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="progressToken3BT" mnemonicParsing="false" onMouseClicked="#onProgressToken3Click">
+                     <graphic>
+                        <ImageView fx:id="progressToken3IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../images/tokens-progress/back/token-back.png" />
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="progressToken4BT" mnemonicParsing="false" onMouseClicked="#onProgressToken4Click">
+                     <graphic>
+                        <ImageView fx:id="progressToken4IV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <Image url="@../images/tokens-progress/back/token-back.png" />
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </HBox>
+            </VBox>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="485.0" prefWidth="826.0" spacing="20.0">
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <Button fx:id="leftDeckButton" mnemonicParsing="false" onMouseClicked="#onLeftDeckButtonClick">
+               <graphic>
+                  <ImageView fx:id="leftDeckIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../images/cards/card-back/card-back-question.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <StackPane fx:id="wonderSP" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" />
+                  <Label fx:id="playerNameLabel" text="Name" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <HBox fx:id="playerMaterialTokenSPHB" prefHeight="100.0" prefWidth="200.0">
+                        <StackPane fx:id="woodTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-materials/woodToken.png" />
+                           </ImageView>
+                           <Label fx:id="woodTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="brickTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-materials/brickToken.png" />
+                           </ImageView>
+                           <Label fx:id="brickTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="glassTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-materials/glassToken.png" />
+                           </ImageView>
+                           <Label fx:id="glassTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="paperTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-materials/paperToken.png" />
+                           </ImageView>
+                           <Label fx:id="paperTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="stoneTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-materials/stoneToken.png" />
+                           </ImageView>
+                           <Label fx:id="stoneTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="goldTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-materials/goldToken.png" />
+                           </ImageView>
+                           <Label fx:id="goldTokenLabel" text="Label" />
+                        </StackPane>
+                     </HBox>
+                     <HBox fx:id="playerShieldTokenSPHB">
+                        <StackPane fx:id="shieldWithoutHornSP">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-conflict/shieldCounterToken.png" />
+                           </ImageView>
+                           <Label fx:id="shieldWithoutHornLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="shieldWithHornSP">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-conflict/shieldHornToken.png" />
+                           </ImageView>
+                           <Label fx:id="shieldWithHornLabel" text="Label" />
+                        </StackPane>
+                     </HBox>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <HBox fx:id="playerScienceTokenSPHB" prefHeight="30.0" prefWidth="168.0">
+                        <StackPane fx:id="architectTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-science/architectToken.png" />
+                           </ImageView>
+                           <Label fx:id="architectTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="lawTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-science/lawToken.png" />
+                           </ImageView>
+                           <Label fx:id="lawTokenLabel" text="Label" />
+                        </StackPane>
+                        <StackPane fx:id="mechanicTokenSP" alignment="BOTTOM_RIGHT">
+                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <Image url="@../images/tokens-science/mechanicToken.png" />
+                           </ImageView>
+                           <Label fx:id="mechanicTokenLabel" text="Label" />
+                        </StackPane>
+                     </HBox>
+                     <HBox fx:id="playerLaurelTokenSPHB" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="93.0">
+                        <StackPane fx:id="laurelRed3TokenSP" alignment="BOTTOM_RIGHT">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <Image url="@../images/tokens-laurel/laurel-3-redToken.png" />
+                              </ImageView>
+                              <Label fx:id="laurelRed3TokenLabel" text="Label" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="laurelBlue2TokenSP" alignment="BOTTOM_RIGHT">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <Image url="@../images/tokens-laurel/laurel-2-blueToken.png" />
+                              </ImageView>
+                              <Label fx:id="laurelBlue2TokenLabel" text="Label" />
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="laurelBlue3TokenSP" alignment="BOTTOM_RIGHT">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <Image url="@../images/tokens-laurel/laurel-3-blueToken.png" />
+                              </ImageView>
+                              <Label fx:id="laurelBlue3TokenLabel" text="Label" />
+                           </children>
+                        </StackPane>
+                     </HBox>
+                  </HBox>
+                  <HBox fx:id="playerProgressTokenIVHB" prefHeight="30.0" prefWidth="250.0">
+                     <ImageView fx:id="playerProgTok1IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok2IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok3IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok4IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok5IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok6IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok7IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                     <ImageView fx:id="playerProgTok8IV" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/tokens-progress/back/token-back.png" />
+                     </ImageView>
+                  </HBox>
+               </VBox>
+               <ImageView fx:id="playerCatIV" fitHeight="96.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/tokens-laurel/token-cat.png" />
+               </ImageView>
+            </HBox>
+            <Button fx:id="rightDeckButton" mnemonicParsing="false" onMouseClicked="#onRightDeckButtonClick">
+               <graphic>
+                  <ImageView fx:id="rightDeckIV" fitHeight="100.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../images/cards/card-back/card-back-question.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TitledPane fx:id="HoverPane" alignment="CENTER" collapsible="false" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="147.0" visible="false">
+               <Label fx:id="InfoPlayer" alignment="CENTER" contentDisplay="CENTER" prefHeight="187.0" prefWidth="146.0" text="Info Player" wrapText="true">
+                  <font>
+                     <Font size="11.0" />
+                  </font>
+               </Label>
+            </TitledPane>
+         </HBox>
       </VBox>
-      <ImageView fx:id="ImageViewJetonsPaix2" fitHeight="49.0" fitWidth="49.0" layoutX="75.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/tokens/token-conflict-peace.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="ImageViewJetonsPaix3" fitHeight="49.0" fitWidth="49.0" layoutX="124.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/tokens-conflict/conflictPeaceToken.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="NextTurnButton" layoutX="482.0" layoutY="327.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="103.0" text="Next Turn">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="246.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Desktop/GameSevenWondersArchitect-37edc4a416e5d1923c52294227732357168a9725/src/main/resources/images-prof/wonders/wonder-rhodes.png" />
-         </image>
-      </ImageView>
-      <TitledPane fx:id="HoverPane1" collapsible="false" layoutX="385.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer1" text="Info Player 1" wrapText="true" />
-         </content>
-      </TitledPane>
-      <TitledPane fx:id="HoverPane2" collapsible="false" layoutX="385.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer2" text="Info Player 2" />
-         </content>
-      </TitledPane>
-      <TitledPane fx:id="HoverPane3" collapsible="false" layoutX="385.0" layoutY="101.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer3" text="Info Player 3" />
-         </content>
-      </TitledPane>
-      <TitledPane fx:id="HoverPane4" collapsible="false" layoutX="382.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer4" text="Info Player 4" />
-         </content>
-      </TitledPane>
-      <TitledPane fx:id="HoverPane5" collapsible="false" layoutX="385.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer5" text="Info Player 5" />
-         </content>
-      </TitledPane>
-      <TitledPane fx:id="HoverPane6" collapsible="false" layoutX="382.0" layoutY="201.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer6" text="Info Player 6" />
-         </content>
-      </TitledPane>
-      <TitledPane fx:id="HoverPane7" collapsible="false" layoutX="384.0" layoutY="201.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-         <content>
-            <Label fx:id="InfoPlayer7" text="Info Player 7" />
-         </content>
-      </TitledPane>
-      <Label fx:id="Materials" layoutX="276.0" layoutY="261.0" text="Materials" />
-      <Label fx:id="JetonsSciencesJoueur" layoutX="159.0" layoutY="261.0" text="Jetons Sciences" />
-      <Label fx:id="WarPoints" layoutX="368.0" layoutY="262.0" text="Points Guerres" />
-      <Label fx:id="WinPoints" layoutX="368.0" layoutY="293.0" text="Win Points" />
+      <VBox alignment="TOP_CENTER" layoutX="865.5999755859375" layoutY="20.0" prefHeight="562.0" prefWidth="116.0" spacing="5.0">
+         <Button fx:id="nextTurnButton" mnemonicParsing="false" onMouseClicked="#onNextTurnButtonClick" text="Next turn">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Button>
+         <Label fx:id="Player1Name" text="Player 1 Name" />
+         <Label fx:id="LabelHover1" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="Player2Name" text="Player 2 Name" />
+         <Label fx:id="LabelHover2" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="Player3Name" text="Player 3 Name" />
+         <Label fx:id="LabelHover3" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="Player4Name" text="Player 4 Name" />
+         <Label fx:id="LabelHover4" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="Player5Name" text="Player 5 Name" />
+         <Label fx:id="LabelHover5" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="Player6Name" text="Player 6 Name" />
+         <Label fx:id="LabelHover6" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="Player7Name" text="Player 7 Name" />
+         <Label fx:id="LabelHover7" text="Hover For Info">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+      </VBox>
    </children>
 </AnchorPane>

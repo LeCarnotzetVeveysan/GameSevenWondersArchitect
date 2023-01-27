@@ -2,5 +2,13 @@ windowSizeIndic|Ceci sera la taille de la fenêtre de jeu.
 understood|Compris
 start|Démarrer
 rules|Règles
-playerName|Nom Joueur X :
+playerXName|Nom Joueur X :
 numPlayers|N° de joueurs
+back|Menu
+previous|Précédent
+next|Suivant
+gameResults|Résultats du jeu
+playerName|Nom du joueur
+mainMenu|Menu principal
+quit|Quitter
+nextTurn|Suivant
