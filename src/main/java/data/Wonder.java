@@ -132,7 +132,7 @@ public enum Wonder {
 
     public void eventAction(Board board) throws IOException {
         switch (this) {
-            case Alexandrie -> alexandrieAction();
+            case Alexandrie -> alexandrieAction(board);
             case Halicarnasse -> halicarnasseAction(board);
             case Ephese -> epheseAction(board);
             case Olympie -> olympieAction(board);
@@ -141,10 +141,11 @@ public enum Wonder {
         }
     }
 
-    public void alexandrieAction() throws IOException {
+    public void alexandrieAction(Board board) throws IOException {
         // prendre la première carte au choix parmi les decks sur la table
-        //a implementer
+        GameData.setBoard(board);
         changeLauncherScene("alexandrie-action");
+        board = GameData.getBoard();
     }
 
     public void halicarnasseAction(Board board) throws IOException {
