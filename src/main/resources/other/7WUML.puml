@@ -7,16 +7,101 @@ package application {
         + void start()
     }
 
+    class AppData {
+        - {static} String language;
+        - {static} int prefWidth;
+        - {static} int prefHeight;
+        - {static} int wonderLayoutSize;
+    }
+
 }
 
-package classes {
+package controllers {
+
+    class AlexandrieActionController {
+
+    }
+
+    class AppLauncherController {
+
+    }
+
+    class GameInitController {
+
+    }
+
+    class GameSceneController {
+
+    }
+
+    class HalicarnasseController {
+
+    }
+
+    class LauncherController {
+
+    }
+
+    class PreviewController {
+
+    }
+
+    class ResultsController {
+        + void showResults()
+    }
+
+    class RulesController {
+        + void showRules()
+    }
+
+}
+
+package data {
+
+    class Board {
+
+    }
+
+    enum Cards {
+            MAT_WOOD
+            MAT_GLASS
+            MAT_BRICK
+            MAT_STONE
+            MAT_PAPYRUS
+            MAT_GOLD
+            LAU_EMPEROR
+            LAU_CAT
+            SCI_ARCHITECT
+            SCI_LAW
+            SCI_MECHANIC
+            COM_CENTURION
+            COM_BARBARIAN
+            COM_ARCHER
+
+            object Cards
+            - String name
+            - String type
+            - String front
+            - String back
+    }
+
+    class Data {
+
+    }
+
+    class Deck {
+            - ArrayList<Cards> cards
+            + shuffle()
+            + draw()
+            + removeCard(int index)
+    }
+
     class GameData {
-        - ArrayList<Player> players
-        - ArrayList<Deck> decks
-        - ArrayList<ProgressToken> progressTokens
-        - int combatTokensNeeded
-        - int combatTokensFlipped
-        + initializeDecks()
+
+    }
+
+    class Initializers{
+
     }
 
     class Player {
@@ -31,6 +116,10 @@ package classes {
         - boolean hasCat
     }
 
+    class ProgressTokenStack {
+
+    }
+
     class Wonder {
         - String wonderName
         - int wonderLevel
@@ -42,102 +131,34 @@ package classes {
         - boolean[] levelAction
     }
 
-    enum Cards {
-        MAT_WOOD
-        MAT_GLASS
-        MAT_BRICK
-        MAT_STONE
-        MAT_PAPYRUS
-        MAT_GOLD
-        LAU_EMPEROR
-        LAU_CAT
-        SCI_ARCHITECT
-        SCI_LAW
-        SCI_MECHANIC
-        COM_CENTURION
-        COM_BARBARIAN
-        COM_ARCHER
+}
 
-        object Cards
-        - String name
-        - String type
-        - String front
-        - String back
+package mainClasses {
+
+    class Game {
+
     }
 
-    class Deck {
-        - ArrayList<Cards> cards
-        + shuffle()
-        + draw()
-        + removeCard(int index)
+    class test {
+
     }
 
-    class ShieldToken {
-        - boolean hasHorn
-        - int nbShields
+    class test2 {
+
     }
-
-    class LaurelToken {
-        - int points
-        - int color
-    }
-
-    class ProgressToken {
-        - String name
-    }
-
-    class MaterialToken {
-        - String type
-        - int color
-    }
-
-
 
 }
 
-package controllers {
 
-    class GameInitializeController {
-        + void initializeGame()
-    }
-
-    class GameSceneController {
-        + {static} void updateImages()
-    }
-
-    class LauncherController {
-        + void startGame()
-    }
-
-    class MainMenuController {
-        + void startGame()
-    }
-
-    class ResultsController {
-        + void showResults()
-    }
-
-    class RulesController {
-        + void showRules()
-    }
-
-}
 
 package other {
 
+    class LoadScene {
+
+    }
+
     class UICommonMethods {
-        + refreshBoard()
 
-        - refreshCommonTokens()
-        - refreshCombatTokenImages()
-        - refreshProgressTokenImages()
-
-        - refreshPlayer()
-        - refreshPlayerImages()
-        - refreshWonderImages()
-        - refreshMaterialImages()
-        - refreshPlayerTokenImages()
-        - refreshPlayerShieldImages()
     }
 
     class ModelCommonMethods {
@@ -147,6 +168,41 @@ package other {
         + drawRightDeck()
         + drawProgressToken()
     }
+
+}
+
+package token {
+
+    class Fighter {
+
+    }
+
+    class ShieldToken {
+            - boolean hasHorn
+            - int nbShields
+        }
+
+        class LaurelToken {
+            - int points
+            - int color
+        }
+
+        class ProgressToken {
+            - String name
+        }
+
+        class MaterialToken {
+            - String type
+            - int color
+        }
+
+        class ScienceToken {
+
+        }
+
+        class ShieldToken {
+
+        }
 
 }
 

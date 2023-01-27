@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -49,17 +50,19 @@ public class HalicarnasseActionController {
         }
         leftDeckButton.setDisable(true);
         rightDeckButton.setDisable(true);
-        for(int i = 0; i < deck.getDeck().size(); i++){
+        int limit = Math.min(5, deck.getDeck().size() - 1);
+        for(int i = 0; i < limit; i++){
             setImage(imageViews[i],deck.getDeck().get(i).getFront());
             cardButtons[i].setDisable(false);
         }
     }
 
-    public void onRightDeckButtonClick(MouseEvent mouseEvent) throws FileNotFoundException {
+    public void onRightDeckButtonClick() throws FileNotFoundException {
         deck = decks.get(GameData.getActionPlayerIndex());
         leftDeckButton.setDisable(true);
         rightDeckButton.setDisable(true);
-        for(int i = 0; i < deck.getDeck().size(); i++){
+        int limit = Math.min(5, deck.getDeck().size() - 1);
+        for(int i = 0; i < limit; i++){
             setImage(imageViews[i],deck.getDeck().get(i).getFront());
             cardButtons[i].setDisable(false);
         }
@@ -68,25 +71,35 @@ public class HalicarnasseActionController {
     public void onCard1Chosen(MouseEvent mouseEvent) throws IOException {
         drawCard(board,deck,board.getPlayers().get(actionPlayerIndex),0);
         GameData.setBoard(board);
+        Stage stage = (Stage) card1Button.getScene().getWindow();
+        stage.close();
     }
 
     public void onCard2Chosen(MouseEvent mouseEvent) throws IOException {
         drawCard(board,deck,board.getPlayers().get(actionPlayerIndex),1);
         GameData.setBoard(board);
+        Stage stage = (Stage) card2Button.getScene().getWindow();
+        stage.close();
     }
 
     public void onCard3Chosen(MouseEvent mouseEvent) throws IOException {
         drawCard(board,deck,board.getPlayers().get(actionPlayerIndex),2);
         GameData.setBoard(board);
+        Stage stage = (Stage) card3Button.getScene().getWindow();
+        stage.close();
     }
 
     public void onCard4Chosen(MouseEvent mouseEvent) throws IOException {
         drawCard(board,deck,board.getPlayers().get(actionPlayerIndex),3);
         GameData.setBoard(board);
+        Stage stage = (Stage) card4Button.getScene().getWindow();
+        stage.close();
     }
 
     public void onCard5Chosen(MouseEvent mouseEvent) throws IOException {
         drawCard(board,deck,board.getPlayers().get(actionPlayerIndex),4);
         GameData.setBoard(board);
+        Stage stage = (Stage) card5Button.getScene().getWindow();
+        stage.close();
     }
 }

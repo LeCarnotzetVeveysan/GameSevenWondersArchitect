@@ -14,7 +14,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameSceneController">
    <children>
-      <ImageView fitHeight="808.0" fitWidth="987.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="707.0" fitWidth="988.0" pickOnBounds="true">
          <image>
             <Image url="@../images/other/parchment.png" />
          </image>

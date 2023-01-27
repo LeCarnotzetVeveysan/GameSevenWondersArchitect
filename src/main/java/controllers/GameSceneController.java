@@ -474,8 +474,8 @@ public class GameSceneController {
         if(gameBoard.getCombatTokensFlipped() >= gameBoard.getCombatTokensNeeded()){
             System.out.println("AOUH ! AOUH ! AOUH !");
             gameBoard.setCombatTokensFlipped(0);
+            checkPlayerWar(gameBoard, playerList);
         }
-        checkPlayerWar(gameBoard, playerList);
     }
 
     public void onMainDeckButtonClick() throws IOException {

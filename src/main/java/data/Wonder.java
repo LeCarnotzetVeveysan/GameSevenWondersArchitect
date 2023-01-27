@@ -17,7 +17,7 @@ public enum Wonder {
 
     Halicarnasse("Halicarnasse", "Prenez les 5 premières cartes de la pioche à votre gauche ou à votre droite, choisissez-en 1 et posez-la devant vous" + "Mélangez-les cartes restantes dans leur pioche",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
-            new boolean[]{false, false, true, true, false}, new int[]{3, 3, 6, 5, 7},
+            new boolean[]{false, true, false, true, false}, new int[]{3, 3, 6, 5, 7},
             new int[]{1,2,3,3,4},
             "wonder-halicarnasse.png"),
 
