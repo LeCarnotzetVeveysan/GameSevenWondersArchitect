@@ -3,6 +3,10 @@ package data;
 import other.ModelCommonMethods;
 import token.Fighter;
 
+import java.io.IOException;
+
+import static other.LoadScene.changeLauncherScene;
+
 public enum Wonder {
 
     Alexandrie("Alexandrie", "Prenez la premi�re carte d'une pioche au choix, n'importe où sur la table, et posez-la devant vous",
@@ -126,10 +130,10 @@ public enum Wonder {
         return levelAction;
     }
 
-    public void eventAction(Board board) {
+    public void eventAction(Board board) throws IOException {
         switch (this) {
             case Alexandrie -> alexandrieAction();
-            case Halicarnasse -> halicarnasseAction();
+            case Halicarnasse -> halicarnasseAction(board);
             case Ephese -> epheseAction(board);
             case Olympie -> olympieAction(board);
             case Babylon -> babylonAction();
@@ -141,8 +145,12 @@ public enum Wonder {
         // prendre la première carte au choix parmi les 3 decks (gauche, droite et milieu)
     }
 
-    public void halicarnasseAction() {
+    public void halicarnasseAction(Board board) throws IOException {
         // parmi les 5 premières carte de la pioche à gauche et à droite, choisissez-en une
+        GameData.setBoard(board);
+        changeLauncherScene("halicarnasse-action");
+        board = GameData.getBoard();
+
     }
 
     public void epheseAction(Board board) {

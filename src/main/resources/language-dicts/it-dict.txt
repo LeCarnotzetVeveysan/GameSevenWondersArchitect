@@ -4,3 +4,6 @@ start|Inizio
 rules|Regole
 playerName|Nome del giocatore X :
 numPlayers|N° di giocatori
+back|Indietro
+previous|Precedente
+next|A seguire

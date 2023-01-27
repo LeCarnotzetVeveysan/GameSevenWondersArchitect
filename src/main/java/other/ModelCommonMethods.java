@@ -4,6 +4,7 @@ import controllers.GameSceneController;
 import data.*;
 import token.*;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ public class ModelCommonMethods {
         return inputDeck.getDeck().isEmpty();
     }
 
-    public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) {
+    public static void drawCard(Board board, Deck targetdeck, Player player, int cardIndex) throws IOException {
         // Récupère la carte à l'index spécifié dans le deck cible
         Cards drawnCard = targetdeck.getCardAtIndex(cardIndex);
         // Attribue la carte au joueur qui la pioche et vérifie si le joueur a le progrès Economy
@@ -39,7 +40,7 @@ public class ModelCommonMethods {
 
     }
 
-    public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
+    public static void drawLeftDeckCard(Board board, int selectedCardIndex) throws IOException {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -58,7 +59,7 @@ public class ModelCommonMethods {
 
     }
 
-    public static void drawMiddleDeckCard(Board board, int selectedCardIndex) {
+    public static void drawMiddleDeckCard(Board board, int selectedCardIndex) throws IOException {
         int middleDeckIndex = board.getPlayers().size();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -72,7 +73,7 @@ public class ModelCommonMethods {
         }
     }
 
-    public static void drawRightDeckCard(Board board, int selectedCardIndex) {
+    public static void drawRightDeckCard(Board board, int selectedCardIndex) throws IOException {
         int currentPlayerIndex = board.getCurrentPlayerIndex();
         Player currentPlayer = board.getPlayers().get(currentPlayerIndex);
 
@@ -193,7 +194,7 @@ public class ModelCommonMethods {
         board.setCanNextTurn(false);
     }
 
-    public static void chkLevelUpWonder(Board board) {
+    public static void chkLevelUpWonder(Board board) throws IOException {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player currentPlayer = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -245,7 +246,7 @@ public class ModelCommonMethods {
         return levelsInStages;
     }
 
-    private static void updateDiffMat(Board board, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+    private static void updateDiffMat(Board board, ArrayList<Long> elementTab, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) throws IOException {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -273,7 +274,7 @@ public class ModelCommonMethods {
         }
     }
 
-    private static void updateSameMat(Board board, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) {
+    private static void updateSameMat(Board board, ArrayList<Long> elementTab, MaterialToken[] elementTabToToken, Map<Integer, Long> levelsInStages, int i, int stage, long levelsInCurrentStage) throws IOException {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
 
@@ -297,7 +298,7 @@ public class ModelCommonMethods {
         }
     }
 
-    private static void levelUpWonder(Board board, int i) {
+    private static void levelUpWonder(Board board, int i) throws IOException {
         Player player = board.getPlayers().get(board.getCurrentPlayerIndex());
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
 
@@ -310,7 +311,7 @@ public class ModelCommonMethods {
         }
     }
 
-    private static void chkActionWonder(Board board, int i) {
+    private static void chkActionWonder(Board board, int i) throws IOException {
         Wonder wonder = board.getPlayers().get(board.getCurrentPlayerIndex()).getWonder();
 
         if (wonder.getLevelAction()[i]) {
