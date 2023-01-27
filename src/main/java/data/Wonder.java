@@ -13,43 +13,50 @@ public enum Wonder {
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
             new boolean[]{false, true, false, true, false}, new int[]{4, 3, 6, 5, 7},
             new int[]{1,1,1,1,1},
-            "wonder-alexandrie.png"),
+            "wonder-alexandrie.png",
+            "cor_1.mp3"),
 
     Halicarnasse("Halicarnasse", "Prenez les 5 premières cartes de la pioche à votre gauche ou à votre droite, choisissez-en 1 et posez-la devant vous" + "Mélangez-les cartes restantes dans leur pioche",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
             new boolean[]{false, true, false, true, false}, new int[]{3, 3, 6, 5, 7},
             new int[]{1,1,2,1},
-            "wonder-halicarnasse.png"),
+            "wonder-halicarnasse.png",
+            "cor_1.mp3"),
 
     Ephese("Ephese", "Prenez la première carte de la pioche centrale et posez-la devant vous",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
             new boolean[]{false, true, true, true, false}, new int[]{3, 3, 4, 5, 7},
             new int[]{1,3,1},
-            "wonder-ephese.png"),
+            "wonder-ephese.png",
+            "cor_2.mp3"),
 
     Olympie("Olympie", "Prenez la première carte de la pioche à votre cauche et de celle à votre droite, et posez-les devant vous",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
             new boolean[]{false, true, false, true, false}, new int[]{3, 2, 5, 5, 7},
             new int[]{1,2,1,1},
-            "wonder-olympie.png"),
+            "wonder-olympie.png",
+            "cor_3.mp3"),
 
     Babylon("Babylone", "Choisissez 1 jeton Progrès parmi les 4 disponibles, et posez-le devant vous",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 4, 3},
             new boolean[]{false, true, false, false, true}, new int[]{3, 0, 5, 7, 5},
             new int[]{1,1,1,2},
-            "wonder-babylone.png"),
+            "wonder-babylone.png",
+            "guitar.mp3"),
 
     Rhodes("Rhodes", "Ajoutez 1 Bouclier à votre total de Boucliers",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
             new boolean[]{false, true, false, true, false}, new int[]{4, 4, 5, 6, 7},
-            new int[]{1,1,2,3,4},
-            "wonder-rhodes.png"),
+            new int[]{2,1,1,1},
+            "wonder-rhodes.png",
+            "trompette_1.mp3"),
 
     Gizeh("Gizeh", "Cette merveille n'a pas d'effet particulier, mais rapporte plus de points de victoire que les autres Merveilles",
             new boolean[]{false, true, false, true, false}, new int[]{2, 2, 3, 3, 4},
             new boolean[]{false, false, false, false, false}, new int[]{4, 5, 6, 7, 8},
-            new int[]{1,2,3,4,5},
-            "wonder-gizeh.png");
+            new int[]{1,1,1,1,1},
+            "wonder-gizeh.png",
+            "trompette_2.2.mp3");
 
     // ------------------------------------------------------------------------
 
@@ -57,6 +64,7 @@ public enum Wonder {
 
     private final String name;
     private final String effectDescription;
+    private final String warSound;
     private final String wonderDeck;
 
     private final boolean[] sameMaterials;
@@ -72,7 +80,7 @@ public enum Wonder {
 
     // ------------------------------------------------------------------------
 
-    Wonder(String name, String effectDescription, boolean[] sameMaterials, int[] nbMaterials, boolean[] levelAction, int[] levelPoints, int[] nbLevelsInStages, String wonderDeck) {
+    Wonder(String name, String effectDescription, boolean[] sameMaterials, int[] nbMaterials, boolean[] levelAction, int[] levelPoints, int[] nbLevelsInStages, String wonderDeck, String warSound) {
         this.name = name;
         this.effectDescription = effectDescription;
         this.sameMaterials = sameMaterials;
@@ -82,6 +90,7 @@ public enum Wonder {
         this.levelAction = levelAction;
         this.levelPoints = levelPoints;
         this.wonderDeck = "src/main/resources/images/decks/" + wonderDeck;
+        this.warSound = "src/main/resources/other/" + warSound;
     }
 
     // ------------------------------------------------------------------------
@@ -92,6 +101,10 @@ public enum Wonder {
 
     public String getEffectDescription() {
         return effectDescription;
+    }
+
+    public String getWarSound() {
+        return warSound;
     }
 
     public String getWonderDeck() {

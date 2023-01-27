@@ -5,6 +5,7 @@ module gswa.gswa {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires javafx.media;
 
     opens application to javafx.fxml;
     exports application;

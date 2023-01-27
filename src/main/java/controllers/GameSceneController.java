@@ -4,6 +4,9 @@ import application.AppData;
 import data.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import token.LaurelToken;
 import token.ProgressToken;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -182,7 +186,7 @@ public class GameSceneController {
     }
 
     private void updateNextTurnButton() {
-        if((gameBoard.getCanDrawCard() ==false) && (gameBoard.getCanDrawProgressToken() == false)){
+        if((!gameBoard.getCanDrawCard()) && (!gameBoard.getCanDrawProgressToken())){
             gameBoard.setCanNextTurn(true);
         }
         nextTurnButton.setDisable(!gameBoard.getCanNextTurn());
@@ -472,6 +476,10 @@ public class GameSceneController {
     private void checkForWar() {
         if(gameBoard.getCombatTokensFlipped() >= gameBoard.getCombatTokensNeeded()){
             System.out.println("AOUH ! AOUH ! AOUH !");
+            String path = gameBoard.getPlayers().get(gameBoard.getCurrentPlayerIndex()).getWonder().getWarSound();
+            Media media = new Media(new File(path).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
             gameBoard.setCombatTokensFlipped(0);
             checkPlayerWar(gameBoard, playerList);
         }

@@ -26,15 +26,11 @@ public class ModelCommonMethods {
         // Retire la carte du deck cible
         targetdeck.getDeck().remove(cardIndex);
         // Vérifie si le joueur peut piocher un progress token
-        //chkProgressTokenDrawingStatus(board);
+        chkProgressTokenDrawingStatus(board);
         // Vérifie si le joueur a atteint un niveau de merveille
         chkLevelUpWonder(board);
         System.out.println(player.getMaterialTokens());
-        if(board.getCanDrawProgressToken() || board.getCanDrawCard()){
-            board.setCanNextTurn(false);
-        } else {
-            board.setCanNextTurn(true);
-        }
+        board.setCanNextTurn(!board.getCanDrawProgressToken() && !board.getCanDrawCard());
     }
 
     public static void drawLeftDeckCard(Board board, int selectedCardIndex) {
@@ -47,9 +43,9 @@ public class ModelCommonMethods {
 
         Deck targetdeck = board.getDecks().get(leftPlayerIndex);
         if(!isDeckEmpty(targetdeck)){
-            //board.setCanDrawCard(false);
-            //board.setHasDrawnCard(true);
-            //board.setCanNextTurn(false);
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
             // Pioche une carte depuis le deck du joueur à gauche
             drawCard(board, targetdeck, currentPlayer, selectedCardIndex);
         }
@@ -62,9 +58,9 @@ public class ModelCommonMethods {
 
         Deck targetDeck = board.getDecks().get(middleDeckIndex);
         if(!isDeckEmpty(targetDeck)){
-            //board.setCanDrawCard(false);
-            //board.setHasDrawnCard(true);
-            //board.setCanNextTurn(false);
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(false);
             // Pioche une carte depuis le deck du joueur à gauche
             drawCard(board, targetDeck, currentPlayer, selectedCardIndex);
         }
@@ -76,9 +72,9 @@ public class ModelCommonMethods {
 
         Deck targetDeck = board.getDecks().get(currentPlayerIndex);
         if(!isDeckEmpty(targetDeck)){
-            //board.setCanDrawCard(false);
-            //board.setHasDrawnCard(true);
-            //board.setCanNextTurn(true);
+            board.setCanDrawCard(false);
+            board.setHasDrawnCard(true);
+            board.setCanNextTurn(true);
             // Pioche une carte depuis le deck du joueur à gauche
             drawCard(board, targetDeck, currentPlayer, selectedCardIndex);
         }
