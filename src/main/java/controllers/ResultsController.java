@@ -15,11 +15,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static other.LoadScene.changeLauncherScene;
+import static other.UICommonMethods.getTextFromLangDict;
 
 public class ResultsController {
 
     @FXML
-    private Button quitButton;
+    private Label playerNameLabel, gameResultsLabel;
+    @FXML
+    private Button quitButton, menuButton;
     @FXML
     private ImageView p1LaurelIV, p2LaurelIV, p3LaurelIV, p4LaurelIV, p5LaurelIV, p6LaurelIV, p7LaurelIV;
     @FXML
@@ -36,11 +39,16 @@ public class ResultsController {
     private Label p1TPLabel, p2TPLabel, p3TPLabel, p4TPLabel, p5TPLabel, p6TPLabel, p7TPLabel;
     private Label[] nameLabels, p1Labels, p2Labels, p3Labels, p4Labels, p5Labels, p6Labels, p7Labels;
     private Label[][] labelGrid;
+
     private ImageView[] laurelIVs;
     String[] playerNames;
     int[][] scoreBoard;
 
-    public void initialize(){
+    public void initialize() throws IOException {
+
+        gameResultsLabel.setText(getTextFromLangDict("gameResults"));
+        playerNameLabel.setText(getTextFromLangDict("playerName"));
+
         playerNames = GameData.getPlayerNames();
         scoreBoard = GameData.getScoreBoard();
 

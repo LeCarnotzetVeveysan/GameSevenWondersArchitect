@@ -141,8 +141,9 @@ public enum Wonder {
         }
     }
 
-    public void alexandrieAction() {
-        // prendre la première carte au choix parmi les 3 decks (gauche, droite et milieu)
+    public void alexandrieAction() throws IOException {
+        // prendre la première carte au choix parmi les decks sur la table
+        changeLauncherScene("alexandrie-action");
     }
 
     public void halicarnasseAction(Board board) throws IOException {
@@ -153,12 +154,12 @@ public enum Wonder {
 
     }
 
-    public void epheseAction(Board board) {
+    public void epheseAction(Board board) throws IOException {
         // prendre la première carte de la pioche centrale
         comMeth.drawMiddleDeckCard(board, 0);
     }
 
-    public void olympieAction(Board board) {
+    public void olympieAction(Board board) throws IOException {
         // prendre les cartes de la pioche de droite et de gauche
         comMeth.drawLeftDeckCard(board, 0);
         comMeth.drawRightDeckCard(board, 0);

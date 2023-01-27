@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import other.ModelCommonMethods;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

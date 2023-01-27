@@ -2,8 +2,10 @@ windowSizeIndic|Questa sarà la dimensione della finestra di gioco.
 understood|Capito
 start|Inizio
 rules|Regole
-playerName|Nome del giocatore X :
+playerXName|Nome del giocatore X :
 numPlayers|N° di giocatori
 back|Indietro
 previous|Precedente
 next|A seguire
+gameResults|Risultati
+playerName|Nome del giocatore

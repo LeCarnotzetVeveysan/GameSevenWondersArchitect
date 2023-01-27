@@ -50,7 +50,7 @@ public class GameInitController implements Initializable {//implements initializ
     private void initLabels() throws IOException {
         int count = 49;
         for(Label lb : nameLabels){
-            lb.setText(getTextFromLangDict("playerName").replace('X',(char) count));
+            lb.setText(getTextFromLangDict("playerXName").replace('X',(char) count));
             count++;
         }
         numPlayersLB.setText(getTextFromLangDict("numPlayers"));
@@ -79,7 +79,7 @@ public class GameInitController implements Initializable {//implements initializ
     public void onStartButtonClicked() throws IOException {
         if(validInputs()){
             registerAppData();
-            LoadScene.changeScene("main","new-game-scene");
+            LoadScene.changeScene("main","game-scene");
             Stage stage = (Stage) startButton.getScene().getWindow();
             stage.close();
 

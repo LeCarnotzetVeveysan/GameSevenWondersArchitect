@@ -21,7 +21,7 @@ public class test2 extends Application {
         String[] names = new String[]{"jean-mi","edouard","gusse3","jaiplusdidée"};
         GameData.setPlayerNames(names);
         initTestScoreBoard();
-        ls.changeLauncherScene("new-results");
+        ls.changeLauncherScene("results");
     }
 
     private static void initTestScoreBoard() {
