@@ -8,22 +8,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AppLauncherController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AppLauncherController">
    <children>
-      <ImageView fitHeight="85.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="500.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/other/parchment.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="116.0" fitWidth="369.0" layoutX="66.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../other/arc-common-logo-1630334595bVXyZ-large.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+      <VBox alignment="CENTER" layoutX="58.0" layoutY="128.0" prefHeight="83.0" prefWidth="360.0" spacing="5.0">
          <children>
-            <Label text="Language" />
-            <ChoiceBox fx:id="languageChoiceBox" prefWidth="150.0">
+            <Label text="Language">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="languageChoiceBox" prefWidth="150.0" onAction="#languageCBChanged">
                <items>
                   <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="Select Language" />
+                     <String fx:value="Select language" />
                      <String fx:value="English" />
                      <String fx:value="Français" />
                      <String fx:value="Italiano" />
@@ -35,10 +47,14 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+      <VBox alignment="CENTER" layoutX="58.0" layoutY="200.0" prefHeight="108.0" prefWidth="360.0" spacing="5.0">
          <children>
-            <Label text="Screen size" />
-            <ChoiceBox fx:id="screenSizeChoiceBox" prefWidth="150.0">
+            <Label text="Screen size">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="screenSizeChoiceBox" prefWidth="150.0" >
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Select Screen Size" />
@@ -48,15 +64,16 @@
                   </FXCollections>
                </items>
             </ChoiceBox>
-            <Button mnemonicParsing="false" onMouseClicked="#onPreviewButtonClick" text="Preview" />
+            <Button mnemonicParsing="false" onMouseClicked="#onPreviewButtonClick" prefHeight="29.0" prefWidth="67.0" text="Preview" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <Button mnemonicParsing="false" onMouseClicked="#onLaunchButtonClick" prefHeight="50.0" prefWidth="100.0" text="Launch" />
+      <Button layoutX="188.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#onLaunchButtonClick" prefHeight="50.0" prefWidth="100.0" text="Launch">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+</AnchorPane>

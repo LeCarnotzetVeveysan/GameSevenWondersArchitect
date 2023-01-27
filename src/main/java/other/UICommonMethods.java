@@ -1,13 +1,15 @@
 package other;
 
+import application.AppData;
 import data.Player;
 import data.Deck;
 import data.ProgressTokenStack;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.HashMap;
 
 public class UICommonMethods {
 
@@ -21,44 +23,14 @@ public class UICommonMethods {
         iv.setImage(image);
     }
 
-    public void refreshBoard() {
-
+    public static String getTextFromLangDict(String textCode) throws IOException {
+        String file = "src/main/resources/language-dicts/" + AppData.getLanguage().toLowerCase() + "-dict.txt";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        HashMap<String, String> langDict = new HashMap<>() {};
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            String[] parts = line.split("\\|");
+            langDict.put(parts[0], parts[1]);
+        }
+        return langDict.get(textCode);
     }
-
-    private void refreshCommonTokens() {
-
-    }
-
-    private void refreshCombatTokenImages() {
-
-    }
-
-    private void refreshProgressTokenImages() {
-
-    }
-
-    private void refreshPlayer() {
-
-    }
-
-    private void refreshPlayerImages() {
-
-    }
-
-    private void refreshWonderImages() {
-
-    }
-
-    private void refreshMaterialImages() {
-
-    }
-
-    private void refreshPlayerTokenImages() {
-
-    }
-
-    private void refreshPlayerShieldImages() {
-
-    }
-
 }

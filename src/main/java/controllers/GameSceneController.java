@@ -1,5 +1,6 @@
 package controllers;
 
+import application.AppData;
 import data.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import static other.LoadScene.changeLauncherScene;
 import static other.ModelCommonMethods.*;
 import static other.UICommonMethods.setImage;
 
@@ -197,8 +200,8 @@ public class GameSceneController {
     }
 
     private void loadWonderLayout() throws IOException {
-
-        String file = "/wonder-layouts/" + currentPlayer.getWonder().getName().toLowerCase() + "-350.fxml";
+        String wonderName = currentPlayer.getWonder().getName().toLowerCase();
+        String file = "/wonder-layouts/" +  wonderName + "-" + AppData.getWonderLayoutSize() + ".fxml";
         URL url = getClass().getResource(file);
         if (url == null) {
             System.out.println("FXML file not found.");
@@ -446,9 +449,19 @@ public class GameSceneController {
     @FXML
     void onNextTurnButtonClick() throws IOException {
         checkForWar();
+        checkForEndgame();
         switchToNextPlayer();
         updateDecks();
         updateScene();
+    }
+
+    private void checkForEndgame() throws IOException {
+        boolean[] built = currentPlayer.getWonder().getIsStageBuilt();
+        if(built[0] && built[1] && built[2] && built[3] && built[4]){
+            int[][] scoreBoard = getScoreBoard(playerList);
+            GameData.setScoreBoard(scoreBoard);
+            changeLauncherScene("results");
+        }
     }
 
     private void checkForWar() {

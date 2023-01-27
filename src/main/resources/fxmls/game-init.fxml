@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameInitController">
    <children>
-      <AnchorPane layoutX="201.0" layoutY="116.0" minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="269.0">
+      <ImageView fitHeight="400.0" fitWidth="500.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/other/parchment.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="167.0" layoutY="116.0" minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="304.0">
          <children>
-            <Label fx:id="Player1NameLabel" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="93.0" text="Player 1 Name :" />
-            <Label fx:id="Player2NameLabel" layoutX="14.0" layoutY="31.0" prefHeight="17.0" prefWidth="93.0" text="Player 2 Name :" />
-            <Label fx:id="Player3NameLabel" layoutX="14.0" layoutY="57.0" prefHeight="17.0" prefWidth="93.0" text="Player 3 Name :" />
-            <Label fx:id="Player4NameLabel" layoutX="14.0" layoutY="83.0" prefHeight="17.0" prefWidth="93.0" text="Player 4 Name :" />
-            <Label fx:id="Player5NameLabel" layoutX="14.0" layoutY="109.0" prefHeight="17.0" prefWidth="93.0" text="Player 5 Name :" />
-            <Label fx:id="Player6NameLabel" layoutX="14.0" layoutY="135.0" prefHeight="17.0" prefWidth="93.0" text="Player 6 Name :" />
-            <Label fx:id="Player7NameLabel" layoutX="14.0" layoutY="161.0" prefHeight="17.0" prefWidth="93.0" text="Player 7 Name :" />
-            <TextField fx:id="Player1Name" layoutX="107.0" layoutY="1.0" />
-            <TextField fx:id="Player2Name" layoutX="107.0" layoutY="27.0" />
-            <TextField fx:id="Player3Name" layoutX="107.0" layoutY="53.0" />
-            <TextField fx:id="Player4Name" layoutX="107.0" layoutY="79.0" />
-            <TextField fx:id="Player5Name" layoutX="107.0" layoutY="105.0" />
-            <TextField fx:id="Player6Name" layoutX="107.0" layoutY="131.0" />
-            <TextField fx:id="Player7Name" layoutX="107.0" layoutY="157.0" />
+            <Label fx:id="p1NameLB" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="6.0" prefHeight="18.0" prefWidth="133.0" text="Player 1 Name :" textAlignment="RIGHT" />
+            <Label fx:id="p2NameLB" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="31.0" prefHeight="18.0" prefWidth="134.0" text="Player 2 Name :" textAlignment="RIGHT" />
+            <Label fx:id="p3NameLB" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="57.0" prefHeight="18.0" prefWidth="134.0" text="Player 3 Name :" textAlignment="RIGHT" />
+            <Label fx:id="p4NameLB" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="83.0" prefHeight="18.0" prefWidth="134.0" text="Player 4 Name :" textAlignment="RIGHT" />
+            <Label fx:id="p5NameLB" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="109.0" prefHeight="18.0" prefWidth="134.0" text="Player 5 Name :" textAlignment="RIGHT" />
+            <Label fx:id="p6NameLB" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="135.0" prefHeight="18.0" prefWidth="134.0" text="Player 6 Name :" textAlignment="RIGHT" />
+            <Label fx:id="p7NameLB" alignment="CENTER_RIGHT" layoutX="3.0" layoutY="161.0" prefHeight="18.0" prefWidth="134.0" text="Player 7 Name :" textAlignment="RIGHT" />
+            <TextField fx:id="Player1Name" layoutX="140.0" layoutY="1.0" />
+            <TextField fx:id="Player2Name" layoutX="140.0" layoutY="27.0" />
+            <TextField fx:id="Player3Name" layoutX="140.0" layoutY="53.0" />
+            <TextField fx:id="Player4Name" layoutX="140.0" layoutY="79.0" />
+            <TextField fx:id="Player5Name" layoutX="140.0" layoutY="105.0" />
+            <TextField fx:id="Player6Name" layoutX="140.0" layoutY="131.0" />
+            <TextField fx:id="Player7Name" layoutX="140.0" layoutY="157.0" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="135.0" fitWidth="225.0" layoutX="137.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -30,16 +40,19 @@
             <Image url="@../other/arc-common-logo-1630334595bVXyZ-large.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="ComboBoxNumPlayer" layoutX="117.0" layoutY="208.0" onAction="#onNumPlayersChanged" prefHeight="26.0" prefWidth="70.0" />
-      <Label layoutX="117.0" layoutY="182.0" text="N° of players :" />
-      <HBox fx:id="peaceTokenIVHB" layoutX="74.0" layoutY="316.0" spacing="50.0">
+      <ComboBox fx:id="ComboBoxNumPlayer" layoutX="81.0" layoutY="208.0" onAction="#onNumPlayersChanged" prefHeight="26.0" prefWidth="70.0" />
+      <Label fx:id="numPlayersLB" layoutX="77.0" layoutY="182.0" text="N° of players :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <HBox layoutX="74.0" layoutY="316.0" spacing="50.0">
          <children>
             <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStartButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Start">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onRuleButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Rules">
+            <Button fx:id="rulesButton" mnemonicParsing="false" onAction="#onRuleButtonClicked" prefHeight="66.0" prefWidth="150.0" text="Rules">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>

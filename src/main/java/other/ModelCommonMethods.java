@@ -377,23 +377,20 @@ public class ModelCommonMethods {
             scores[i][1] = getBlueRedLaurelPoints(player);
             scores[i][2] = player.getHasCat() ? 2 : 0;
             scores[i][3] = getGreenLaurelPoints(player);
-            scores[i][4] = getCultureScore(player) + getPoliticsScore(player) + getStrategyScore(player) + getEducationScore(player);
-            scores[i][5] = scores[i][0] + scores[i][1] + scores[i][2] + scores[i][3] + scores[i][4];
+            scores[i][4] = scores[i][0] + scores[i][1] + scores[i][2] + scores[i][3];
         }
         return scores;
     }
 
     public static int getWonderLaurelPoints(Player player){
-        //faire la sommes des points des étages de la merveille qui sont construits
-        int nbStage = player.getWonder().getNbLevelsInStages().length;
+        //Faire la sommes des points des étages de la merveille qui sont construits
         int score = 0;
-        for (int i =0; i < nbStage; i++){
-            if (player.getWonder().getIsStageBuilt()[i] == true){
+        for (int i = 0; i < 5; i++){
+            if (player.getWonder().getIsStageBuilt()[i]){
                 score = score + player.getWonder().getLevelPoints()[i];
             }
         }
         return score;
-
     }
 
     public static int getBlueRedLaurelPoints(Player player){
@@ -411,51 +408,55 @@ public class ModelCommonMethods {
 
     public static int getGreenLaurelPoints(Player player){
         int score = 0;
-        //regarder si il a progress tokens et faire en fonction
+        //Regarder si il a progress tokens et gagner les points correspondants
         if (player.getProgressTokens().contains(ProgressToken.Decoration)){
             score += getDecorationScore(player);
         }
-
+        if (player.getProgressTokens().contains(ProgressToken.Politic)){
+            score += getPoliticsScore(player);
+        }
+        if (player.getProgressTokens().contains(ProgressToken.Strategy)){
+            score += getStrategyScore(player);
+        }
+        if (player.getProgressTokens().contains(ProgressToken.Education)){
+            score += getEducationScore(player);
+        }
+        if (player.getProgressTokens().contains(ProgressToken.Culture)){
+            score += getCultureScore(player);
+        }
         return score;
     }
 
     public static int getDecorationScore(Player player){
-        //retourner état avancement merveille
-        int score = 4;
-        int nbLevels = player.getWonder().getNbLevelsInStages().length;
-        if (player.getWonder().getIsStageBuilt()[nbLevels]){
-            score = 6;
+        //Retourner état avancement merveille
+        boolean complete = true;
+        for(boolean bl : player.getWonder().getIsStageBuilt()){
+            if (!bl) {
+                complete = false;
+                break;
+            }
         }
-        return score;
+        return complete ? 6 : 4;
     }
 
     public static int getPoliticsScore(Player player){
-        //retourner nombre de jetons bleus avec un chat
-        int score = 0;
-        if (player.getProgressTokens().contains(ProgressToken.Politic)){
-            long countLaurelBlue2 = player.getLaurelTokens().stream()
-                    .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
-            score = (int) countLaurelBlue2;
-        }
-        return score;
+        //Retourner nombre de jetons bleus avec un chat
+        long countLaurelBlue2 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_BLUE_2)).count();
+        return (int) countLaurelBlue2;
     }
 
     public static int getStrategyScore(Player player){
-        //retourner nombre de jetons victoire militair rouges
+        //Retourner le nombre de jetons victoire militaire rouges
         int score = 0;
-        if (player.getProgressTokens().contains(ProgressToken.Strategy)){
-            score = player.getMilitaryPoints();
-        }
-        return score;
+        long countLaurelRed3 = player.getLaurelTokens().stream()
+                .filter(s-> s.equals(LaurelToken.LAUREL_RED_3)).count();
+        return (int) countLaurelRed3;
     }
 
     public static int getEducationScore(Player player){
-        //retourner nombre jetons progrès
-        int score = 0;
-        if (player.getProgressTokens().contains(ProgressToken.Education)){
-            score = player.getProgressTokens().size()*2;
-        }
-        return score;
+        //Retourner le nombre de jetons progrès
+        return player.getProgressTokens().size()*2;
     }
 
     public static int getCultureScore(Player player){
