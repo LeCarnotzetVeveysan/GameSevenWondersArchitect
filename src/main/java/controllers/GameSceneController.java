@@ -517,8 +517,8 @@ public class GameSceneController {
                 built += 1;
             }
         }
-        InfoPlayer.setText(gameBoard.getPlayers().get(hoveredPlayer-1).getName() + " has " + score + " Victory Points, " +
-                gameBoard.getPlayers().get(hoveredPlayer-1).getProgressTokens().size()+ " Progress Tokens and has built " +
+        InfoPlayer.setText(gameBoard.getPlayers().get(hoveredPlayer-1).getName() + " has " + score + " Victory Points \n " +
+                gameBoard.getPlayers().get(hoveredPlayer-1).getProgressTokens().size()+ " Progress Tokens \n has built " +
                 built + " Stages out of " + nbStage);
     }
 

@@ -136,7 +136,7 @@ public enum Wonder {
             case Halicarnasse -> halicarnasseAction(board);
             case Ephese -> epheseAction(board);
             case Olympie -> olympieAction(board);
-            case Babylon -> babylonAction();
+            case Babylon -> babylonAction(board);
             case Rhodes -> rhodesAction(board);
         }
     }
@@ -165,8 +165,11 @@ public enum Wonder {
         comMeth.drawRightDeckCard(board, 0);
     }
 
-    public void babylonAction() {
+    public void babylonAction(Board board) {
         // choisir un jeton progrès parmi les 4 disponibles
+        board.setCanDrawProgressToken(true);
+        board.setCanNextTurn(false);
+
     }
 
     public void rhodesAction(Board board) {
