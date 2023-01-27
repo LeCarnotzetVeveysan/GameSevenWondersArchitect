@@ -205,9 +205,15 @@ public class ModelCommonMethods {
                 int currentLevel = i != 0 ? currentStageCalc(i, wonder.getNbLevelsInStages()) + n : n;
                 boolean previousStageBuild = i == 0 || verifPreviousStageBuilt(currentPlayer, i);
 
+                System.out.println("currentLevel : " + currentLevel);
+                System.out.println(materialTab);
+                System.out.println("previousStageBuild : " + previousStageBuild);
+                System.out.println("wonder.getIsStageBuilt()[currentLevel] : " + wonder.getIsStageBuilt()[currentLevel]);
+                System.out.println("wonder.getSameMaterials()[i] : " + wonder.getSameMaterials()[i]);
+
                 if (!wonder.getIsStageBuilt()[currentLevel] && previousStageBuild) {
                     // Récupère le nombre de niveaux dans l'étape en cours de construction
-                    if (wonder.getSameMaterials()[i]) {
+                    if (wonder.getSameMaterials()[currentLevel]) {
                         // Vérifie si le joueur a les jetons de matériaux requis pour construire un niveau avec des matériaux identiques
                         if (updateSameMat(board, materialTab, elementTabToToken, currentLevel)) {
                             break;

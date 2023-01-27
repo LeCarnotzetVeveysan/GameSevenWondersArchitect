@@ -423,7 +423,7 @@ public class GameSceneController {
         } else {
             setImage(rightDeckIV, rightDeck.getBackCardImg());
         }
-        if(!gameBoard.getHasDrawnCard() && currentPlayer.getHasCat()){
+        if(!gameBoard.getHasDrawnCard() && currentPlayer.getHasCat() && centralDeck.getDeck().size() > 0) {
             setImage(centralDeckIV, centralDeck.getCardAtIndex(0).getFront());
         } else {
             setImage(centralDeckIV, centralDeck.getBackCardImg());
