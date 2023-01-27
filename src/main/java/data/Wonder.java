@@ -143,6 +143,7 @@ public enum Wonder {
 
     public void alexandrieAction() throws IOException {
         // prendre la première carte au choix parmi les decks sur la table
+        //a implementer
         changeLauncherScene("alexandrie-action");
     }
 

@@ -22,7 +22,7 @@
       </ImageView>
       <ImageView fitHeight="116.0" fitWidth="369.0" layoutX="66.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../other/arc-common-logo-1630334595bVXyZ-large.png" />
+            <Image url="@../other/7wonders_logo2.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" layoutX="58.0" layoutY="128.0" prefHeight="83.0" prefWidth="360.0" spacing="5.0">
